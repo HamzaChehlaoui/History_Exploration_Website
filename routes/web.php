@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('/Explorer', function () {
-    return view('Explorer_Page');
+        return view('Explorer_Page');
 });
 Route::get('/Stor', function () {
     return view('online_stor');
