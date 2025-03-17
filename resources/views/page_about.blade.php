@@ -57,7 +57,7 @@
                 </div>
                 <div class="mt-12 sm:mt-16 lg:mt-0">
                     <div class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
-                        <img class="w-full mt-[1rem] rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none" src="https://dualcreditathome.com/wp-content/uploads/2014/02/history.jpg" alt="Mission illustration">
+                        <img class="w-full mt-[2rem] rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none" src="https://dualcreditathome.com/wp-content/uploads/2014/02/history.jpg" alt="Mission illustration">
                     </div>
                 </div>
             </div>
