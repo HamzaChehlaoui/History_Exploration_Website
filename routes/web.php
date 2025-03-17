@@ -26,7 +26,7 @@ Route::get('/about', function () {
         return view('page_about');
 });
 Route::get('/login', function () {
-    return view('login');
+        return view('login');
 });
 
 
