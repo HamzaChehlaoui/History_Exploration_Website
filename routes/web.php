@@ -20,7 +20,7 @@ Route::get('/Explorer', function () {
         return view('Explorer_Page');
 });
 Route::get('/Stor', function () {
-    return view('online_stor');
+        return view('online_stor');
 });
 Route::get('/about', function () {
     return view('page_about');
