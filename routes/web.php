@@ -23,7 +23,7 @@ Route::get('/Stor', function () {
         return view('online_stor');
 });
 Route::get('/about', function () {
-    return view('page_about');
+        return view('page_about');
 });
 Route::get('/login', function () {
     return view('login');
