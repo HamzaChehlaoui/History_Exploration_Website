@@ -4,14 +4,10 @@
 
         <!-- Logo and Brand -->
 
-            <div class="flex-shrink-0">
-            <a href="#" class="flex items-center gap-2">
-                <span class="text-amber-300 text-3xl">⌛</span>
-                <h1 class="text-2xl md:text-3xl font-bold text-amber-50 font-serif tracking-tight">
-                    TimeTrekker
-                </h1>
-            </a>
-            </div>
+        <div class="flex items-center space-x-2">
+            <img src="https://cdn-icons-png.flaticon.com/512/4645/4645379.png" alt="TimeTrekker Logo" class="h-10 w-10">
+            <span class="text-2xl font-bold text-amber-100">TimeTrekker</span>
+        </div>
 
             <!-- Mobile menu button -->
             <div class="flex md:hidden">
