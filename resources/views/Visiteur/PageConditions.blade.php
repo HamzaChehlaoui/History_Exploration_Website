@@ -326,7 +326,7 @@
                 scrollTriggers.forEach(element => {
                     let position = element.getBoundingClientRect();
 
-                    // Check if element is in viewport
+                    // Check if element is in viewport 
                     if(position.top < window.innerHeight - 100) {
                         element.classList.add('visible');
                     }

@@ -13,20 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Visitoure.index');
-});
-Route::get('/Explorer', function () {
-        return view('Visitoure.Explorer_Page');
-});
-Route::get('/Stor', function () {
-        return view('Visitoure.Online_Stor');
-});
-Route::get('/about', function () {
-        return view('Visitoure.Page_About');
-});
-Route::get('/login', function () {
-        return view('Auth.login');
-});
 
 
+Route::group([] ,function (){
+    Route::view('/', 'Visiteur.index');
+    Route::view('/Explorer', 'Visiteur.Explorer_Page');
+    Route::view('/Stor', 'Visiteur.Online_Stor');
+    Route::view('/about', 'Visiteur.Page_About');
+    Route::view('/login', 'Auth.login');
+});

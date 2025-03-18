@@ -204,7 +204,7 @@
             <div class="border-t border-amber-700 mt-8 pt-6 text-center">
                 <p class="text-amber-200">&copy; 2025 TimeTrekker, All Rights Reserved.</p>
             </div>
-        </footer>
+    </footer>
 
         <!-- Scroll Animations Script -->
         <script>
