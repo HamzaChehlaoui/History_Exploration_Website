@@ -93,7 +93,7 @@
     </style>
 </head>
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
-    @include('navbare_visitoure.nav')
+    @include('Navbare.navbare_visitoure.nav')
 
       <!-- Hero Section -->
     <div class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen">

@@ -17,13 +17,13 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('/Explorer', function () {
-        return view('PageProfile');
+        return view('Explorer_Page');
 });
 Route::get('/Stor', function () {
-        return view('online_stor');
+        return view('Online_Stor');
 });
 Route::get('/about', function () {
-        return view('page_about');
+        return view('Page_About');
 });
 Route::get('/login', function () {
         return view('login');

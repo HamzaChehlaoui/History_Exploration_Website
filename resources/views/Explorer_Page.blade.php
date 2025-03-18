@@ -24,7 +24,7 @@
 </head>
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
     <!-- Navigation -->
-    @include('navbare_visitoure.nav')
+    @include('Navbare.navbare_visitoure.nav')
 
 
     <!-- Main Content -->
