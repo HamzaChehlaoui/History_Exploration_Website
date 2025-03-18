@@ -14,19 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('Visitoure.index');
 });
 Route::get('/Explorer', function () {
-        return view('Explorer_Page');
+        return view('Visitoure.Explorer_Page');
 });
 Route::get('/Stor', function () {
-        return view('Online_Stor');
+        return view('Visitoure.Online_Stor');
 });
 Route::get('/about', function () {
-        return view('Page_About');
+        return view('Visitoure.Page_About');
 });
 Route::get('/login', function () {
-        return view('login');
+        return view('Auth.login');
 });
 
 
