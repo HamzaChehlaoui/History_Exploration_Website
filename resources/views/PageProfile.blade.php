@@ -356,11 +356,11 @@
     <script>
         // Simple scroll animation for timeline items
         document.addEventListener('DOMContentLoaded', function() {
-            const scrollTriggers = document.querySelectorAll('.scroll-trigger');
+            let scrollTriggers = document.querySelectorAll('.scroll-trigger');
 
-            const checkVisibility = () => {
+            let checkVisibility = () => {
                 scrollTriggers.forEach(element => {
-                    const position = element.getBoundingClientRect();
+                    let position = element.getBoundingClientRect();
 
                     // Check if element is in viewport
                     if(position.top < window.innerHeight - 100) {
