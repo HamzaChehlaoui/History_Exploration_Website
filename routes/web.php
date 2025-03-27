@@ -21,4 +21,5 @@ Route::group([] ,function (){
     Route::view('/Stor', 'Visiteur.Online_Stor');
     Route::view('/about', 'Visiteur.Page_About');
     Route::view('/login', 'Auth.login');
+    Route::view('/PageConditions','Visiteur.PageConditions');
 });

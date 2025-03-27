@@ -29,6 +29,7 @@
                     <h4 class="text-lg font-semibold mb-4">Contact</h4>
                     <p class="text-amber-200">123 History Lane, Timeline City, TX 12345</p>
                     <p class="text-amber-200">Email: support@timetrekker.com</p>
+                    <a href="/PageConditions" class="text-amber-200">Conditions</a>
                 </div>
             </div>
         </div>
