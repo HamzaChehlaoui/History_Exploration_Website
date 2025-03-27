@@ -163,7 +163,7 @@
                         <dd class="text-amber-800">Modern History Researcher</dd>
                     </div>
                 </dl>
-            </div> 
+            </div>
         </div>
     </div>
 
