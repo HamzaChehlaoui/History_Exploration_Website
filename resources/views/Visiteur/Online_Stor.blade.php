@@ -1,32 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TimeTrekker - Historical Store</title>
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4645/4645379.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes floatingEffect {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
+@extends('Visiteur.master')
 
-        .floating {
-            animation: floatingEffect 3s ease-in-out infinite;
-        }
-
-        .store-card {
-            background: linear-gradient(to bottom right, rgba(251, 243, 219, 0.9), rgba(251, 243, 219, 0.7));
-            backdrop-filter: blur(10px);
-        }
-    </style>
-</head>
+@section('content')
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
-    <!-- Navigation -->
-    @include('Navbare.navbare_visitoure.nav')
-
 
     <!-- Main Content -->
     <main class="pt-24 pb-12 px-4">
@@ -167,5 +142,6 @@
             </div>
         </div>
     </section>
+@endsection
 </body>
 </html>
