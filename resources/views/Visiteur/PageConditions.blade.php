@@ -1,71 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TimeTrekker - Terms and Conditions</title>
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4645/4645379.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .timeline-track {
-            background: repeating-linear-gradient(
-                45deg,
-                #92400e,
-                #92400e 10px,
-                #78350f 10px,
-                #78350f 20px
-            );
-        }
+@extends('Visiteur.master')
 
-        .parchment {
-            background-color: #fffbeb;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23b45309' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
+@section('content')
+<style>
+    .timeline-track {
+        background: repeating-linear-gradient(
+            45deg,
+            #92400e,
+            #92400e 10px,
+            #78350f 10px,
+            #78350f 20px
+        );
+    }
 
-        .scroll-trigger {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
+    .parchment {
+        background-color: #fffbeb;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23b45309' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
 
-        .scroll-trigger.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .scroll-trigger {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease-out;
+    }
 
-        .time-badge {
-            background: conic-gradient(from 0deg, #78350f, #b45309, #92400e, #78350f);
-        }
+    .scroll-trigger.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-        .section-divider {
-            height: 2px;
-            background: linear-gradient(to right, transparent, #b45309, transparent);
-        }
-    </style>
-</head>
+    .time-badge {
+        background: conic-gradient(from 0deg, #78350f, #b45309, #92400e, #78350f);
+    }
+
+    .section-divider {
+        height: 2px;
+        background: linear-gradient(to right, transparent, #b45309, transparent);
+    }
+
+
+</style>
+
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
-    <!-- Navigation Bar -->
-    <header class="bg-amber-900 text-amber-100 px-4 py-3 shadow-md">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <img src="https://cdn-icons-png.flaticon.com/512/4645/4645379.png" alt="TimeTrekker Logo" class="h-10 w-10">
-                <span class="text-2xl font-bold">TimeTrekker</span>
-            </div>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#" class="hover:text-amber-300 transition-colors">Home</a></li>
-                    <li><a href="#" class="hover:text-amber-300 transition-colors">Explore</a></li>
-                    <li><a href="#" class="hover:text-amber-300 transition-colors">Timeline</a></li>
-                    <li><a href="#" class="hover:text-amber-300 transition-colors">Community</a></li>
-                    <li><a href="#" class="hover:text-amber-300 transition-colors">Profile</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+
 
     <!-- Page Header -->
     <div class="bg-amber-800 py-12 px-4 shadow-md">
-        <div class="max-w-4xl mx-auto text-center">
+        <div class="max-w-4xl mx-auto text-center mt-[3rem]">
             <h1 class="text-4xl font-bold text-amber-100 mb-4">Terms and Conditions</h1>
             <p class="text-amber-200">Last updated: March 15, 2025</p>
         </div>
@@ -274,47 +254,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-amber-900 text-amber-100 py-8">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">TimeTrekker</h4>
-                    <p class="text-amber-300 text-sm">Exploring history one moment at a time.</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100">Home</a></li>
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100">Explore Eras</a></li>
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100">Community</a></li>
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100">About Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100">Historical Database</a></li>
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100">Artifact Registry</a></li>
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100">Time Travel Guidelines</a></li>
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100">Preservation Techniques</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100 font-bold">Terms of Service</a></li>
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100">Privacy Policy</a></li>
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100">Temporal Ethics</a></li>
-                        <li><a href="#" class="text-amber-300 hover:text-amber-100">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-amber-800 mt-8 pt-6 text-center text-sm text-amber-400">
-                <p>&copy; 2025 TimeTrekker. All rights reserved. Temporal Displacement License #TT-42985-C.</p>
-            </div>
-        </div>
-    </footer>
+  @endsection
 
     <!-- Scripts -->
     <script>
@@ -326,7 +266,7 @@
                 scrollTriggers.forEach(element => {
                     let position = element.getBoundingClientRect();
 
-                    // Check if element is in viewport 
+                    // Check if element is in viewport
                     if(position.top < window.innerHeight - 100) {
                         element.classList.add('visible');
                     }
@@ -341,4 +281,4 @@
         });
     </script>
 </body>
-</html>
+
