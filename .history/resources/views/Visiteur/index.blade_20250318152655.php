@@ -2,11 +2,11 @@
 @section('content')
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
     <!-- Hero Section -->
-    <p class="test text-[10rem]">hamza</p>
     <div class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen">
         <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('https://img.le-dictionnaire.com/histoire-temps.jpg');">
             <span class="w-full h-full absolute opacity-50 bg-amber-900"></span>
         </div>
+        <p></p>
         <div class="container relative mx-auto">
             <div class="flex flex-wrap items-center">
                 <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">

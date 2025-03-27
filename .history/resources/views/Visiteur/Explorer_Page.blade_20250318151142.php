@@ -1,7 +1,9 @@
-@extends('Visiteur.master')
-
-@section('content')
+@extends()
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
+    <!-- Navigation -->
+    {{-- @include('Navbare.navbare_visitoure.nav') --}}
+
+
     <!-- Main Content -->
     <main class="pt-24 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -165,6 +167,12 @@
             </div>
         </div>
     </main>
-    @endsection
+
+    <!-- Footer -->
+    <footer class="bg-amber-900 text-amber-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>© 2025 TimeTrekker. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

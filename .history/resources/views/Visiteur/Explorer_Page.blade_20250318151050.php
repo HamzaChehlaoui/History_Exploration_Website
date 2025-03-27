@@ -1,7 +1,20 @@
-@extends('Visiteur.master')
-
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore History - TimeTrekker</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4645/4645379.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+     
+    </style>
+</head>
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
+    <!-- Navigation -->
+    {{-- @include('Navbare.navbare_visitoure.nav') --}}
+
+
     <!-- Main Content -->
     <main class="pt-24 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -165,6 +178,12 @@
             </div>
         </div>
     </main>
-    @endsection
+
+    <!-- Footer -->
+    <footer class="bg-amber-900 text-amber-100 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>© 2025 TimeTrekker. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

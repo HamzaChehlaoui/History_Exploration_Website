@@ -165,6 +165,6 @@
             </div>
         </div>
     </main>
-    @endsection
+    
 </body>
 </html>

@@ -1,6 +1,6 @@
 @extends('Visiteur.master')
 
-@section('content')
+@section
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
     <!-- Main Content -->
     <main class="pt-24 pb-12">
@@ -165,6 +165,5 @@
             </div>
         </div>
     </main>
-    @endsection
 </body>
 </html>
