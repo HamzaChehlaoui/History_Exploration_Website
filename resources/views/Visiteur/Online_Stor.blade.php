@@ -2,7 +2,6 @@
 
 @section('content')
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
-test 
     <!-- Main Content -->
     <main class="pt-24 pb-12 px-4">
         <div class="max-w-7xl mx-auto">
