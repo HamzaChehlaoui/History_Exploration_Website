@@ -2,7 +2,7 @@
 
 @section('content')
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
-
+test 
     <!-- Main Content -->
     <main class="pt-24 pb-12 px-4">
         <div class="max-w-7xl mx-auto">
@@ -121,6 +121,7 @@
                                 <button class="bg-amber-800 text-amber-100 px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors">
                                     Add to Cart
                                 </button>
+
                             </div>
                         </div>
                     </div>
