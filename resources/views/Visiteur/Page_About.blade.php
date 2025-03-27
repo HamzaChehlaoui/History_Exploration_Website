@@ -1,38 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - TimeTrekker</title>
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4645/4645379.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .timeline-dot {
-            animation: pulse 2s infinite;
-        }
+@extends('Visiteur.master')
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .scroll-trigger {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
-
-        .scroll-trigger.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
+@section('content')
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
-    <!-- Navigation -->
-    @include('Navbare.navbare_visitoure.nav')
-
 
     <!-- Hero Section -->
     <div class="relative pt-16 pb-32 overflow-hidden">
@@ -166,67 +135,5 @@
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="bg-amber-900 text-amber-100 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h4 class="text-xl font-bold mb-4 font-serif">TimeTrekker</h4>
-                    <p class="text-amber-200">Exploring history, one moment at a time.</p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-amber-200 hover:text-amber-100">About Us</a></li>
-                        <li><a href="#" class="text-amber-200 hover:text-amber-100">Contact
-                            <li><a href="#" class="text-amber-200 hover:text-amber-100">Contact Us</a></li>
-                            <li><a href="#" class="text-amber-200 hover:text-amber-100">Terms of Service</a></li>
-                            <li><a href="#" class="text-amber-200 hover:text-amber-100">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-amber-200 hover:text-amber-100">Facebook</a></li>
-                            <li><a href="#" class="text-amber-200 hover:text-amber-100">Twitter</a></li>
-                            <li><a href="#" class="text-amber-200 hover:text-amber-100">Instagram</a></li>
-                            <li><a href="#" class="text-amber-200 hover:text-amber-100">LinkedIn</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Contact</h4>
-                        <p class="text-amber-200">123 History Lane, Timeline City, TX 12345</p>
-                        <p class="text-amber-200">Email: support@timetrekker.com</p>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-amber-700 mt-8 pt-6 text-center">
-                <p class="text-amber-200">&copy; 2025 TimeTrekker, All Rights Reserved.</p>
-            </div>
-    </footer>
-
-        <!-- Scroll Animations Script -->
-        <script>
-            const scrollTriggers = document.querySelectorAll('.scroll-trigger');
-            const options = {
-                root: null,
-                threshold: 0.1,
-            };
-
-            const onIntersect = (entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            };
-
-            const observer = new IntersectionObserver(onIntersect, options);
-            scrollTriggers.forEach(trigger => {
-                observer.observe(trigger);
-            });
-        </script>
-    </body>
-    </html>
+@endsection
+</body>
