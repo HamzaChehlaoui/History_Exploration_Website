@@ -25,7 +25,6 @@
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
 <!-- Navigation -->
 
-
 <!-- Login/Register Section -->
 <div class="min-h-screen pt-16 pb-12 flex flex-col justify-center ">
     <div class="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,7 +98,7 @@
 
             <p class="mt-6 text-center text-sm text-amber-700">
                 Not registered yet?
-                <a href="create_acont.html" class="font-medium text-amber-600 hover:text-amber-500">Create an account</a>
+                <a href="/registere" class="font-medium text-amber-600 hover:text-amber-500">Create an account</a>
             </p>
         </div>
     </div>
