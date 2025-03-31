@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('listes_de_surveillance', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('utilisateur_id')->constrained('utilisateurs')->onDelete('cascade');
             $table->timestamps();
         });
     }

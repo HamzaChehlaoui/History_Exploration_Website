@@ -38,7 +38,7 @@
                 <!-- Event Cards with vintage styling -->
                 <div class="bg-amber-100 rounded-lg shadow-md overflow-hidden border border-amber-200 hover:shadow-xl transition-shadow">
                     <img src="https://t3.ftcdn.net/jpg/09/13/76/72/360_F_913767210_YnpVVDo3KlinDAcV8gMu9aOs1PmXo4qV.jpg" alt="Historical Event 1" class="w-full h-48 object-cover"/>
-                    <div class="p-6"> 
+                    <div class="p-6">
                         <h4 class="text-xl font-semibold mb-2 text-amber-900">The Industrial Revolution</h4>
                         <p class="text-amber-800">Discover how the Industrial Revolution transformed society and shaped our modern world.</p>
                     </div>
