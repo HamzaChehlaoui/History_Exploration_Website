@@ -16,12 +16,14 @@ class CommentairesSeeder extends Seeder
         DB::table('commentaires')->insert([
             [
                 'content' => 'Great article about Ancient Rome!',
-                'user_id' => 2,
+                'date_commentaire' => now(), // Ajout de la date
+                'utilisateur_id' => 2,
                 'article_id' => 1
             ],
             [
                 'content' => 'I love learning about Egyptian history.',
-                'user_id' => 1,
+                'date_commentaire' => now(), // Ajout de la date
+                'utilisateur_id' => 1,
                 'article_id' => 2
             ],
         ]);

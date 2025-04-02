@@ -17,12 +17,14 @@ class ProduitsSeeder extends Seeder
             [
                 'name' => 'Ancient Rome Coins',
                 'description' => 'Authentic Roman coins from the 2nd century BC.',
-                'price' => 49.99
+                'prix' => 49.99,
+                'quantite' => 10
             ],
             [
                 'name' => 'Egyptian Papyrus Scroll',
                 'description' => 'Handcrafted reproduction of ancient Egyptian papyrus.',
-                'price' => 29.99
+                'prix' => 29.99,
+                'quantite' => 15  
             ],
         ]);
     }

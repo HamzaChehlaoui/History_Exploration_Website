@@ -15,15 +15,20 @@ class MediaSeeder extends Seeder
     {
         DB::table('media')->insert([
             [
-                'file_path' => 'uploads/articles/rome.jpg',
+                'lien' => 'uploads/articles/rome.jpg',
                 'type' => 'image',
-                'article_id' => 1
+                'article_id' => 1,
+                'created_at' => now(), // Ajout des timestamps
+                'updated_at' => now(),
             ],
             [
-                'file_path' => 'uploads/articles/egypt.jpg',
+                'lien' => 'uploads/articles/egypt.jpg',
                 'type' => 'image',
-                'article_id' => 2
+                'article_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
+
     }
 }

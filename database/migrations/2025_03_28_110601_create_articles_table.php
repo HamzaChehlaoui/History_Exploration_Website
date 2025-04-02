@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string('titre');
-            $table->text('contenu');
+            $table->string('title');
+            $table->text('content');
             $table->date('date_publication');
+            $table->unsignedBigInteger('category_id');
             $table->foreignId('utilisateur_id')->constrained('utilisateurs')->onDelete('cascade');
             $table->timestamps();
         });

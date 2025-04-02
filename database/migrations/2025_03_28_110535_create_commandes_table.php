@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
             $table->date('date_commande');
-            $table->float('total');
-            $table->enum('statut', ['en_attente', 'valide', 'annule']);
+            $table->float('total_price');
+            $table->enum('status', ['en_attente', 'valide', 'annule']);
             $table->foreignId('utilisateur_id')->constrained('utilisateurs')->onDelete('cascade');
             $table->timestamps();
         });

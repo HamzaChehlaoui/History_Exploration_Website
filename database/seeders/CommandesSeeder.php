@@ -15,14 +15,16 @@ class CommandesSeeder extends Seeder
     {
         DB::table('commandes')->insert([
             [
-                'user_id' => 1,
+                'utilisateur_id' => 1,
                 'total_price' => 79.98,
-                'status' => 'Completed'
+                'date_commande' =>now(),
+                'status' => 'en_attente'
             ],
             [
-                'user_id' => 2,
+                'utilisateur_id' => 2,
                 'total_price' => 29.99,
-                'status' => 'Pending'
+                'date_commande' =>now(),
+                'status' => 'valide'
             ],
         ]);
     }
