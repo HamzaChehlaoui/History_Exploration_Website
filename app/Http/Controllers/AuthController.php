@@ -25,6 +25,6 @@ class AuthController extends Controller
         ]);
 
         // Redirect to the homepage with a success message
-        return redirect()->route('Visiteur.index')->with('success', 'Welcome! Registration successful.');
+        return redirect('/')->with('success', 'Welcome! Registration successful.');
     }
 }
