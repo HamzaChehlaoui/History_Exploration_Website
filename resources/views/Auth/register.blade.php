@@ -137,7 +137,7 @@
 
             <p class="mt-6 text-center text-sm text-amber-700">
                 Already have an account?
-                <a href="login.html" class="font-medium text-amber-600 hover:text-amber-500">Sign in here</a>
+                <a href="/login" class="font-medium text-amber-600 hover:text-amber-500">Sign in here</a>
             </p>
         </div>
     </div>
