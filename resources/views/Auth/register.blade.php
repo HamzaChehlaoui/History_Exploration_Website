@@ -69,27 +69,32 @@
             </div>
 
             <!-- Registration Form -->
-            <form class="space-y-6">
+            <form class="space-y-6" method="POST" action="{{ route('register') }}">
+                @csrf <!-- Add CSRF token to protect against cross-site request forgery -->
+
+                <!-- Name Fields -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="form-field">
                         <label for="first-name" class="block text-sm font-medium text-amber-900">First name</label>
-                        <input type="text" id="first-name" name="first-name" required
+                        <input type="text" id="first-name" name="name" required
                                class="mt-1 block w-full px-3 py-2 bg-white border border-amber-300 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500">
                     </div>
 
                     <div class="form-field">
                         <label for="last-name" class="block text-sm font-medium text-amber-900">Last name</label>
-                        <input type="text" id="last-name" name="last-name" required
+                        <input type="text" id="last-name" name="name" required
                                class="mt-1 block w-full px-3 py-2 bg-white border border-amber-300 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500">
                     </div>
                 </div>
 
+                <!-- Email Input -->
                 <div class="form-field">
                     <label for="email" class="block text-sm font-medium text-amber-900">Email address</label>
                     <input type="email" id="email" name="email" required
                            class="mt-1 block w-full px-3 py-2 bg-white border border-amber-300 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500">
                 </div>
 
+                <!-- Password Input -->
                 <div class="form-field">
                     <label for="password" class="block text-sm font-medium text-amber-900">Create password</label>
                     <input type="password" id="password" name="password" required
@@ -97,12 +102,14 @@
                     <p class="mt-1 text-sm text-amber-600">Must be at least 8 characters with 1 number and 1 special character</p>
                 </div>
 
+                <!-- Confirm Password -->
                 <div class="form-field">
                     <label for="confirm-password" class="block text-sm font-medium text-amber-900">Confirm password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required
+                    <input type="password" id="confirm-password" name="password_confirmation" required
                            class="mt-1 block w-full px-3 py-2 bg-white border border-amber-300 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500">
                 </div>
 
+                <!-- Terms and Conditions -->
                 <div class="flex items-start">
                     <div class="flex items-center h-5">
                         <input type="checkbox" id="terms" name="terms" required
@@ -118,6 +125,7 @@
                     </div>
                 </div>
 
+                <!-- Submit Button -->
                 <div>
                     <button type="submit"
                             class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-all duration-300">
@@ -125,6 +133,7 @@
                     </button>
                 </div>
             </form>
+
 
             <p class="mt-6 text-center text-sm text-amber-700">
                 Already have an account?

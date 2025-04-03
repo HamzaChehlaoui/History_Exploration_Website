@@ -98,7 +98,7 @@
 
             <p class="mt-6 text-center text-sm text-amber-700">
                 Not registered yet?
-                <a href="/registere" class="font-medium text-amber-600 hover:text-amber-500">Create an account</a>
+                <a href="/register" class="font-medium text-amber-600 hover:text-amber-500">Create an account</a>
             </p>
         </div>
     </div>
