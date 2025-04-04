@@ -29,16 +29,16 @@ class AuthController extends Controller
         return redirect('/')->with('success', 'Welcome! Registration successful.');
     }
     public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
+        {
+            $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials, $request->remember)) {
-            return redirect()->route('Visiteur.index');
+            if (Auth::attempt($credentials, $request->remember)) {
+                return redirect('/')->with('success', 'Welcome! Login successful.');
+            }
+
+            return back()->withErrors([
+                'email' => 'Email or password incorrect.',
+            ])->withInput();
         }
-
-        return back()->withErrors([
-            'email' => 'Email or password incorrect.',
-        ])->withInput();
-    }
 
 }

@@ -61,21 +61,37 @@
                     <span class="px-2 bg-white/80 text-amber-700">Or continue with</span>
                 </div>
             </div>
+            @if($errors->has('email'))
+            <div class="text-sm text-red-600 text-center">
+                {{ $errors->first('email') }}
+            </div>
+        @endif
 
             <!-- Email/Password Form -->
-            <form class="space-y-6">
+            <form method="POST" action="{{ route('login') }}" class="space-y-6">
+                @csrf
+
+                <!-- Email -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-amber-900">Email address</label>
-                    <input type="email" id="email" name="email" required
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" required
                            class="mt-1 block w-full px-3 py-2 bg-white border border-amber-300 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500">
+                    @error('email')
+                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
+                <!-- Password -->
                 <div>
                     <label for="password" class="block text-sm font-medium text-amber-900">Password</label>
                     <input type="password" id="password" name="password" required
                            class="mt-1 block w-full px-3 py-2 bg-white border border-amber-300 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500">
+                    @error('password')
+                        <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
+                <!-- Remember me + Forgot password -->
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <input type="checkbox" id="remember-me" name="remember-me"
@@ -88,6 +104,7 @@
                     </div>
                 </div>
 
+                <!-- Submit Button -->
                 <div>
                     <button type="submit"
                             class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-all duration-300">
@@ -95,6 +112,7 @@
                     </button>
                 </div>
             </form>
+
 
             <p class="mt-6 text-center text-sm text-amber-700">
                 Not registered yet?
