@@ -17,6 +17,7 @@ class ArticlesSeeder extends Seeder
             [
                 'title' => 'The Rise and Fall of the Roman Empire',
                 'content' => 'An analysis of the key events that shaped the history of the Roman civilization.',
+                'description' => 'A deep dive into the culture.',
                 'category_id' => 1,
                 'utilisateur_id' => 1,
                 'date_publication' => now(),
@@ -24,6 +25,7 @@ class ArticlesSeeder extends Seeder
             [
                 'title' => 'Ancient Egypt: The Land of Pharaohs',
                 'content' => 'A deep dive into the culture, art, and society of ancient Egypt.',
+                'description' => 'A deep dive into the culture.',
                 'category_id' => 2,
                 'utilisateur_id' => 2,
                 'date_publication' => now(),
