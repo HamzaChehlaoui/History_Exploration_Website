@@ -20,6 +20,7 @@ Route::group([] ,function (){
 
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::view('/', 'Visiteur.index');
     Route::view('/Explorer', 'Visiteur.Explorer_Page');
     Route::view('/Stor', 'Visiteur.Online_Stor');
@@ -28,3 +29,13 @@ Route::group([] ,function (){
     Route::view('/PageConditions','Visiteur.PageConditions');
 });
 
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

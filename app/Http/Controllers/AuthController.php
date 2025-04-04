@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Utilisateur;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -27,4 +28,17 @@ class AuthController extends Controller
         // Redirect to the homepage with a success message
         return redirect('/')->with('success', 'Welcome! Registration successful.');
     }
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials, $request->remember)) {
+            return redirect()->route('Visiteur.index');
+        }
+
+        return back()->withErrors([
+            'email' => 'Email or password incorrect.',
+        ])->withInput();
+    }
+
 }
