@@ -15,19 +15,19 @@ class AuthController extends Controller
     }
 
     public function register(RegisterRequest $request)
-    {
+        {
 
-        // Create a new user after validation
-        $user = Utilisateur::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password), // Hash the password for security
-            'role_id' => 2,
-        ]);
+            // Create a new user after validation
+            $user = Utilisateur::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password), // Hash the password for security
+                'role_id' => 2,
+            ]);
 
-        // Redirect to the homepage with a success message
-        return redirect('/')->with('success', 'Welcome! Registration successful.');
-    }
+            // Redirect to the homepage with a success message
+            return redirect('/')->with('success', 'Welcome! Registration successful.');
+        }
     public function login(Request $request)
         {
             $credentials = $request->only('email', 'password');
