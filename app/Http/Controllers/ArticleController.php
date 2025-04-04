@@ -2,63 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Category;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreArticleRequest;
+use App\Http\Requests\UpdateArticleRequest;
 
 class ArticleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $articles = Article::with(['utilisateur', 'category'])->get();
+        return view('articles.index', compact('articles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function show($id)
+    {
+        $article = Article::with(['utilisateur', 'category'])->findOrFail($id);
+        return view('articles.show', compact('article'));
+    }
+
     public function create()
     {
-        //
+        $categories = Category::all();
+        $utilisateurs = Utilisateur::all();
+        return view('articles.create', compact('categories', 'utilisateurs'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
-        //
+        $article = Article::create($request->validated());
+        return redirect()->route('articles.index')->with('success', 'Article créé avec succès');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        $categories = Category::all();
+        $utilisateurs = Utilisateur::all();
+        return view('articles.edit', compact('article', 'categories', 'utilisateurs'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(UpdateArticleRequest $request, $id)
     {
-        //
+        $article = Article::findOrFail($id);
+        $article->update($request->validated());
+        return redirect()->route('articles.index')->with('success', 'Article mis à jour');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $article = Article::findOrFail($id);
+        $article->delete();
+        return redirect()->route('articles.index')->with('success', 'Article supprimé');
     }
 }
