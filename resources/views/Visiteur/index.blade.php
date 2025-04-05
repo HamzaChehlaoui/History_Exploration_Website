@@ -70,20 +70,15 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="flex space-x-4 bg-amber-900/50 p-4 rounded-lg">
-                    <img src="https://c4.wallpaperflare.com/wallpaper/1022/195/618/landscape-pyramid-egypt-architecture-wallpaper-preview.jpg" alt="Featured 1" class="w-32 h-32 object-cover rounded-lg"/>
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2">Ancient Egyptian Architecture</h4>
-                        <p class="text-amber-200">Uncover the mysteries behind the construction of the pyramids.</p>
-                    </div>
-                </div>
+                @foreach($articles->take(2)  as $article)
                 <div class="flex space-x-4 bg-amber-900/50 p-4 rounded-lg">
                     <img src="https://static.wixstatic.com/media/c90d45_579e8fb78f23465f918e86976c74144b~mv2.webp/v1/fill/w_568,h_324,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/c90d45_579e8fb78f23465f918e86976c74144b~mv2.webp" alt="Featured 2" class="w-32 h-32 object-cover rounded-lg"/>
                     <div>
-                        <h4 class="text-xl font-semibold mb-2">The Age of Discovery</h4>
-                        <p class="text-amber-200">Follow the journeys of history's greatest explorers.</p>
+                        <h4 class="text-xl font-semibold mb-2">{{$article->title}}</h4>
+                        <p class="text-amber-200">{{$article->description}}</p>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </section>
