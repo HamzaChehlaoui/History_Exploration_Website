@@ -46,6 +46,10 @@
                 </div>
                 @endforeach
             </div>
+            <div class="mt-6">
+                {{ $articles->links('pagination::tailwind') }}
+            </div>
+
         </div>
     </section>
 
