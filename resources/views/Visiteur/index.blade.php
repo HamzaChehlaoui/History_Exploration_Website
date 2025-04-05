@@ -36,27 +36,15 @@
             <h3 class="text-3xl font-bold text-amber-900 mb-8 text-center font-serif">Pivotal Moments in History</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Event Cards with vintage styling -->
+                @foreach($articles as $article)
                 <div class="bg-amber-100 rounded-lg shadow-md overflow-hidden border border-amber-200 hover:shadow-xl transition-shadow">
                     <img src="https://t3.ftcdn.net/jpg/09/13/76/72/360_F_913767210_YnpVVDo3KlinDAcV8gMu9aOs1PmXo4qV.jpg" alt="Historical Event 1" class="w-full h-48 object-cover"/>
                     <div class="p-6">
-                        <h4 class="text-xl font-semibold mb-2 text-amber-900">The Industrial Revolution</h4>
-                        <p class="text-amber-800">Discover how the Industrial Revolution transformed society and shaped our modern world.</p>
+                        <h4 class="text-xl font-semibold mb-2 text-amber-900">{{$article->title}}</h4>
+                        <p class="text-amber-800">{{$article->description}}</p>
                     </div>
                 </div>
-                <div class="bg-amber-100 rounded-lg shadow-md overflow-hidden border border-amber-200 hover:shadow-xl transition-shadow">
-                    <img src="https://wallpapercave.com/wp/wp3018465.jpg" alt="Historical Event 2" class="w-full h-48 object-cover"/>
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold mb-2 text-amber-900">The Renaissance</h4>
-                        <p class="text-amber-800">Explore the cultural rebirth that revolutionized art, science, and philosophy.</p>
-                    </div>
-                </div>
-                <div class="bg-amber-100 rounded-lg shadow-md overflow-hidden border border-amber-200 hover:shadow-xl transition-shadow">
-                    <img src="https://w0.peakpx.com/wallpaper/122/656/HD-wallpaper-space-race-ultra-space-planet-race.jpg" alt="Historical Event 3" class="w-full h-48 object-cover"/>
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold mb-2 text-amber-900">The Space Race</h4>
-                        <p class="text-amber-800">Journey through humanity's greatest adventure into the final frontier.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

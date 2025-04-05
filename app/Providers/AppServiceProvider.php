@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Providers;
+use Illuminate\Support\Facades\View;
+use App\Models\Article;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+
+        View::composer(
+            ['Visiteur.index', 'articles.create'],
+            function ($view) {
+                $articles = Article::all();
+                $view->with('articles', $articles);
+            }
+        );
+
     }
 }
