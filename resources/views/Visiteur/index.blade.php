@@ -36,7 +36,7 @@
             <h3 class="text-3xl font-bold text-amber-900 mb-8 text-center font-serif">Pivotal Moments in History</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Event Cards with vintage styling -->
-                @foreach($articles as $article)
+                @foreach($articles->take(3)  as $article)
                 <div class="bg-amber-100 rounded-lg shadow-md overflow-hidden border border-amber-200 hover:shadow-xl transition-shadow">
                     <img src="https://t3.ftcdn.net/jpg/09/13/76/72/360_F_913767210_YnpVVDo3KlinDAcV8gMu9aOs1PmXo4qV.jpg" alt="Historical Event 1" class="w-full h-48 object-cover"/>
                     <div class="p-6">
@@ -46,10 +46,6 @@
                 </div>
                 @endforeach
             </div>
-            <div class="mt-6">
-                {{ $articles->links('pagination::tailwind') }}
-            </div>
-
         </div>
     </section>
 
