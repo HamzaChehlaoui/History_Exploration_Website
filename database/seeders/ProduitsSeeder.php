@@ -24,7 +24,31 @@ class ProduitsSeeder extends Seeder
                 'name' => 'Egyptian Papyrus Scroll',
                 'description' => 'Handcrafted reproduction of ancient Egyptian papyrus.',
                 'prix' => 29.99,
-                'quantite' => 15  
+                'quantite' => 15
+            ],
+            [
+                'name' => 'Ancient Rome Coins',
+                'description' => 'Authentic Roman coins from the 2nd century BC.',
+                'prix' => 49.99,
+                'quantite' => 10
+            ],
+            [
+                'name' => 'Egyptian Papyrus Scroll',
+                'description' => 'Handcrafted reproduction of ancient Egyptian papyrus.',
+                'prix' => 29.99,
+                'quantite' => 15
+            ],
+            [
+                'name' => 'Ancient Rome Coins',
+                'description' => 'Authentic Roman coins from the 2nd century BC.',
+                'prix' => 49.99,
+                'quantite' => 10
+            ],
+            [
+                'name' => 'Egyptian Papyrus Scroll',
+                'description' => 'Handcrafted reproduction of ancient Egyptian papyrus.',
+                'prix' => 29.99,
+                'quantite' => 15
             ],
         ]);
     }

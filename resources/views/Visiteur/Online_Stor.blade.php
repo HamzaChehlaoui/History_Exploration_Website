@@ -39,6 +39,9 @@
                     </div>
                     @endforeach
                 </div>
+                <div class="mt-6">
+                    {{ $produits->links('pagination::tailwind') }}
+                </div>
             </section>
 
             <!-- Educational Tools Section -->
