@@ -1,6 +1,16 @@
 @extends('Visiteur.master')
 
 @section('content')
+<style>
+.map-marker {
+        cursor: pointer;
+    }
+
+    .map-marker:hover {
+        background-color: rgba(255, 165, 0, 0.6);
+    }
+
+</style>
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
     <!-- Main Content -->
     <main class="pt-24 pb-12">
@@ -109,19 +119,54 @@
                 <!-- Right Column: Map & Results -->
                 <div class="lg:col-span-2 space-y-6">
                     <!-- Interactive Map -->
+
                     <div class="bg-white rounded-xl shadow-md p-6">
                         <h3 class="text-lg font-bold text-amber-900 mb-4">Historical Events Map</h3>
-                        <div class="relative bg-amber-50 rounded-lg overflow-hidden" style="height: 400px;">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg" alt="World Map" class="w-full h-full object-cover"/>
-                            <!-- Example Map Markers -->
-                            <div class="absolute top-1/3 left-1/4 map-marker">
-                                <div class="w-4 h-4 bg-amber-600 rounded-full"></div>
-                            </div>
-                            <div class="absolute top-1/2 left-1/2 map-marker">
-                                <div class="w-4 h-4 bg-amber-600 rounded-full"></div>
-                            </div>
-                        </div>
-                    </div>
+
+    <div class="relative bg-amber-50 rounded-lg overflow-hidden" style="height: 500px;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Winkel_triple_projection_SW.jpg" alt="World Map" class="w-full h-full object-cover" id="world-map"/>
+
+                            <!-- AFRICA -->
+        <div class="absolute top-[47%] left-[49.5%] map-marker" data-name="Africa" onclick="showContinentName(event)">
+            <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+        </div>
+
+        <!-- ASIA -->
+        <div class="absolute top-[38%] left-[63%] map-marker" data-name="Asia" onclick="showContinentName(event)">
+            <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+        </div>
+
+        <!-- EUROPE -->
+        <div class="absolute top-[30%] left-[47.5%] map-marker" data-name="Europe" onclick="showContinentName(event)">
+            <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+        </div>
+
+        <!-- NORTH AMERICA -->
+        <div class="absolute top-[28%] left-[27%] map-marker" data-name="North America" onclick="showContinentName(event)">
+            <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+        </div>
+
+        <!-- SOUTH AMERICA -->
+        <div class="absolute top-[63%] left-[36%] map-marker" data-name="South America" onclick="showContinentName(event)">
+            <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+        </div>
+
+        <!-- OCEANIA -->
+        <div class="absolute top-[72%] left-[83%] map-marker" data-name="Oceania" onclick="showContinentName(event)">
+            <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+        </div>
+
+        <!-- ANTARCTICA -->
+        <div class="absolute top-[90%] left-[52%] map-marker" data-name="Antarctica" onclick="showContinentName(event)">
+            <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+        </div>
+
+
+    </div>
+    <div id="continent-name" class="mt-4 text-lg font-bold text-amber-700"></div>
+    <div id="continent-events" class="mt-4 text-amber-800 text-base"></div>
+
+
 
                     <!-- Search Results -->
                     <div class="space-y-4">
@@ -167,4 +212,55 @@
     </main>
     @endsection
 </body>
+<script>
+    const continentEvents = {
+        "Africa": [
+            "Nelson Mandela becomes President (1994)",
+            "Egyptian Pyramids built (~2600 BC)",
+            "Scramble for Africa (1881–1914)"
+        ],
+        "Asia": [
+            "Mongol Empire expansion (1206–1368)",
+            "Atomic bombings of Hiroshima and Nagasaki (1945)",
+            "Silk Road trade flourishes (130 BC–1453 AD)"
+        ],
+        "Europe": [
+            "Fall of the Roman Empire (476 AD)",
+            "French Revolution (1789)",
+            "World War II (1939–1945)"
+        ],
+        "North America": [
+            "American Declaration of Independence (1776)",
+            "Civil Rights Movement (1950s–1960s)",
+            "9/11 Terrorist Attacks (2001)"
+        ],
+        "South America": [
+            "Incan Empire peaks (1438–1533)",
+            "Independence Movements (1810–1825)",
+            "Brazil becomes Republic (1889)"
+        ],
+        "Oceania": [
+            "British colonization of Australia (1788)",
+            "Treaty of Waitangi signed in New Zealand (1840)",
+            "Sydney Olympics (2000)"
+        ],
+        "Antarctica": [
+            "First human reached South Pole (1911)",
+            "Antarctic Treaty signed (1959)",
+            "Scientific Research Stations established"
+        ]
+    };
+
+    function showContinentName(event) {
+        const continentName = event.target.closest('.map-marker').getAttribute('data-name');
+        document.getElementById('continent-name').innerText = "Selected Continent: " + continentName;
+
+        const events = continentEvents[continentName] || [];
+        const eventsList = events.map(event => `<li class="mb-1">📜 ${event}</li>`).join('');
+        document.getElementById('continent-events').innerHTML = events.length > 0
+            ? `<ul class="list-disc pl-5 mt-2">${eventsList}</ul>`
+            : "<p class='text-gray-500 mt-2'>No historical events available for this continent.</p>";
+    }
+</script>
+
 </html>
