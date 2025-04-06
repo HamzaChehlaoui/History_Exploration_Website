@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProduitController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,7 @@ Route::group([] ,function (){
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::view('/', 'Visiteur.index');
     Route::view('/Explorer', 'Visiteur.Explorer_Page');
-    Route::view('/Stor', 'Visiteur.Online_Stor');
+    Route::get('/Stor', [ProduitController::class, 'index'])->name('store');
     Route::view('/about', 'Visiteur.Page_About');
     Route::view('/login', 'Auth.login');
     Route::view('/PageConditions','Visiteur.PageConditions');
