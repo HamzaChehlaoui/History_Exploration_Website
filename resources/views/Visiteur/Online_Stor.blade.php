@@ -23,7 +23,7 @@
                         <div class="relative">
                             <img src="https://th.bing.com/th/id/OIP.fthV-jpiDbUMe4G8v77AgwHaE7?w=626&h=417&rs=1&pid=ImgDetMain" alt="Ancient Civilizations Book" class="w-full h-48 object-cover"/>
                             <div class="absolute top-2 right-2 bg-amber-500 text-amber-900 px-2 py-1 rounded-full text-sm font-bold">
-                               {{$produit->quantite}}
+                                {{$produit->quantite}}
                             </div>
                         </div>
                         <div class="p-4">
