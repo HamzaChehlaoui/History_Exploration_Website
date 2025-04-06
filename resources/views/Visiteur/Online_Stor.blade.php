@@ -16,7 +16,7 @@
 
             <!-- Featured Products -->
             <section class="mb-12">
-                <h2 class="text-3xl font-bold text-amber-900 mb-6">Featured Products</h2>
+                <h2 class="text-3xl font-bold text-amber-900 mb-6">Products</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <!-- Product Card 1 -->
                     <div class="store-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
@@ -92,7 +92,7 @@
 
             <!-- Educational Tools Section -->
             <section class="mb-12">
-                <h2 class="text-3xl font-bold text-amber-900 mb-6">Educational Tools</h2>
+                <h2 class="text-3xl font-bold text-amber-900 mb-6">Featured Products</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Timeline Maker Kit -->
                     <div class="store-card rounded-lg shadow-lg p-6 flex gap-6">
