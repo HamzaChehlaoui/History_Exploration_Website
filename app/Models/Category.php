@@ -8,7 +8,6 @@ use App\Models\Article;
 class Category extends Model
 {
     use HasFactory;
-    use HasFactory;
 
     protected $fillable = [
         'name',
