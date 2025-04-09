@@ -245,11 +245,11 @@
 
         // Landmark coordinates (latitude, longitude) for major historical sites
         const historicalMarkers = [
-            { name: "Giza Pyramids", continent: "Africa", lat: 29.9773, lon: 31.1325, color: 0xff9933 },
+            { name: "Giza Pyramids", continent: "Africa", lat: 29.9773, lon: 31.1325, color: 0x993399 },
             { name: "Great Wall of China", continent: "Asia", lat: 40.4319, lon: 116.5704, color: 0xff0000 },
             { name: "Colosseum", continent: "Europe", lat: 41.8902, lon: 12.4922, color: 0x3366ff },
-            { name: "Machu Picchu", continent: "South America", lat: -13.1631, lon: -72.5450, color: 0x009900 },
-            { name: "Statue of Liberty", continent: "North America", lat: 40.6892, lon: -74.0445, color: 0x993399 },
+            // { name: "Machu Picchu", continent: "South America", lat: -13.1631, lon: -72.5450, color: 0x009900 },
+            // { name: "Statue of Liberty", continent: "North America", lat: 40.6892, lon: -74.0445, color: 0x993399 },
             { name: "Sydney Opera House", continent: "Oceania", lat: -33.8568, lon: 151.2153, color: 0xffcc00 },
             { name: "Amundsen-Scott Station", continent: "Antarctica", lat: -90, lon: 0, color: 0xffffff }
         ];
