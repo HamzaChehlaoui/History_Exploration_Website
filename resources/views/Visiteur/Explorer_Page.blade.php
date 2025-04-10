@@ -172,7 +172,6 @@
                                 Cultural Movements ×
                             </span>
                         </div>
-
                         <!-- Results Cards -->
                         <div class="bg-white rounded-xl shadow-md p-6">
                             <div class="flex gap-4">

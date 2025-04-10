@@ -127,10 +127,10 @@
                         <dd class="text-amber-800">Medieval History Specialist</dd>
                     </div>
                     <div class="flex flex-col items-center">
-                        <img src="https://media.licdn.com/dms/image/v2/D4E03AQFWCBmuwtAlgg/profile-displayphoto-shrink_400_400/B4EZSXbCmpGwAg-/0/1737707237271?e=1743638400&v=beta&t=x9JJjjcO7Ce3Sy1Ek5m4blpq7ZsLZ9dmdia-rPOWrps" alt="Team member" class="w-32 h-32 rounded-full mb-4">
+                        <img src="https://avatars.githubusercontent.com/u/176974502?v=4" alt="Team member" class="w-32 h-32 rounded-full mb-4">
                         <dt class="font-semibold text-amber-900">Prof. Hamza Chehlaoui</dt>
                         <dd class="text-amber-800">Modern History Researcher</dd>
-                     </div>
+                    </div>
                 </dl>
             </div>
         </div>
