@@ -256,7 +256,6 @@
 
 @endsection
 
-    <!-- Scripts -->
     <script>
         // Simple scroll animation for timeline items
         document.addEventListener('DOMContentLoaded', function() {
