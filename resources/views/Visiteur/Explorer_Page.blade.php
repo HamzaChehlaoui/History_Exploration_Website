@@ -208,8 +208,7 @@
 <!-- Google Maps Implementation -->
 <script>
 // Sample historical events data with expanded list and Wikipedia links
-// Sample historical events data with expanded list and Wikipedia links
-const historicalEvents = [
+let historicalEvents = [
     {
         title: "The Renaissance in Florence",
         period: "1400 CE - 1600 CE",
@@ -314,14 +313,14 @@ function initMap() {
     console.log('Initializing map');
 
     // Check if map container exists
-    const mapContainer = document.getElementById('map');
+    let mapContainer = document.getElementById('map');
     if (!mapContainer) {
         console.error('Map container not found');
         return;
     }
 
     // Create the map centered on a global view
-    const map = new google.maps.Map(mapContainer, {
+    let map = new google.maps.Map(mapContainer, {
         zoom: 2,
         center: { lat: 30, lng: 10 },
         mapTypeId: "terrain",
@@ -333,12 +332,12 @@ function initMap() {
     });
 
     // Define the SVG path for a location pin marker (similar to the reference image)
-    const pinSVGPath = "M12,0C5.4,0,0,5.4,0,12c0,7.2,12,24,12,24s12-16.8,12-24C24,5.4,18.6,0,12,0z M12,18c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S15.3,18,12,18z";
+    let pinSVGPath = "M12,0C5.4,0,0,5.4,0,12c0,7.2,12,24,12,24s12-16.8,12-24C24,5.4,18.6,0,12,0z M12,18c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S15.3,18,12,18z";
 
     // Add markers for each historical event with smaller location pin design and no animation
     historicalEvents.forEach(event => {
         // Create a custom marker using SVG path for location pin
-        const marker = new google.maps.Marker({
+        let marker = new google.maps.Marker({
             position: event.position,
             map: map,
             title: event.title,
@@ -357,7 +356,7 @@ function initMap() {
         });
 
         // Create an info window with an embedded Wikipedia link in the description
-        const infoWindow = new google.maps.InfoWindow({
+        let infoWindow = new google.maps.InfoWindow({
             content: `
                 <div style="max-width: 300px; padding: 10px;">
                     <h3 style="font-weight: bold; color: #78350f; margin-top: 0;">${event.title}</h3>
@@ -380,16 +379,16 @@ function initMap() {
             document.getElementById("region-name").textContent = event.location;
 
             // Clear previous content
-            const regionEvents = document.getElementById("region-events");
+            let regionEvents = document.getElementById("region-events");
             regionEvents.innerHTML = '';
 
             // Create description text
-            const descText = document.createElement('span');
+            let descText = document.createElement('span');
             descText.textContent = `${event.title} (${event.period}): ${event.description} `;
             regionEvents.appendChild(descText);
 
             // Create styled Wikipedia link
-            const wikiLink = document.createElement('a');
+            let wikiLink = document.createElement('a');
             wikiLink.href = event.wikiLink;
             wikiLink.textContent = 'Read more on Wikipedia';
             wikiLink.target = '_blank';
@@ -413,7 +412,7 @@ function initMap() {
     document.getElementById("region-events").textContent = "Click on a marker to see historical events from that region.";
 
     // Add a legend to explain the markers
-    const legend = document.createElement('div');
+    let legend = document.createElement('div');
     legend.style.padding = '10px';
     legend.style.margin = '10px';
     legend.style.backgroundColor = 'white';
@@ -425,7 +424,7 @@ function initMap() {
     legend.style.fontSize = '12px';
     legend.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
 
-    const pinIconHTML = `
+    let pinIconHTML = `
         <svg width="16" height="16" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 5px;">
             <path d="${pinSVGPath}" fill="#FF0000" stroke="#FFFFFF" stroke-width="1"></path>
         </svg>
@@ -447,7 +446,7 @@ function initMap() {
 // Load Google Maps API script
 document.addEventListener('DOMContentLoaded', function() {
     // Create script element
-    const script = document.createElement('script');
+    let script = document.createElement('script');
     const MAP_API_KEY = "{{ env('MAP_KEY') }}";
     script.src = 'https://maps.googleapis.com/maps/api/js?key=' + MAP_API_KEY + "&callback=initMap";
     script.async = true;
@@ -456,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add error handling
     script.onerror = function() {
         console.error('Google Maps API failed to load');
-        const mapDiv = document.getElementById('map');
+        let mapDiv = document.getElementById('map');
         if (mapDiv) {
             mapDiv.innerHTML = '<div style="padding: 20px; text-align: center;">Failed to load Google Maps. Please check your API key and internet connection.</div>';
         }
