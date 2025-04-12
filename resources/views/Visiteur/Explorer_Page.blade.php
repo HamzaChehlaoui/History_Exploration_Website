@@ -207,132 +207,263 @@
 
 <!-- Google Maps Implementation -->
 <script>
-    // Sample historical events data
-    const historicalEvents = [
-        {
-            title: "The Renaissance in Florence",
-            period: "1400 CE - 1600 CE",
-            location: "Florence, Italy",
-            position: { lat: 43.7696, lng: 11.2558 },
-            description: "A cultural movement that profoundly affected European intellectual life."
-        },
-        {
-            title: "The Crusades",
-            period: "1095 CE - 1291 CE",
-            location: "Jerusalem",
-            position: { lat: 31.7683, lng: 35.2137 },
-            description: "A series of religious wars initiated by the Latin Church."
-        },
-        {
-            title: "Industrial Revolution",
-            period: "1760 CE - 1840 CE",
-            location: "Manchester, England",
-            position: { lat: 53.4808, lng: -2.2426 },
-            description: "The transition to new manufacturing processes in Europe and the United States."
-        },
-        {
-            title: "French Revolution",
-            period: "1789 CE - 1799 CE",
-            location: "Paris, France",
-            position: { lat: 48.8566, lng: 2.3522 },
-            description: "A period of radical social and political upheaval in French history."
-        },
-        {
-            title: "Ancient Rome",
-            period: "753 BCE - 476 CE",
-            location: "Rome, Italy",
-            position: { lat: 41.9028, lng: 12.4964 },
-            description: "An ancient civilization that grew from a small town on central Italy's Tiber River into an empire."
-        }
-    ];
+// Sample historical events data with expanded list and Wikipedia links
+// Sample historical events data with expanded list and Wikipedia links
+const historicalEvents = [
+    {
+        title: "The Renaissance in Florence",
+        period: "1400 CE - 1600 CE",
+        location: "Florence, Italy",
+        position: { lat: 43.7696, lng: 11.2558 },
+        description: "A cultural movement that profoundly affected European intellectual life.",
+        wikiLink: "https://en.wikipedia.org/wiki/Renaissance"
+    },
+    {
+        title: "The Crusades",
+        period: "1095 CE - 1291 CE",
+        location: "Jerusalem",
+        position: { lat: 31.7683, lng: 35.2137 },
+        description: "A series of religious wars initiated by the Latin Church.",
+        wikiLink: "https://en.wikipedia.org/wiki/Crusades"
+    },
+    {
+        title: "Industrial Revolution",
+        period: "1760 CE - 1840 CE",
+        location: "Manchester, England",
+        position: { lat: 53.4808, lng: -2.2426 },
+        description: "The transition to new manufacturing processes in Europe and the United States.",
+        wikiLink: "https://en.wikipedia.org/wiki/Industrial_Revolution"
+    },
+    {
+        title: "French Revolution",
+        period: "1789 CE - 1799 CE",
+        location: "Paris, France",
+        position: { lat: 48.8566, lng: 2.3522 },
+        description: "A period of radical social and political upheaval in French history.",
+        wikiLink: "https://en.wikipedia.org/wiki/French_Revolution"
+    },
+    {
+        title: "Ancient Rome",
+        period: "753 BCE - 476 CE",
+        location: "Rome, Italy",
+        position: { lat: 41.9028, lng: 12.4964 },
+        description: "An ancient civilization that grew from a small town on central Italy's Tiber River into an empire.",
+        wikiLink: "https://en.wikipedia.org/wiki/Ancient_Rome"
+    },
+    // New historical events with the same properties
+    {
+        title: "The Silk Road",
+        period: "130 BCE - 1453 CE",
+        location: "Chang'an (Xi'an), China",
+        position: { lat: 34.3416, lng: 108.9398 },
+        description: "An ancient network of trade routes connecting the East and West.",
+        wikiLink: "https://en.wikipedia.org/wiki/Silk_Road"
+    },
+    {
+        title: "The Inca Empire",
+        period: "1438 CE - 1533 CE",
+        location: "Cusco, Peru",
+        position: { lat: -13.5320, lng: -71.9675 },
+        description: "The largest empire in pre-Columbian America with advanced engineering and administrative systems.",
+        wikiLink: "https://en.wikipedia.org/wiki/Inca_Empire"
+    },
+    {
+        title: "The Byzantine Empire",
+        period: "330 CE - 1453 CE",
+        location: "Constantinople (Istanbul), Turkey",
+        position: { lat: 41.0082, lng: 28.9784 },
+        description: "The continuation of the Roman Empire in its eastern provinces during Late Antiquity and the Middle Ages.",
+        wikiLink: "https://en.wikipedia.org/wiki/Byzantine_Empire"
+    },
+    {
+        title: "The Maya Civilization",
+        period: "2000 BCE - 1697 CE",
+        location: "Chichen Itza, Mexico",
+        position: { lat: 20.6843, lng: -88.5677 },
+        description: "A Mesoamerican civilization known for its art, architecture, mathematics, and astronomical systems.",
+        wikiLink: "https://en.wikipedia.org/wiki/Maya_civilization"
+    },
+    {
+        title: "Ancient Egypt",
+        period: "3100 BCE - 332 BCE",
+        location: "Cairo, Egypt",
+        position: { lat: 30.0444, lng: 31.2357 },
+        description: "An ancient civilization concentrated along the lower Nile River, known for its monumental architecture and complex religious beliefs.",
+        wikiLink: "https://en.wikipedia.org/wiki/Ancient_Egypt"
+    },
+    {
+        title: "The Mongol Empire",
+        period: "1206 CE - 1368 CE",
+        location: "Karakorum, Mongolia",
+        position: { lat: 47.2075, lng: 102.8447 },
+        description: "The largest contiguous land empire in history, founded by Genghis Khan.",
+        wikiLink: "https://en.wikipedia.org/wiki/Mongol_Empire"
+    },
+    {
+        title: "The Islamic Golden Age",
+        period: "8th century CE - 14th century CE",
+        location: "Baghdad, Iraq",
+        position: { lat: 33.3152, lng: 44.3661 },
+        description: "A period of cultural, economic, and scientific flourishing in the history of Islam.",
+        wikiLink: "https://en.wikipedia.org/wiki/Islamic_Golden_Age"
+    }
+];
 
-    // Initialize map function that will be called after API loads
-    function initMap() {
-        console.log('Initializing map');
+// Initialize map function that will be called after API loads
+function initMap() {
+    console.log('Initializing map');
 
-        // Check if map container exists
-        const mapContainer = document.getElementById('map');
-        if (!mapContainer) {
-            console.error('Map container not found');
-            return;
-        }
-
-        // Create the map centered on Europe
-        const map = new google.maps.Map(mapContainer, {
-            zoom: 3,
-            center: { lat: 30, lng: 10 },
-            mapTypeId: "terrain",
-            mapTypeControl: true,
-            mapTypeControlOptions: {
-                style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-            },
-            streetViewControl: false
-        });
-
-        // Add markers for each historical event
-        historicalEvents.forEach(event => {
-            const marker = new google.maps.Marker({
-                position: event.position,
-                map: map,
-                title: event.title,
-                animation: google.maps.Animation.DROP
-            });
-
-            // Create an info window for each marker
-            const infoWindow = new google.maps.InfoWindow({
-                content: `
-                    <div>
-                        <h3 style="font-weight: bold; color: #78350f;">${event.title}</h3>
-                        <p style="color: #92400e;">${event.period} | ${event.location}</p>
-                        <p>${event.description}</p>
-                    </div>
-                `
-            });
-
-            // Add click event to open info window
-            marker.addListener("click", () => {
-                // Close any open info windows
-                infoWindow.open(map, marker);
-
-                // Update region info below the map
-                document.getElementById("region-name").textContent = event.location;
-                document.getElementById("region-events").textContent = `${event.title} (${event.period}): ${event.description}`;
-            });
-        });
-
-        // Update region info when map is clicked
-        map.addListener("click", () => {
-            // Clear region info
-            document.getElementById("region-name").textContent = "";
-            document.getElementById("region-events").textContent = "Click on a marker to see historical events from that region.";
-        });
-
-        // Set initial region info
-        document.getElementById("region-events").textContent = "Click on a marker to see historical events from that region.";
-
-        console.log('Map initialized successfully');
+    // Check if map container exists
+    const mapContainer = document.getElementById('map');
+    if (!mapContainer) {
+        console.error('Map container not found');
+        return;
     }
 
-    // Load Google Maps API script
-    document.addEventListener('DOMContentLoaded', function() {
-        // Create script element
-        const script = document.createElement('script');
-        const MAP_API_KEY = "{{ env('MAP_KEY') }}";
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + MAP_API_KEY + "&callback=initMap";
-        script.async = true;
-        script.defer = true;
-
-        // Add error handling
-        script.onerror = function() {
-            console.error('Google Maps API failed to load');
-            const mapDiv = document.getElementById('map');
-            if (mapDiv) {
-                mapDiv.innerHTML = '<div style="padding: 20px; text-align: center;">Failed to load Google Maps. Please check your API key and internet connection.</div>';
-            }
-        };
-
-        // Append script to body
-        document.body.appendChild(script);
+    // Create the map centered on a global view
+    const map = new google.maps.Map(mapContainer, {
+        zoom: 2,
+        center: { lat: 30, lng: 10 },
+        mapTypeId: "terrain",
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+        },
+        streetViewControl: false
     });
+
+    // Define the SVG path for a location pin marker (similar to the reference image)
+    const pinSVGPath = "M12,0C5.4,0,0,5.4,0,12c0,7.2,12,24,12,24s12-16.8,12-24C24,5.4,18.6,0,12,0z M12,18c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S15.3,18,12,18z";
+
+    // Add markers for each historical event with smaller location pin design and no animation
+    historicalEvents.forEach(event => {
+        // Create a custom marker using SVG path for location pin
+        const marker = new google.maps.Marker({
+            position: event.position,
+            map: map,
+            title: event.title,
+            // No animation specified
+            icon: {
+                path: pinSVGPath,
+                fillColor: '#FF0000',
+                fillOpacity: 1,
+                strokeColor: '#FFFFFF',
+                strokeWeight: 1.5,
+                // Reduced scale for smaller size
+                scale: 0.8,
+                // Adjust the anchor point for pin markers
+                anchor: new google.maps.Point(12, 24)
+            }
+        });
+
+        // Create an info window with an embedded Wikipedia link in the description
+        const infoWindow = new google.maps.InfoWindow({
+            content: `
+                <div style="max-width: 300px; padding: 10px;">
+                    <h3 style="font-weight: bold; color: #78350f; margin-top: 0;">${event.title}</h3>
+                    <p style="color: #92400e; margin: 5px 0;"><strong>${event.period}</strong> | ${event.location}</p>
+                    <p style="margin-bottom: 8px;">${event.description}</p>
+                    <div style="text-align: right;">
+                        <a href="${event.wikiLink}" target="_blank" style="display: inline-block; background-color: #FF0000; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-size: 12px;">Read on Wikipedia</a>
+                    </div>
+                </div>
+            `,
+            maxWidth: 320
+        });
+
+        // Add click event to open info window
+        marker.addListener("click", () => {
+            // Open info window
+            infoWindow.open(map, marker);
+
+            // Update region info below the map with styled description and link
+            document.getElementById("region-name").textContent = event.location;
+
+            // Clear previous content
+            const regionEvents = document.getElementById("region-events");
+            regionEvents.innerHTML = '';
+
+            // Create description text
+            const descText = document.createElement('span');
+            descText.textContent = `${event.title} (${event.period}): ${event.description} `;
+            regionEvents.appendChild(descText);
+
+            // Create styled Wikipedia link
+            const wikiLink = document.createElement('a');
+            wikiLink.href = event.wikiLink;
+            wikiLink.textContent = 'Read more on Wikipedia';
+            wikiLink.target = '_blank';
+            wikiLink.style.color = '#FF0000';
+            wikiLink.style.fontWeight = 'bold';
+            wikiLink.style.textDecoration = 'underline';
+            regionEvents.appendChild(wikiLink);
+        });
+
+        // No hover animation effect
+    });
+
+    // Update region info when map is clicked
+    map.addListener("click", () => {
+        // Clear region info
+        document.getElementById("region-name").textContent = "";
+        document.getElementById("region-events").textContent = "Click on a marker to see historical events from that region.";
+    });
+
+    // Set initial region info
+    document.getElementById("region-events").textContent = "Click on a marker to see historical events from that region.";
+
+    // Add a legend to explain the markers
+    const legend = document.createElement('div');
+    legend.style.padding = '10px';
+    legend.style.margin = '10px';
+    legend.style.backgroundColor = 'white';
+    legend.style.border = '1px solid #ccc';
+    legend.style.borderRadius = '5px';
+    legend.style.position = 'absolute';
+    legend.style.bottom = '30px';
+    legend.style.right = '10px';
+    legend.style.fontSize = '12px';
+    legend.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
+
+    const pinIconHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 5px;">
+            <path d="${pinSVGPath}" fill="#FF0000" stroke="#FFFFFF" stroke-width="1"></path>
+        </svg>
+    `;
+
+    legend.innerHTML = `
+        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+            ${pinIconHTML}
+            <span>Historical Event</span>
+        </div>
+        <div style="font-style: italic; color: #666; font-size: 11px;">Click any marker for details</div>
+    `;
+
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+
+    console.log('Map initialized successfully with smaller location pin markers and no animation');
+}
+
+// Load Google Maps API script
+document.addEventListener('DOMContentLoaded', function() {
+    // Create script element
+    const script = document.createElement('script');
+    const MAP_API_KEY = "{{ env('MAP_KEY') }}";
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=' + MAP_API_KEY + "&callback=initMap";
+    script.async = true;
+    script.defer = true;
+
+    // Add error handling
+    script.onerror = function() {
+        console.error('Google Maps API failed to load');
+        const mapDiv = document.getElementById('map');
+        if (mapDiv) {
+            mapDiv.innerHTML = '<div style="padding: 20px; text-align: center;">Failed to load Google Maps. Please check your API key and internet connection.</div>';
+        }
+    };
+
+    // Append script to body
+    document.body.appendChild(script);
+});
 </script>
 @endsection
