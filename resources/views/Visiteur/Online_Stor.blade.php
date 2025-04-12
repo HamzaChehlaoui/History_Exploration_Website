@@ -81,7 +81,7 @@
                 </button>
             </div>
         </div>
-    </section>
+    </section> 
 @endsection
 </body>
 </html>
