@@ -375,7 +375,6 @@
                 // Open info window
                 infoWindow.open(map, marker);
 
-                // Update region info below the map with styled description and link
                 document.getElementById("region-name").textContent = event.location;
 
                 // Clear previous content
@@ -443,7 +442,6 @@
         console.log('Map initialized successfully with smaller location pin markers and no animation');
     }
 
-    // Load Google Maps API script
     document.addEventListener('DOMContentLoaded', function() {
         // Create script element
         let script = document.createElement('script');
