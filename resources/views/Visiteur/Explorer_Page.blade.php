@@ -317,7 +317,8 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Create script element
         const script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD6yWybv2XdK7W7sQm8wzbg66JG4yQCw50&callback=initMap';
+        const MAP_API_KEY = "{{ env('MAP_KEY') }}";
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + MAP_API_KEY + "&callback=initMap";
         script.async = true;
         script.defer = true;
 
