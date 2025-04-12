@@ -103,7 +103,7 @@
                     <p class="text-amber-800 mb-4">"The detailed articles and visual aids make learning history engaging and fun."</p>
                     <p class="font-semibold text-amber-900">- Emma Thompson</p>
                 </div>
-            </div>
+                </div>
         </div>
     </section>
     @endsection
