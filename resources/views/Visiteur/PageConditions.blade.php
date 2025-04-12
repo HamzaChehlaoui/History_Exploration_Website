@@ -254,7 +254,7 @@
         </div>
     </div>
 
-  @endsection
+@endsection
 
     <!-- Scripts -->
     <script>
