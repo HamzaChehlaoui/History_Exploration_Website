@@ -497,13 +497,13 @@ function initMap() {
 
 function filterEvents() {
 
-    const period = document.getElementById('filter-period').value;
-    const region = document.getElementById('filter-region').value;
-    const eventType = document.getElementById('filter-type').value;
-    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    let period = document.getElementById('filter-period').value;
+    let region = document.getElementById('filter-region').value;
+    let eventType = document.getElementById('filter-type').value;
+    let searchTerm = document.getElementById('search-input').value.toLowerCase();
 
 
-    const checkedCategories = [];
+    let checkedCategories = [];
     document.querySelectorAll('.category-checkbox:checked').forEach(checkbox => {
         checkedCategories.push(checkbox.value);
     });
@@ -561,13 +561,13 @@ function filterEvents() {
         filtered.sort((a, b) => {
             switch(sortOption) {
                 case 'oldest':
-                    const aYear = parseInt(a.period.split(' ')[0]);
-                    const bYear = parseInt(b.period.split(' ')[0]);
+                    let aYear = parseInt(a.period.split(' ')[0]);
+                    let bYear = parseInt(b.period.split(' ')[0]);
                     return (a.era === 'BCE' ? -aYear : aYear) - (b.era === 'BCE' ? -bYear : bYear);
                 case 'newest':
 
-                    const aYearDesc = parseInt(a.period.split(' ')[0]);
-                    const bYearDesc = parseInt(b.period.split(' ')[0]);
+                    let aYearDesc = parseInt(a.period.split(' ')[0]);
+                    let bYearDesc = parseInt(b.period.split(' ')[0]);
                     return (b.era === 'BCE' ? -bYearDesc : bYearDesc) - (a.era === 'BCE' ? -aYearDesc : aYearDesc);
                 case 'significance':
                     return b.significance - a.significance;
@@ -584,7 +584,7 @@ function filterEvents() {
 
 function updateMapMarkers(filteredEvents) {
 
-    const filteredEventTitles = new Set(filteredEvents.map(event => event.title));
+    let filteredEventTitles = new Set(filteredEvents.map(event => event.title));
 
     markers.forEach(item => {
         if (filteredEventTitles.has(item.event.title)) {
@@ -604,7 +604,7 @@ function updateMapMarkers(filteredEvents) {
 }
 
 function updateSearchResults(filteredEvents) {
-    const resultsContainer = document.getElementById('search-results');
+    let resultsContainer = document.getElementById('search-results');
 
     resultsContainer.innerHTML = '';
 
@@ -619,7 +619,7 @@ function updateSearchResults(filteredEvents) {
     }
 
     filteredEvents.forEach(event => {
-        const eventCard = document.createElement('div');
+        let eventCard = document.createElement('div');
         eventCard.className = 'bg-white rounded-xl shadow-md p-6';
         eventCard.innerHTML = `
             <div class="flex gap-4">
@@ -637,36 +637,36 @@ function updateSearchResults(filteredEvents) {
 }
 
 function updateActiveFilters() {
-    const activeFiltersContainer = document.getElementById('active-filters');
+    let activeFiltersContainer = document.getElementById('active-filters');
     activeFiltersContainer.innerHTML = '';
 
-    const period = document.getElementById('filter-period').value;
-    const region = document.getElementById('filter-region').value;
-    const eventType = document.getElementById('filter-type').value;
+    let period = document.getElementById('filter-period').value;
+    let region = document.getElementById('filter-region').value;
+    let eventType = document.getElementById('filter-type').value;
 
     if (period !== 'All Time Periods') {
-        const pill = createFilterPill(period);
+        let pill = createFilterPill(period);
         activeFiltersContainer.appendChild(pill);
     }
 
     if (region !== 'All Regions') {
-        const pill = createFilterPill(region);
+        let pill = createFilterPill(region);
         activeFiltersContainer.appendChild(pill);
     }
 
     if (eventType !== 'All Events') {
-        const pill = createFilterPill(eventType);
+        let pill = createFilterPill(eventType);
         activeFiltersContainer.appendChild(pill);
     }
 
     document.querySelectorAll('.category-checkbox:checked').forEach(checkbox => {
-        const pill = createFilterPill(checkbox.value);
+        let pill = createFilterPill(checkbox.value);
         activeFiltersContainer.appendChild(pill);
     });
 }
 
 function createFilterPill(text) {
-    const pill = document.createElement('span');
+    let pill = document.createElement('span');
     pill.className = 'filter-pill bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm';
     pill.innerHTML = `${text} ×`;
     pill.addEventListener('click', () => {
@@ -692,7 +692,7 @@ function createFilterPill(text) {
 
 
 function applyFilters() {
-    const filteredEvents = filterEvents();
+    let filteredEvents = filterEvents();
     updateMapMarkers(filteredEvents);
     updateSearchResults(filteredEvents);
     updateActiveFilters();
@@ -715,7 +715,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     let script = document.createElement('script');
-    const MAP_API_KEY = "{{ env('MAP_KEY') }}";
+    let MAP_API_KEY = "{{ env('MAP_KEY') }}";
     script.src = 'https://maps.googleapis.com/maps/api/js?key=' + MAP_API_KEY + "&callback=initMap";
     script.async = true;
     script.defer = true;
