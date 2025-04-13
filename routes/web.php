@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\Auth\SocialAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,5 +30,11 @@ Route::group([] ,function (){
     Route::view('/about', 'Visiteur.Page_About');
     Route::view('/login', 'Auth.login');
     Route::view('/PageConditions','Visiteur.PageConditions');
+    Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
+    Route::get('auth/facebook', [SocialAuthController::class, 'redirectToFacebook'])->name('login.facebook');
+    Route::get('auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback']);
+
+
 });
 
