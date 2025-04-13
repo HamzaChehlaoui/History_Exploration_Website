@@ -618,22 +618,7 @@ function updateSearchResults(filteredEvents) {
         return;
     }
 
-    filteredEvents.forEach(event => {
-        let eventCard = document.createElement('div');
-        eventCard.className = 'bg-white rounded-xl shadow-md p-6';
-        eventCard.innerHTML = `
-            <div class="flex gap-4">
-                <img src="/api/placeholder/128/128" alt="${event.title} Image" class="w-32 h-32 rounded-lg object-cover"/>
-                <div>
-                    <h4 class="text-xl font-bold text-amber-900">${event.title}</h4>
-                    <p class="text-amber-700">${event.period} | ${event.location}</p>
-                    <p class="text-amber-800 mt-2">${event.description}</p>
-                    <a href="${event.wikiLink}" target="_blank" class="inline-block mt-2 text-red-600 font-bold hover:underline">Read on Wikipedia</a>
-                </div>
-            </div>
-        `;
-        resultsContainer.appendChild(eventCard);
-    });
+    
 }
 
 function updateActiveFilters() {
