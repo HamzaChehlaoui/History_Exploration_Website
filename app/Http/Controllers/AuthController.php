@@ -11,13 +11,12 @@ class AuthController extends Controller
 {
     public function showRegisterForm()
     {
-        return view('Auth.register');  // Corrected view name here
+        return view('Auth.register');
     }
 
     public function register(RegisterRequest $request)
         {
 
-            // Create a new user after validation
             $user = Utilisateur::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -25,7 +24,7 @@ class AuthController extends Controller
                 'role_id' => 2,
             ]);
 
-            // Redirect to the homepage with a success message
+
             return redirect('/')->with('success', 'Welcome! Registration successful.');
         }
     public function login(Request $request)
@@ -40,7 +39,8 @@ class AuthController extends Controller
                 'email' => 'Email or password incorrect.',
             ])->withInput();
         }
-        public function logout()
+
+    public function logout()
         {
             Auth::logout();
             return redirect('/')->with('success', 'You have been logged out.');
