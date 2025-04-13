@@ -16,9 +16,9 @@ class SocialAuthController extends Controller
 
     public function handleGoogleCallback()
     {
-        $user = Socialite::driver('google')->user();
+        $user = Socialite::driver('google')->stateless()->user();
         $this->loginOrCreateUser($user, 'google');
-        return redirect()->route('home');
+        return redirect('/');
     }
 
     // Facebook
@@ -46,6 +46,7 @@ class SocialAuthController extends Controller
                 'provider_id' => $providerUser->getId(),
                 'email_verified_at' => now(),
                 'password' => bcrypt(uniqid()),
+                'role_id'          => 2,
             ]);
         }
 
