@@ -17,6 +17,7 @@ use App\Http\Controllers\ProduitController;
 
 
 // Other routes for your site
+
 Route::group([] ,function (){
 
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
