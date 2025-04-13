@@ -39,7 +39,7 @@ class AuthController extends Controller
                 'email' => 'Email or password incorrect.',
             ])->withInput();
         }
-
+    
     public function logout()
         {
             Auth::logout();
