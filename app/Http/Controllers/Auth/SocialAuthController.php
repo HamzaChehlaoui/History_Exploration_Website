@@ -32,7 +32,7 @@ class SocialAuthController extends Controller
     {
         $user = Socialite::driver('facebook')->user();
         $this->loginOrCreateUser($user, 'facebook');
-        return redirect()->route('home');
+        return redirect('/Explorer');
     }
 
     public function loginOrCreateUser($googleUser, $provider)
