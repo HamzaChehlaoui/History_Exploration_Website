@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\Utilisateur;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class SocialAuthController extends Controller
 {
@@ -34,22 +35,20 @@ class SocialAuthController extends Controller
         return redirect()->route('home');
     }
 
-    protected function loginOrCreateUser($providerUser, $provider)
-    {
-        $user = Utilisateur::where('provider_id', $providerUser->getId())->first();
+    public function loginOrCreateUser($googleUser, $provider)
+{
 
-        if (!$user) {
-            $user = Utilisateur::create([
-                'name' => $providerUser->getName(),
-                'email' => $providerUser->getEmail(),
-                'provider' => $provider,
-                'provider_id' => $providerUser->getId(),
-                'email_verified_at' => now(),
-                'password' => bcrypt(uniqid()),
-                'role_id'          => 2,
-            ]);
-        }
+    $user = Utilisateur::where('email', $googleUser->getEmail())->first();
 
-        Auth::login($user, true);
+    if (!$user) {
+        $user = Utilisateur::create([
+            'name' => $googleUser->getName(),
+            'email' => $googleUser->getEmail(),
+            'password' => bcrypt(Str::random(16)),
+            'role_id' => 2,
+        ]);
     }
+
+    Auth::login($user);
+}
 }
