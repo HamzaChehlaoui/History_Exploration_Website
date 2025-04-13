@@ -125,29 +125,13 @@
                         </label>
                     </div>
                 </div>
+                <div id="region-name" class="mt-4 text-lg font-bold text-amber-700"></div>
+                <div id="region-events" class="mt-4 text-amber-800 text-base"></div>
 
-                <!-- Sort Options -->
-                <div class="bg-white rounded-xl shadow-md p-6">
-                    <h3 class="text-lg font-bold text-amber-900 mb-4">Sort By</h3>
-                    <div class="space-y-2">
-                        <label class="flex items-center space-x-2">
-                            <input type="radio" name="sort" value="oldest" class="text-amber-600 focus:ring-amber-500"/>
-                            <span class="text-amber-800">Date (Oldest First)</span>
-                        </label>
-                        <label class="flex items-center space-x-2">
-                            <input type="radio" name="sort" value="newest" class="text-amber-600 focus:ring-amber-500"/>
-                            <span class="text-amber-800">Date (Newest First)</span>
-                        </label>
-                        <label class="flex items-center space-x-2">
-                            <input type="radio" name="sort" value="significance" class="text-amber-600 focus:ring-amber-500"/>
-                            <span class="text-amber-800">Historical Significance</span>
-                        </label>
-                        <label class="flex items-center space-x-2">
-                            <input type="radio" name="sort" value="views" class="text-amber-600 focus:ring-amber-500"/>
-                            <span class="text-amber-800">Most Viewed</span>
-                        </label>
-                    </div>
+                <div id="search-results" class="space-y-4">
+
                 </div>
+
             </div>
 
             <!-- Right Column: Map & Results -->
@@ -162,8 +146,6 @@
                         <div id="tooltip"></div>
                     </div>
 
-                    <div id="region-name" class="mt-4 text-lg font-bold text-amber-700"></div>
-                    <div id="region-events" class="mt-4 text-amber-800 text-base"></div>
                 </div>
 
                 <!-- Search Results -->
@@ -618,7 +600,7 @@ function updateSearchResults(filteredEvents) {
         return;
     }
 
-    
+
 }
 
 function updateActiveFilters() {
