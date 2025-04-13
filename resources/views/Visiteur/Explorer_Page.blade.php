@@ -463,4 +463,5 @@
         document.body.appendChild(script);
     });
 </script>
+
 @endsection
