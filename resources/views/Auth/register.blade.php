@@ -1,13 +1,12 @@
 @extends('Visiteur.master')
 
 @section('content')
-
 <style>
-    /* @keyframes floatingEffect {
+    @keyframes floatingEffect {
         0% { transform: translateY(0px); }
         50% { transform: translateY(-10px); }
         100% { transform: translateY(0px); }
-    } */
+    }
 
     .floating {
         animation: floatingEffect 3s ease-in-out infinite;
@@ -15,13 +14,13 @@
 
     .time-portal {
         background: conic-gradient(from 0deg, #4a2208, #854d0e, #713f12, #4a2208);
-        /* animation: spin 20s linear infinite; */
+        animation: spin 20s linear infinite;
     }
 
-    @keyframes spin {
+    /* @keyframes spin {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
-    }
+    } */
 
     .form-field:focus-within label {
         color: #92400e;
@@ -29,7 +28,6 @@
     }
 </style>
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
-
 
 <!-- Registration Section -->
 <div class="min-h-screen pt-16 pb-12 flex flex-col justify-center">
@@ -47,16 +45,18 @@
 
             <!-- Social Registration Buttons -->
             <div class="space-y-4 mb-6">
-                <button class="w-full flex items-center justify-center gap-3 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                <!-- Google -->
+                <a href="{{ url('auth/google') }}" class="w-full flex items-center justify-center gap-3 bg-white text-gray-700 py-3 px-4 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
+                    <img src="https://yt3.googleusercontent.com/FJI5Lzbf2dMd32xOqhoKpJArJooZhoX6v2qOcFO-wjSZUvs3H9xqq2gK4DQ47X0KnYgf7X2rpdU=s900-c-k-c0x00ffffff-no-rj" alt="Google" class="h-5 w-5" />
+                    Sign up with Google
+                </a>
+                <!-- Facebook -->
+                <a href="{{ url('auth/facebook') }}" class="w-full flex items-center justify-center gap-3 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors">
                     <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
                     </svg>
                     Sign up with Facebook
-                </button>
-                <button class="w-full flex items-center justify-center gap-3 bg-white text-gray-700 py-3 px-4 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
-                    <img src="https://yt3.googleusercontent.com/FJI5Lzbf2dMd32xOqhoKpJArJooZhoX6v2qOcFO-wjSZUvs3H9xqq2gK4DQ47X0KnYgf7X2rpdU=s900-c-k-c0x00ffffff-no-rj" alt="Google" class="h-5 w-5" />
-                    Sign up with Google
-                </button>
+                </a>
             </div>
 
             <div class="relative my-6">
@@ -117,30 +117,21 @@
                     </div>
                     <div class="ml-3 text-sm">
                         <label for="terms" class="text-amber-900">
-                            I agree to the
-                            <a href="#" class="text-amber-600 hover:text-amber-500">Terms of Service</a>
-                            and
-                            <a href="#" class="text-amber-600 hover:text-amber-500">Privacy Policy</a>
+                            I agree to the <a href="#" class="font-medium text-amber-600 hover:text-amber-500">Terms and Conditions</a>.
                         </label>
                     </div>
                 </div>
 
-                <!-- Submit Button -->
-                <div>
-                    <button type="submit"
-                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-all duration-300">
-                        Create Account
+                <!-- Register Button -->
+                <div class="form-field">
+                    <button type="submit" class="w-full bg-amber-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-amber-700 focus:outline-none focus:ring-amber-500 focus:border-amber-500">
+                        Register
                     </button>
                 </div>
             </form>
-
-
-            <p class="mt-6 text-center text-sm text-amber-700">
-                Already have an account?
-                <a href="login.html" class="font-medium text-amber-600 hover:text-amber-500">Sign in here</a>
-            </p>
         </div>
     </div>
 </div>
-@endsection
+
 </body>
+@endsection
