@@ -21,7 +21,7 @@
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-1 flex justify-center sm:justify-between items-center">
                     <div class="flex-shrink-0">
-                        <h1 class="text-2xl font-bold text-amber-100">
+                        <h1 class="text-2xl font-bold text-amber-100 cursor-pointer" onclick="window.location.href='/'">
                             <span class="text-amber-400">⌛</span> TimeTrekker Store
                         </h1>
                     </div>
@@ -37,58 +37,8 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Cart Items -->
-                <div class="lg:col-span-2 space-y-4">
-                    <!-- Cart Item 1 -->
-                    <div class="store-card rounded-lg shadow-lg p-4">
-                        <div class="flex gap-4">
-                            <img src="https://th.bing.com/th/id/OIP.x2ECQILsY0coJ2IjDmllJwHaJu?rs=1&pid=ImgDetMain" alt="Ancient Civilizations Book" class="w-24 h-24 object-cover rounded-lg"/>
-                            <div class="flex-1">
-                                <div class="flex justify-between">
-                                    <h3 class="text-lg font-semibold text-amber-900">Ancient Civilizations: A Complete Guide</h3>
-                                    <button class="text-amber-700 hover:text-amber-900">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <p class="text-amber-700 text-sm">Comprehensive guide to ancient civilizations</p>
-                                <div class="flex justify-between items-center mt-2">
-                                    <div class="flex items-center space-x-2">
-                                        <button class="w-8 h-8 rounded-full bg-amber-200 text-amber-900">-</button>
-                                        <span class="w-8 text-center">1</span>
-                                        <button class="w-8 h-8 rounded-full bg-amber-200 text-amber-900">+</button>
-                                    </div>
-                                    <span class="text-lg font-bold text-amber-900">$29.99</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cart Item 2 -->
-                    <div class="store-card rounded-lg shadow-lg p-4">
-                        <div class="flex gap-4">
-                            <img src="https://th.bing.com/th/id/R.980228e453700a479d1e30b4cc51fc2b?rik=9O6%2bhWTbwQE4lA&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2ff%2fd%2fd%2f327266.jpg&ehk=Wqx0bJSWeQrEHBfr75MYvRoZAaX2zJ06wVngblP%2bF0c%3d&risl=&pid=ImgRaw&r=0" alt="Vintage World Map" class="w-24 h-24 object-cover rounded-lg"/>
-                            <div class="flex-1">
-                                <div class="flex justify-between">
-                                    <h3 class="text-lg font-semibold text-amber-900">Vintage World Map (1800s)</h3>
-                                    <button class="text-amber-700 hover:text-amber-900">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <p class="text-amber-700 text-sm">High-quality reproduction map</p>
-                                <div class="flex justify-between items-center mt-2">
-                                    <div class="flex items-center space-x-2">
-                                        <button class="w-8 h-8 rounded-full bg-amber-200 text-amber-900">-</button>
-                                        <span class="w-8 text-center">1</span>
-                                        <button class="w-8 h-8 rounded-full bg-amber-200 text-amber-900">+</button>
-                                    </div>
-                                    <span class="text-lg font-bold text-amber-900">$49.99</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="lg:col-span-2 space-y-4" id="cart-items-container">
+                    <!-- Cart items will be dynamically generated here -->
                 </div>
 
                 <!-- Order Summary -->
@@ -99,19 +49,19 @@
                         <div class="space-y-2">
                             <div class="flex justify-between text-amber-700">
                                 <span>Subtotal</span>
-                                <span>$79.98</span>
+                                <span id="summary-subtotal">$0.00</span>
                             </div>
                             <div class="flex justify-between text-amber-700">
                                 <span>Shipping</span>
-                                <span>$5.99</span>
+                                <span id="summary-shipping">$5.99</span>
                             </div>
                             <div class="flex justify-between text-amber-700">
                                 <span>Tax</span>
-                                <span>$8.00</span>
+                                <span id="summary-tax">$0.00</span>
                             </div>
                             <div class="border-t border-amber-300 pt-2 flex justify-between font-bold text-amber-900">
                                 <span>Total</span>
-                                <span>$93.97</span>
+                                <span id="summary-total">$0.00</span>
                             </div>
                         </div>
 
@@ -194,20 +144,20 @@
                         <h3 class="text-lg font-semibold text-amber-900 mb-2">Order Summary</h3>
                         <div class="space-y-2">
                             <div class="flex justify-between text-amber-700">
-                                <span>2 Items</span>
-                                <span>$79.98</span>
+                                <span id="payment-items-count">0 Items</span>
+                                <span id="payment-subtotal">$0.00</span>
                             </div>
                             <div class="flex justify-between text-amber-700">
                                 <span>Shipping</span>
-                                <span>$5.99</span>
+                                <span id="payment-shipping">$5.99</span>
                             </div>
                             <div class="flex justify-between text-amber-700">
                                 <span>Tax</span>
-                                <span>$8.00</span>
+                                <span id="payment-tax">$0.00</span>
                             </div>
                             <div class="border-t border-amber-300 pt-2 flex justify-between font-bold text-amber-900">
                                 <span>Total</span>
-                                <span>$93.97</span>
+                                <span id="payment-total">$0.00</span>
                             </div>
                         </div>
                     </div>
@@ -226,5 +176,157 @@
             </div>
         </div>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const savedTotal = parseFloat(localStorage.getItem('cartTotalPrice')) || 0;
+            const shipping = 5.99;
+
+
+            function renderCartItems() {
+                const cartContainer = document.getElementById('cart-items-container');
+
+                cartContainer.innerHTML = '';
+
+                if (cartItems.length === 0) {
+                    cartContainer.innerHTML = `
+                        <div class="store-card rounded-lg shadow-lg p-6 text-center">
+                            <p class="text-amber-900 text-lg">Your cart is empty</p>
+                            <button onclick="window.location.href='/'" class="mt-4 bg-amber-800 text-amber-100 px-6 py-2 rounded-lg hover:bg-amber-700 transition-colors">
+                                Continue Shopping
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Add items to cart
+                cartItems.forEach((item, index) => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'store-card rounded-lg shadow-lg p-4';
+                    itemElement.innerHTML = `
+                        <div class="flex gap-4">
+                            <img src="${item.img}" alt="${item.name}" class="w-24 h-24 object-cover rounded-lg"/>
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <h3 class="text-lg font-semibold text-amber-900">${item.name}</h3>
+                                    <button class="text-amber-700 hover:text-amber-900 remove-item" data-index="${index}">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p class="text-amber-700 text-sm">Historical item</p>
+                                <div class="flex justify-between items-center mt-2">
+                                    <div class="flex items-center space-x-2">
+                                        <button class="w-8 h-8 rounded-full bg-amber-200 text-amber-900 decrease-quantity" data-index="${index}">-</button>
+                                        <span class="w-8 text-center item-quantity">${item.quantity}</span>
+                                        <button class="w-8 h-8 rounded-full bg-amber-200 text-amber-900 increase-quantity" data-index="${index}">+</button>
+                                    </div>
+                                    <span class="text-lg font-bold text-amber-900 item-price" data-unit-price="${item.price}">$${(item.price * item.quantity).toFixed(2)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    cartContainer.appendChild(itemElement);
+                });
+
+
+                addCartEventListeners();
+            }
+
+            function updateSummary() {
+                let subtotal = 0;
+                cartItems.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                });
+
+                const tax = subtotal * 0.1; // 10% tax
+                const total = subtotal + shipping + tax;
+
+                document.getElementById('summary-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById('summary-shipping').textContent = `$${shipping.toFixed(2)}`;
+                document.getElementById('summary-tax').textContent = `$${tax.toFixed(2)}`;
+                document.getElementById('summary-total').textContent = `$${total.toFixed(2)}`;
+
+                document.getElementById('payment-items-count').textContent = `${cartItems.length} Item${cartItems.length !== 1 ? 's' : ''}`;
+                document.getElementById('payment-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById('payment-shipping').textContent = `$${shipping.toFixed(2)}`;
+                document.getElementById('payment-tax').textContent = `$${tax.toFixed(2)}`;
+                document.getElementById('payment-total').textContent = `$${total.toFixed(2)}`;
+
+                localStorage.setItem('cartTotalPrice', subtotal);
+            }
+
+
+            function addCartEventListeners() {
+
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        if (cartItems[index].quantity > 1) {
+                            cartItems[index].quantity -= 1;
+
+                            const quantityElement = this.nextElementSibling;
+                            quantityElement.textContent = cartItems[index].quantity;
+
+                            const priceElement = this.closest('.flex').querySelector('.item-price');
+                            const unitPrice = parseFloat(priceElement.getAttribute('data-unit-price'));
+                            priceElement.textContent = `$${(unitPrice * cartItems[index].quantity).toFixed(2)}`;
+
+                            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                            updateSummary();
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        cartItems[index].quantity += 1;
+
+                        const quantityElement = this.previousElementSibling;
+                        quantityElement.textContent = cartItems[index].quantity;
+
+                        const priceElement = this.closest('.flex').querySelector('.item-price');
+                        const unitPrice = parseFloat(priceElement.getAttribute('data-unit-price'));
+                        priceElement.textContent = `$${(unitPrice * cartItems[index].quantity).toFixed(2)}`;
+
+                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                        updateSummary();
+                    });
+                });
+
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+
+                        cartItems.splice(index, 1);
+
+                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+                        renderCartItems();
+                        updateSummary();
+                    });
+                });
+            }
+
+            // Initialize page
+            renderCartItems();
+            updateSummary();
+
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // alert('Order placed successfully! Thank you for shopping with TimeTrekker.');
+
+                localStorage.removeItem('cartItems');
+                localStorage.setItem('cartTotalPrice', '0');
+
+                window.location.href = '/';
+            });
+        });
+    </script>
 </body>
 </html>
