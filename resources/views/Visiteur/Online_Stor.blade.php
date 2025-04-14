@@ -25,9 +25,9 @@
             <!-- Featured Products -->
             <section class="mb-12">
                 <h2 class="text-3xl font-bold text-amber-900 mb-6">Products</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach($produits as $produit)
-                    <div class="store-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div  class="store-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                         <div class="relative">
                             <img src="https://th.bing.com/th/id/OIP.fthV-jpiDbUMe4G8v77AgwHaE7?w=626&h=417&rs=1&pid=ImgDetMain" alt="Ancient Civilizations Book" class="w-full h-48 object-cover"/>
                             <div class="absolute top-2 right-2 bg-amber-500 text-amber-900 px-2 py-1 rounded-full text-sm font-bold">
@@ -49,7 +49,7 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="mt-6">
+                <div id="pagination-links" class="mt-6">
                     {{ $produits->links('pagination::tailwind') }}
                 </div>
             </section>
@@ -96,33 +96,66 @@
     </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
 
             let cartTotalPrice = 0;
             let cartTotalElement = document.getElementById('cart-total');
 
-            let addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', function() {
+            function updateCart() {
+                let addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+                addToCartButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        let price = parseFloat(this.getAttribute('data-product-price'));
+                        cartTotalPrice += price;
 
-                    let price = parseFloat(this.getAttribute('data-product-price'));
+                        cartTotalElement.textContent = cartTotalPrice.toFixed(2);
 
-                    cartTotalPrice += price;
+                        let counter = document.getElementById('cart-counter');
+                        counter.classList.add('animate-pulse');
+                        setTimeout(() => {
+                            counter.classList.remove('animate-pulse');
+                        }, 500);
 
-                    cartTotalElement.textContent = cartTotalPrice.toFixed(2);
-
-                    let counter = document.getElementById('cart-counter');
-                    counter.classList.add('animate-pulse');
-                    setTimeout(() => {
-                        counter.classList.remove('animate-pulse');
-                    }, 500);
-
-                    let productId = this.getAttribute('data-product-id');
-                    console.log(`Product ${productId} added to cart. Price: $${price}`);
+                        let productId = this.getAttribute('data-product-id');
+                        console.log(`Product ${productId} added to cart. Price: $${price}`);
+                    });
                 });
+            }
+
+            updateCart();
+
+            document.addEventListener('click', function (e) {
+                if (e.target.closest('#pagination-links a')) {
+                    e.preventDefault();
+                    const link = e.target.closest('a');
+                    const url = link.getAttribute('href');
+
+                    fetch(url, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        const parser = new DOMParser();
+                        const htmlDoc = parser.parseFromString(data, 'text/html');
+
+                        const newProducts = htmlDoc.querySelector('#product-list').innerHTML;
+                        const newPagination = htmlDoc.querySelector('#pagination-links').innerHTML;
+
+                        document.querySelector('#product-list').innerHTML = newProducts;
+                        document.querySelector('#pagination-links').innerHTML = newPagination;
+
+
+                        updateCart();
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
             });
         });
     </script>
+
+
 @endsection
 </body>
 </html>
