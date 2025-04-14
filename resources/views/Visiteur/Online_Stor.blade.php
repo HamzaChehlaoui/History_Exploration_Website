@@ -47,7 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                        @endforeach
                 </div>
                 <div id="pagination-links" class="mt-6">
                     {{ $produits->links('pagination::tailwind') }}
