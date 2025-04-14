@@ -3,7 +3,7 @@
 @section('content')
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
     <!-- Cart Total Price Counter -->
-    <div id="cart-counter" class="fixed top-4 right-4 bg-amber-800 text-amber-100 px-4 py-2 rounded-full shadow-lg z-50 flex items-center gap-2">
+    <div id="cart-counter" class="fixed top-4 right-4 bg-amber-800 text-amber-100 px-4 py-2 rounded-full shadow-lg z-50 flex items-center gap-2 cursor-pointer hover:bg-amber-700 transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
@@ -41,7 +41,9 @@
                                 <span class="text-xl font-bold text-amber-900 product-price" data-price="{{$produit->prix}}">{{$produit->prix}} $</span>
                                 <button class="add-to-cart-btn bg-amber-800 text-amber-100 px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors"
                                         data-product-id="{{$produit->id}}"
-                                        data-product-price="{{$produit->prix}}">
+                                        data-product-price="{{$produit->prix}}"
+                                        data-product-name="{{$produit->name}}"
+                                        data-product-img="https://th.bing.com/th/id/OIP.fthV-jpiDbUMe4G8v77AgwHaE7?w=626&h=417&rs=1&pid=ImgDetMain">
                                     Add to Cart
                                 </button>
                             </div>
@@ -69,7 +71,9 @@
                                 <span class="text-xl font-bold text-amber-900 product-price" data-price="{{$produit->prix}}">{{$produit->prix}} $</span>
                                 <button class="add-to-cart-btn bg-amber-800 text-amber-100 px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors"
                                         data-product-id="{{$produit->id}}"
-                                        data-product-price="{{$produit->prix}}">
+                                        data-product-price="{{$produit->prix}}"
+                                        data-product-name="{{$produit->name}}"
+                                        data-product-img="https://th.bing.com/th/id/R.367c3def5e45392799e9185321544613?rik=r%2b4VUxnebwNb9A&pid=ImgRaw&r=0">
                                     Add to Cart
                                 </button>
                             </div>
@@ -97,26 +101,63 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-
-            let cartTotalPrice = 0;
+            // Check if there's a saved cart total in localStorage
+            let cartTotalPrice = parseFloat(localStorage.getItem('cartTotalPrice')) || 0;
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
             let cartTotalElement = document.getElementById('cart-total');
+
+            // Update the displayed total with any existing value
+            cartTotalElement.textContent = cartTotalPrice.toFixed(2);
+
+            // Add click event to the cart counter to redirect to cart page
+            document.getElementById('cart-counter').addEventListener('click', function() {
+                // Update with your actual cart page URL path
+                window.location.href = '/cart'; // Adjust this to match your route
+            });
 
             function updateCart() {
                 let addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
                 addToCartButtons.forEach(button => {
                     button.addEventListener('click', function () {
+                        let productId = this.getAttribute('data-product-id');
                         let price = parseFloat(this.getAttribute('data-product-price'));
+                        let name = this.getAttribute('data-product-name');
+                        let imgSrc = this.getAttribute('data-product-img');
+
+                        // Add to cart total
                         cartTotalPrice += price;
 
+                        // Add item to cart items array
+                        let existingItemIndex = cartItems.findIndex(item => item.id === productId);
+
+                        if (existingItemIndex !== -1) {
+                            // Item already exists, increase quantity
+                            cartItems[existingItemIndex].quantity += 1;
+                        } else {
+                            // Add new item
+                            cartItems.push({
+                                id: productId,
+                                name: name,
+                                price: price,
+                                img: imgSrc,
+                                quantity: 1
+                            });
+                        }
+
+                        // Save to localStorage
+                        localStorage.setItem('cartTotalPrice', cartTotalPrice);
+                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+                        // Update display
                         cartTotalElement.textContent = cartTotalPrice.toFixed(2);
 
+                        // Visual feedback
                         let counter = document.getElementById('cart-counter');
                         counter.classList.add('animate-pulse');
                         setTimeout(() => {
                             counter.classList.remove('animate-pulse');
                         }, 500);
 
-                        let productId = this.getAttribute('data-product-id');
                         console.log(`Product ${productId} added to cart. Price: $${price}`);
                     });
                 });
@@ -145,7 +186,6 @@
 
                         document.querySelector('#product-list').innerHTML = newProducts;
                         document.querySelector('#pagination-links').innerHTML = newPagination;
-
 
                         updateCart();
                     })
