@@ -30,7 +30,7 @@ Route::group([] ,function (){
     Route::view('/about', 'Visiteur.Page_About');
     Route::view('/login', 'Auth.login');
     Route::view('/PageConditions','Visiteur.PageConditions');
-
+    Route::view('/cart','User.Cart_page');
 
 });
 
