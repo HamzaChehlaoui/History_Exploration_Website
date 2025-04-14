@@ -9,11 +9,17 @@ use App\Http\Requests\UpdateProduitRequest;
 
 class ProduitController extends Controller
 {
-    public function index()
-    {
-        $produits = Produit::paginate(4);
-        return view('Visiteur.Online_Stor', compact('produits'));
+    public function index(Request $request)
+{
+    $produits = Produit::paginate(4);
+
+    if ($request->ajax()) {
+        return view('Visiteur.Partials.produits', compact('produits'))->render();
     }
+
+    return view('Visiteur.Online_Stor', compact('produits'));
+}
+
 
     public function create()
     {
