@@ -130,10 +130,10 @@
                         let existingItemIndex = cartItems.findIndex(item => item.id === productId);
 
                         if (existingItemIndex !== -1) {
-                            // Item already exists, increase quantity
+
                             cartItems[existingItemIndex].quantity += 1;
                         } else {
-                            // Add new item
+                            
                             cartItems.push({
                                 id: productId,
                                 name: name,
