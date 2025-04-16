@@ -204,7 +204,7 @@
 
                 // Add items to cart
                 cartItems.forEach((item, index) => {
-                    const itemElement = document.createElement('div');
+                    let itemElement = document.createElement('div');
                     itemElement.className = 'store-card rounded-lg shadow-lg p-4';
                     itemElement.innerHTML = `
                         <div class="flex gap-4">
@@ -241,8 +241,8 @@
                     subtotal += item.price * item.quantity;
                 });
 
-                const tax = subtotal * 0.1; // 10% tax
-                const total = subtotal + shipping + tax;
+                let tax = subtotal * 0.1; // 10% tax
+                let total = subtotal + shipping + tax;
 
                 document.getElementById('summary-subtotal').textContent = `$${subtotal.toFixed(2)}`;
                 document.getElementById('summary-shipping').textContent = `$${shipping.toFixed(2)}`;
@@ -317,7 +317,6 @@
 
             document.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault();
-                // alert('Order placed successfully! Thank you for shopping with TimeTrekker.');
 
                 localStorage.removeItem('cartItems');
                 localStorage.setItem('cartTotalPrice', '0');
