@@ -21,7 +21,7 @@
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-1 flex justify-center sm:justify-between items-center">
                     <div class="flex-shrink-0">
-                        <h1 class="text-2xl font-bold text-amber-100 cursor-pointer" onclick="window.location.href='/'">
+                        <h1 class="text-2xl font-bold text-amber-100 cursor-pointer" onclick="window.location.href='/stor'">
                             <span class="text-amber-400">⌛</span> TimeTrekker Store
                         </h1>
                     </div>
@@ -194,7 +194,7 @@
                     cartContainer.innerHTML = `
                         <div class="store-card rounded-lg shadow-lg p-6 text-center">
                             <p class="text-amber-900 text-lg">Your cart is empty</p>
-                            <button onclick="window.location.href='/'" class="mt-4 bg-amber-800 text-amber-100 px-6 py-2 rounded-lg hover:bg-amber-700 transition-colors">
+                            <button onclick="window.location.href='/Stor'" class="mt-4 bg-amber-800 text-amber-100 px-6 py-2 rounded-lg hover:bg-amber-700 transition-colors">
                                 Continue Shopping
                             </button>
                         </div>
@@ -221,9 +221,7 @@
                                 <p class="text-amber-700 text-sm">Historical item</p>
                                 <div class="flex justify-between items-center mt-2">
                                     <div class="flex items-center space-x-2">
-                                        <button class="w-8 h-8 rounded-full bg-amber-200 text-amber-900 decrease-quantity" data-index="${index}">-</button>
                                         <span class="w-8 text-center item-quantity">${item.quantity}</span>
-                                        <button class="w-8 h-8 rounded-full bg-amber-200 text-amber-900 increase-quantity" data-index="${index}">+</button>
                                     </div>
                                     <span class="text-lg font-bold text-amber-900 item-price" data-unit-price="${item.price}">$${(item.price * item.quantity).toFixed(2)}</span>
                                 </div>
