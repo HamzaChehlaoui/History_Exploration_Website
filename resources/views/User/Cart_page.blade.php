@@ -320,7 +320,6 @@
 
                 localStorage.removeItem('cartItems');
                 localStorage.setItem('cartTotalPrice', '0');
-
                 window.location.href = '/';
             });
         });
