@@ -76,117 +76,202 @@
     </main>
 
     <!-- Payment Page -->
-    <main class="pt-24 pb-12 px-4 hidden" id="payment-page">
-        <div class="max-w-3xl mx-auto">
-            <div class="store-card rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold text-amber-900 mb-6">Secure Payment</h2>
+<main class="pt-24 pb-12 px-4 hidden" id="payment-page">
+    <div class="max-w-3xl mx-auto">
+        <div class="store-card rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-amber-900 mb-6">Secure Payment</h2>
 
-                <form class="space-y-6">
-                    <!-- Shipping Address -->
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-amber-900">Shipping Address</h3>
+            <form class="space-y-6" method="POST" action="/commandes">
+                <!-- CSRF token if using Laravel -->
+                @csrf
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-amber-900 mb-2">First Name</label>
-                                <input type="text" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-amber-900 mb-2">Last Name</label>
-                                <input type="text" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                        </div>
+                <!-- Order Date -->
+                <div>
+                    <label class="block text-amber-900 mb-2">Order Date</label>
+                    <input type="date" name="date_commande" required
+                        class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                </div>
 
+                <!-- Shipping Address -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-amber-900">Shipping Address</h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-amber-900 mb-2">Street Address</label>
-                            <input type="text" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            <label class="block text-amber-900 mb-2">First Name</label>
+                            <input type="text" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
                         </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div>
-                                <label class="block text-amber-900 mb-2">City</label>
-                                <input type="text" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-amber-900 mb-2">State</label>
-                                <input type="text" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-amber-900 mb-2">ZIP Code</label>
-                                <input type="text" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Payment Details -->
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-amber-900">Payment Details</h3>
-
                         <div>
-                            <label class="block text-amber-900 mb-2">Card Number</label>
-                            <input type="text" placeholder="**** **** **** ****" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="col-span-2">
-                                <label class="block text-amber-900 mb-2">Expiration Date</label>
-                                <input type="text" placeholder="MM/YY" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-                            <div>
-                                <label class="block text-amber-900 mb-2">CVV</label>
-                                <input type="text" placeholder="***" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
+                            <label class="block text-amber-900 mb-2">Last Name</label>
+                            <input type="text" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
                         </div>
                     </div>
 
-                    <!-- Order Summary -->
-                    <div class="bg-amber-50 rounded-lg p-4">
-                        <h3 class="text-lg font-semibold text-amber-900 mb-2">Order Summary</h3>
-                        <div class="space-y-2">
-                            <div class="flex justify-between text-amber-700">
-                                <span id="payment-items-count">0 Items</span>
-                                <span id="payment-subtotal">$0.00</span>
-                            </div>
-                            <div class="flex justify-between text-amber-700">
-                                <span>Shipping</span>
-                                <span id="payment-shipping">$5.99</span>
-                            </div>
-                            <div class="flex justify-between text-amber-700">
-                                <span>Tax</span>
-                                <span id="payment-tax">$0.00</span>
-                            </div>
-                            <div class="border-t border-amber-300 pt-2 flex justify-between font-bold text-amber-900">
-                                <span>Total</span>
-                                <span id="payment-total">$0.00</span>
-                            </div>
+                    <div>
+                        <label class="block text-amber-900 mb-2">Street Address</label>
+                        <input type="text" name="shipping_address" required
+                            class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-amber-900 mb-2">City</label>
+                            <input type="text" name="shipping_city" required
+                                class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                        </div>
+                        <div>
+                            <label class="block text-amber-900 mb-2">State</label>
+                            <input type="text" name="shipping_state"
+                                class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                        </div>
+                        <div>
+                            <label class="block text-amber-900 mb-2">ZIP Code</label>
+                            <input type="text" name="shipping_zip_code"
+                                class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
                         </div>
                     </div>
 
-                    <!-- Submit Button -->
-                    <div class="flex justify-end space-x-4">
-                        <button type="button" onclick="document.getElementById('cart-page').classList.remove('hidden'); document.getElementById('payment-page').classList.add('hidden')"
-                                class="px-6 py-2 bg-amber-100 text-amber-900 rounded-lg hover:bg-amber-200 transition-colors">
-                            Back to Cart
-                        </button>
-                        <button type="submit" class="px-6 py-2 bg-amber-800 text-amber-100 rounded-lg hover:bg-amber-700 transition-colors">
-                            Place Order
-                        </button>
+                    <div>
+                        <label class="block text-amber-900 mb-2">Country</label>
+                        <input type="text" name="shipping_country"
+                            class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
                     </div>
-                </form>
-            </div>
+
+                    <div>
+                        <label class="block text-amber-900 mb-2">Shipping Method</label>
+                        <input type="text" name="shipping_method"
+                            class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                    </div>
+                    <div>
+                        <label class="block text-amber-900 mb-2">Tracking Number</label>
+                        <input type="text" name="tracking_number"
+                            class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                    </div>
+                </div>
+
+                <!-- Payment Details -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-amber-900">Payment Details</h3>
+
+                    <div>
+                        <label class="block text-amber-900 mb-2">Card Number</label>
+                        <input type="text" placeholder="**** **** **** ****"
+                            class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="col-span-2">
+                            <label class="block text-amber-900 mb-2">Expiration Date</label>
+                            <input type="text" placeholder="MM/YY"
+                                class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                        </div>
+                        <div>
+                            <label class="block text-amber-900 mb-2">CVV</label>
+                            <input type="text" placeholder="***"
+                                class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-amber-900 mb-2">Payment Method</label>
+                        <input type="text" name="payment_method"
+                            placeholder="e.g. Credit Card, PayPal"
+                            class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                    </div>
+
+                    <div>
+                        <label class="block text-amber-900 mb-2">Payment Reference</label>
+                        <input type="text" name="payment_reference"
+                            placeholder="Transaction ID"
+                            class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-amber-900 mb-2">Order Status</label>
+                        <select name="status" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                            <option value="en_attente">En attente</option>
+                            <option value="valide">Valide</option>
+                            <option value="annule">Annulé</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-amber-900 mb-2">Payment Status</label>
+                        <select name="payment_status"
+                            class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300">
+                            <option value="en_attente">En attente</option>
+                            <option value="payé">Payé</option>
+                            <option value="échoué">Échoué</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Notes -->
+                <div>
+                    <label class="block text-amber-900 mb-2">Notes</label>
+                    <textarea name="notes" rows="4"
+                        class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300"></textarea>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="bg-amber-50 rounded-lg p-4">
+                    <h3 class="text-lg font-semibold text-amber-900 mb-2">Order Summary</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-amber-700">
+                            <span id="payment-items-count">0 Items</span>
+                            <span id="payment-subtotal">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-amber-700">
+                            <span>Shipping</span>
+                            <input type="number" step="0.01" name="shipping_cost" id="payment-shipping"
+                                class="bg-transparent text-right" />
+                        </div>
+                        <div class="flex justify-between text-amber-700">
+                            <span>Tax</span>
+                            <input type="number" step="0.01" name="tax" id="payment-tax"
+                                class="bg-transparent text-right" />
+                        </div>
+                        <div class="border-t border-amber-300 pt-2 flex justify-between font-bold text-amber-900">
+                            <span>Total</span>
+                            <input type="number" step="0.01" name="total_price" id="payment-total"
+                                class="bg-transparent text-right" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden user id -->
+                <input type="hidden" name="utilisateur_id" value="{{ auth()->user()->id }}">
+
+                <!-- Submit -->
+                <div class="flex justify-end space-x-4">
+                    <button type="button"
+                        onclick="document.getElementById('cart-page').classList.remove('hidden'); document.getElementById('payment-page').classList.add('hidden')"
+                        class="px-6 py-2 bg-amber-100 text-amber-900 rounded-lg hover:bg-amber-200 transition-colors">
+                        Back to Cart
+                    </button>
+                    <button type="submit"
+                        class="px-6 py-2 bg-amber-800 text-amber-100 rounded-lg hover:bg-amber-700 transition-colors">
+                        Place Order
+                    </button>
+                </div>
+            </form>
         </div>
-    </main>
+    </div>
+</main>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            const savedTotal = parseFloat(localStorage.getItem('cartTotalPrice')) || 0;
-            const shipping = 5.99;
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let savedTotal = parseFloat(localStorage.getItem('cartTotalPrice')) || 0;
+            let shipping = 5.99;
 
 
             function renderCartItems() {
-                const cartContainer = document.getElementById('cart-items-container');
+                let cartContainer = document.getElementById('cart-items-container');
 
                 cartContainer.innerHTML = '';
 
@@ -263,15 +348,15 @@
 
                 document.querySelectorAll('.decrease-quantity').forEach(button => {
                     button.addEventListener('click', function() {
-                        const index = parseInt(this.getAttribute('data-index'));
+                        let index = parseInt(this.getAttribute('data-index'));
                         if (cartItems[index].quantity > 1) {
                             cartItems[index].quantity -= 1;
 
-                            const quantityElement = this.nextElementSibling;
+                            let quantityElement = this.nextElementSibling;
                             quantityElement.textContent = cartItems[index].quantity;
 
-                            const priceElement = this.closest('.flex').querySelector('.item-price');
-                            const unitPrice = parseFloat(priceElement.getAttribute('data-unit-price'));
+                            let priceElement = this.closest('.flex').querySelector('.item-price');
+                            let unitPrice = parseFloat(priceElement.getAttribute('data-unit-price'));
                             priceElement.textContent = `$${(unitPrice * cartItems[index].quantity).toFixed(2)}`;
 
                             localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -282,14 +367,14 @@
 
                 document.querySelectorAll('.increase-quantity').forEach(button => {
                     button.addEventListener('click', function() {
-                        const index = parseInt(this.getAttribute('data-index'));
+                        let index = parseInt(this.getAttribute('data-index'));
                         cartItems[index].quantity += 1;
 
-                        const quantityElement = this.previousElementSibling;
+                        let quantityElement = this.previousElementSibling;
                         quantityElement.textContent = cartItems[index].quantity;
 
-                        const priceElement = this.closest('.flex').querySelector('.item-price');
-                        const unitPrice = parseFloat(priceElement.getAttribute('data-unit-price'));
+                        let priceElement = this.closest('.flex').querySelector('.item-price');
+                        let unitPrice = parseFloat(priceElement.getAttribute('data-unit-price'));
                         priceElement.textContent = `$${(unitPrice * cartItems[index].quantity).toFixed(2)}`;
 
                         localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -299,7 +384,7 @@
 
                 document.querySelectorAll('.remove-item').forEach(button => {
                     button.addEventListener('click', function() {
-                        const index = parseInt(this.getAttribute('data-index'));
+                        let index = parseInt(this.getAttribute('data-index'));
 
                         cartItems.splice(index, 1);
 
@@ -324,5 +409,6 @@
             });
         });
     </script>
+
 </body>
 </html>
