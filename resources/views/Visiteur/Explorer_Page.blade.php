@@ -185,19 +185,6 @@
             views: 12500
         },
         {
-            title: "The Crusades",
-            period: "1095 CE - 1291 CE",
-            era: "CE",
-            continent: "Middle East",
-            location: "Jerusalem",
-            position: { lat: 31.7683, lng: 35.2137 },
-            description: "A series of religious wars initiated by the Latin Church.",
-            wikiLink: "https://en.wikipedia.org/wiki/Crusades",
-            category: "Wars & Conflicts",
-            significance: 85,
-            views: 10200
-        },
-        {
             title: "Industrial Revolution",
             period: "1760 CE - 1840 CE",
             era: "CE",
