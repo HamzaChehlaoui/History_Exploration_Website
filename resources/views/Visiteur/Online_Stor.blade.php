@@ -101,18 +101,17 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Check if there's a saved cart total in localStorage
+
             let cartTotalPrice = parseFloat(localStorage.getItem('cartTotalPrice')) || 0;
             let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
             let cartTotalElement = document.getElementById('cart-total');
 
-            // Update the displayed total with any existing value
             cartTotalElement.textContent = cartTotalPrice.toFixed(2);
 
-            // Add click event to the cart counter to redirect to cart page
+
             document.getElementById('cart-counter').addEventListener('click', function() {
-                // Update with your actual cart page URL path
-                window.location.href = '/cart'; // Adjust this to match your route
+
+                window.location.href = '/cart';
             });
 
             function updateCart() {
@@ -144,14 +143,14 @@
                             });
                         }
 
-                        // Save to localStorage
+
                         localStorage.setItem('cartTotalPrice', cartTotalPrice);
                         localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
-                        // Update display
+
                         cartTotalElement.textContent = cartTotalPrice.toFixed(2);
 
-                        // Visual feedback
+
                         let counter = document.getElementById('cart-counter');
                         counter.classList.add('animate-pulse');
                         setTimeout(() => {
