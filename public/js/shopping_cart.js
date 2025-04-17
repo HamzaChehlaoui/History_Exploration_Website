@@ -1,5 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    let dateInput = document.querySelector('input[name="date_commande"]');
+    if (dateInput) {
+
+        let today = new Date();
+        let yyyy = today.getFullYear();
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+        let dd = String(today.getDate()).padStart(2, '0');
+        let formattedToday = `${yyyy}-${mm}-${dd}`;
+
+        dateInput.setAttribute('min', formattedToday);
+
+        dateInput.addEventListener('change', function() {
+            let selectedDate = new Date(this.value);
+            let currentDate = new Date(formattedToday);
+
+            selectedDate.setHours(0, 0, 0, 0);
+            currentDate.setHours(0, 0, 0, 0);
+
+            if (selectedDate < currentDate) {
+                this.value = formattedToday;
+                alert("Please select today or a future date for your order.");
+            }
+        });
+    }
 
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     let savedTotal = parseFloat(localStorage.getItem('cartTotalPrice')) || 0;
@@ -72,9 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById('payment-items-count').textContent = `${cartItems.length} Item${cartItems.length !== 1 ? 's' : ''}`;
         document.getElementById('payment-subtotal').textContent = `$${subtotal.toFixed(2)}`;
-        document.getElementById('payment-shipping').textContent = `$${shipping.toFixed(2)}`;
-        document.getElementById('payment-tax').textContent = `$${tax.toFixed(2)}`;
-        document.getElementById('payment-total').textContent = `$${total.toFixed(2)}`;
+        document.getElementById('payment-shipping').value = shipping.toFixed(2);
+        document.getElementById('payment-tax').value = tax.toFixed(2);
+        document.getElementById('payment-total').value = total.toFixed(2);
 
         localStorage.setItem('cartTotalPrice', subtotal);
     }
@@ -132,15 +156,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize page
     renderCartItems();
     updateSummary();
 
-    document.querySelector('form').addEventListener('submit', function(e) {
-        e.preventDefault();
+    let checkoutButton = document.getElementById('checkout-button');
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', function() {
+            document.getElementById('cart-page').classList.add('hidden');
+            document.getElementById('payment-page').classList.remove('hidden');
+        });
+    }
 
-        localStorage.removeItem('cartItems');
-        localStorage.setItem('cartTotalPrice', '0');
-        window.location.href = '/';
-    });
+    // Form submission
+    let orderForm = document.querySelector('form');
+    if (orderForm) {
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+
+
+            localStorage.removeItem('cartItems');
+            localStorage.setItem('cartTotalPrice', '0');
+
+            alert('Your order has been placed successfully!');
+            window.location.href = '/stor';
+        });
+    }
 });
