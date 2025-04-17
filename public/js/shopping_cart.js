@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     let savedTotal = parseFloat(localStorage.getItem('cartTotalPrice')) || 0;
     let shipping = 5.99;
