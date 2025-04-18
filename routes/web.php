@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\Auth\SocialAuthController;
+use App\Http\Controllers\PayPalController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,7 +33,12 @@ Route::group([] ,function (){
     Route::view('/PageConditions','Visiteur.PageConditions');
     Route::view('/cart','User.Cart_page');
 
+
+
 });
+
+Route::post('/api/paypal/create-order', [PayPalController::class, 'createPayPalOrder'])->name('paypal.create.order');
+Route::post('/api/paypal/capture-order', [PayPalController::class, 'capturePayPalOrder'])->name('paypal.capture.order');
 
 Route::middleware(['web'])->group(function () {
 
@@ -40,5 +46,6 @@ Route::middleware(['web'])->group(function () {
     Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
     Route::get('auth/facebook', [SocialAuthController::class, 'redirectToFacebook'])->name('login.facebook');
     Route::get('auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback']);
+
 
 });
