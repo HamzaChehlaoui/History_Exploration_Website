@@ -1,3 +1,5 @@
+//shopping_cart.js
+
 document.addEventListener('DOMContentLoaded', function() {
 
     let dateInput = document.querySelector('input[name="date_commande"]');
@@ -5,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let today = new Date();
         let yyyy = today.getFullYear();
-        let mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0
+        let mm = String(today.getMonth() + 1).padStart(2, '0');
         let dd = String(today.getDate()).padStart(2, '0');
         let formattedToday = `${yyyy}-${mm}-${dd}`;
 
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (selectedDate < currentDate) {
                 this.value = formattedToday;
-                alert("Please select today or a future date for your order.");
+                // alert("Please select today or a future date for your order.");
             }
         });
     }
@@ -167,19 +169,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Form submission
-    let orderForm = document.querySelector('form');
-    if (orderForm) {
-        orderForm.addEventListener('submit', function(e) {
-            e.preventDefault();
 
-
-
-            localStorage.removeItem('cartItems');
-            localStorage.setItem('cartTotalPrice', '0');
-
-            alert('Your order has been placed successfully!');
-            window.location.href = '/stor';
-        });
-    }
 });
