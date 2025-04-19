@@ -18,7 +18,9 @@ class CommentaireController extends Controller
      */
     public function store(CommentaireRequest $request)
     {
-        // Validation is automatically handled by the request class
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Vous devez être connecté pour publier un commentaire.');
+        }
 
         Commentaire::create([
             'content' => $request->content,
@@ -39,12 +41,10 @@ class CommentaireController extends Controller
      */
     public function update(Request $request, Commentaire $commentaire)
     {
-        // Check if the authenticated user owns the comment
         if (Auth::id() != $commentaire->utilisateur_id) {
             return redirect()->back()->with('error', 'Vous n\'êtes pas autorisé à modifier ce commentaire.');
         }
 
-        // Validate only the content field for updates
         $validated = $request->validate([
             'content' => 'required|string|min:3|max:1000',
         ], [
@@ -66,15 +66,18 @@ class CommentaireController extends Controller
      * @param  \App\Models\Commentaire  $commentaire
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Commentaire $commentaire)
-    {
-        // Check if the authenticated user owns the comment
-        if (Auth::id() != $commentaire->utilisateur_id) {
-            return redirect()->back()->with('error', 'Vous n\'êtes pas autorisé à supprimer ce commentaire.');
-        }
+    public function destroy($id)
+{
+    $commentaire = Commentaire::findOrFail($id);
 
-        $commentaire->delete();
+    // dd($commentaire);
 
-        return redirect()->back()->with('success', 'Commentaire supprimé avec succès!');
+    if (Auth::id() != $commentaire->utilisateur_id) {
+        return redirect()->back()->with('error', 'Vous n\'êtes pas autorisé à supprimer ce commentaire.');
     }
+
+    $commentaire->delete();
+
+    return redirect()->back()->with('success', 'Commentaire supprimé avec succès!');
+}
 }
