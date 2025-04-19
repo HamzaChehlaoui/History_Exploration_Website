@@ -33,7 +33,7 @@ Route::group([] ,function (){
     Route::view('/login', 'Auth.login');
     Route::view('/PageConditions','Visiteur.PageConditions');
     Route::view('/cart','User.Cart_page');
-    Route::get('/article/{id}', [ArticleController::class,'index'])->name('visiteur.article.show');
+    Route::get('/article/{id}', [ArticleController::class,'index'])->name('visiteur.article.index');
 
 
 });
