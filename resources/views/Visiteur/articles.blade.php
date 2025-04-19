@@ -120,43 +120,62 @@
                         <i class="fas fa-comments mr-2"></i> Comments ({{ count($article->commentaires ?? []) }})
                     </h3>
 
-                    <!-- Existing Comments -->
-                    <div class="space-y-6 mb-8">
-                        @forelse($article->commentaires ?? [] as $commentaire)
-                            <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
-                                <div class="flex justify-between items-start mb-2">
-                                    <div class="flex items-center">
-                                        <div class="bg-amber-700 text-amber-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
-                                            <span class="font-bold">{{ substr($commentaire->utilisateur->name ?? 'A', 0, 1) }}</span>
-                                        </div>
-                                        <div>
-                                            <h4 class="text-lg font-semibold text-amber-900">{{ $commentaire->utilisateur->name ?? 'Anonymous' }}</h4>
-                                            <p class="text-xs text-amber-600">{{ \Carbon\Carbon::parse($commentaire->date_commentaire)->format('F d, Y \a\t h:i A') }}</p>
-                                        </div>
-                                    </div>
-                                    @auth
-                        @if(auth()->id() == $commentaire->utilisateur_id)
-                            <div class="flex space-x-2">
-                                <button class="text-amber-600 hover:text-amber-800"><i class="fas fa-edit">edit</i></button>
-                                <form action="{{ route('commentaires.destroy', $commentaire->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-amber-600 hover:text-amber-800"><i class="fas fa-trash">delete</i></button>
-                                </form>
-                            </div>
-                        @endif
-                    @endauth
-                                </div>
-                                <div class="text-amber-800 mt-2">
-                                    <p>{{ $commentaire->content }}</p>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="text-center py-8">
-                                <p class="text-amber-800 italic">No comments yet. Be the first to share your thoughts!</p>
-                            </div>
-                        @endforelse
+                    <!-- Modify your existing comment section to include edit functionality -->
+<div class="space-y-6 mb-8">
+    @forelse($article->commentaires ?? [] as $commentaire)
+        <div class="bg-amber-50 p-4 rounded-lg border border-amber-200" id="comment-{{ $commentaire->id }}">
+            <div class="flex justify-between items-start mb-2">
+                <div class="flex items-center">
+                    <div class="bg-amber-700 text-amber-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                        <span class="font-bold">{{ substr($commentaire->utilisateur->name ?? 'A', 0, 1) }}</span>
                     </div>
+                    <div>
+                        <h4 class="text-lg font-semibold text-amber-900">{{ $commentaire->utilisateur->name ?? 'Anonymous' }}</h4>
+                        <p class="text-xs text-amber-600">{{ \Carbon\Carbon::parse($commentaire->date_commentaire)->format('F d, Y \a\t h:i A') }}</p>
+                    </div>
+                </div>
+                @auth
+                    @if(auth()->id() == $commentaire->utilisateur_id)
+                        <div class="flex space-x-2">
+                            <button onclick="toggleEditComment({{ $commentaire->id }})" class="text-amber-600 hover:text-amber-800"><i class="fas fa-edit"></i> edit</button>
+                            <form action="{{ route('commentaires.destroy', $commentaire->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-amber-600 hover:text-amber-800"><i class="fas fa-trash"></i> delete</button>
+                            </form>
+                        </div>
+                    @endif
+                @endauth
+            </div>
+            <!-- Regular comment content (visible by default) -->
+            <div class="text-amber-800 mt-2 comment-content" id="comment-content-{{ $commentaire->id }}">
+                <p>{{ $commentaire->content }}</p>
+            </div>
+
+            <!-- Edit form (hidden by default) -->
+            @auth
+                @if(auth()->id() == $commentaire->utilisateur_id)
+                    <div class="mt-2 hidden comment-edit-form" id="comment-edit-form-{{ $commentaire->id }}">
+                        <form action="{{ route('commentaires.update', $commentaire->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <textarea name="content" class="w-full p-2 border border-amber-300 rounded-md focus:ring-amber-500 focus:border-amber-500" rows="3">{{ $commentaire->content }}</textarea>
+                            <div class="flex justify-end space-x-2 mt-2">
+                                <button type="button" onclick="toggleEditComment({{ $commentaire->id }})" class="px-3 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">Cancel</button>
+                                <button type="submit" class="px-3 py-1 bg-amber-600 text-white rounded hover:bg-amber-700">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                @endif
+            @endauth
+        </div>
+    @empty
+        <div class="text-center py-8">
+            <p class="text-amber-800 italic">No comments yet. Be the first to share your thoughts!</p>
+        </div>
+    @endforelse
+</div>
+
 
                     <!-- Flash Messages -->
                     @if(session('success'))
@@ -218,3 +237,22 @@
 
 </body>
 @endsection
+
+<!-- Add this JavaScript at the end of your file or in a separate JS file -->
+<script>
+    function toggleEditComment(commentId) {
+        // Toggle visibility of comment content and edit form
+        const contentElement = document.getElementById(`comment-content-${commentId}`);
+        const formElement = document.getElementById(`comment-edit-form-${commentId}`);
+
+        if (contentElement.classList.contains('hidden')) {
+            // Show content, hide form
+            contentElement.classList.remove('hidden');
+            formElement.classList.add('hidden');
+        } else {
+            // Hide content, show form
+            contentElement.classList.add('hidden');
+            formElement.classList.remove('hidden');
+        }
+    }
+</script>
