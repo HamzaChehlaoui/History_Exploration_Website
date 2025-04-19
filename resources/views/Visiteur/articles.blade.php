@@ -37,14 +37,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
                     @foreach($article->images as $image)
                     <img src="{{ $image->path }}" alt="Article Image">
-
                     @endforeach
                 </div>
-                <!-- Display a placeholder image if no images are available -->
-                {{-- <img src="https://via.placeholder.com/800x400?text=No+Image+Available" alt="{{ $article->title }}" class="w-full h-72 object-cover"/> --}}
-
-
-                {{-- <img src="{{$image->path}}" alt="{{ $article->title }}" class="w-full h-72 object-cover"/> --}}
 
                 <div class="p-8">
                     <div class="prose prose-amber max-w-none text-amber-900">
@@ -117,10 +111,100 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Comments Section -->
+            <div class="bg-amber-100 rounded-lg shadow-lg overflow-hidden border border-amber-200 mb-10">
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-amber-900 mb-6 font-serif">
+                        <i class="fas fa-comments mr-2"></i> Comments ({{ count($article->commentaires ?? []) }})
+                    </h3>
+
+                    <!-- Existing Comments -->
+                    <div class="space-y-6 mb-8">
+                        @forelse($article->commentaires ?? [] as $commentaire)
+                            <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="flex items-center">
+                                        <div class="bg-amber-700 text-amber-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                                            <span class="font-bold">{{ substr($commentaire->utilisateur->name ?? 'A', 0, 1) }}</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-lg font-semibold text-amber-900">{{ $commentaire->utilisateur->name ?? 'Anonymous' }}</h4>
+                                            <p class="text-xs text-amber-600">{{ \Carbon\Carbon::parse($commentaire->date_commentaire)->format('F d, Y \a\t h:i A') }}</p>
+                                        </div>
+                                    </div>
+                                    @auth
+                                        @if(auth()->id() == $commentaire->utilisateur_id)
+                                            <div class="flex space-x-2">
+                                                <button class="text-amber-600 hover:text-amber-800 transition-colors duration-200">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <form action="{{ route('commentaires.destroy', $commentaire->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-amber-600 hover:text-amber-800 transition-colors duration-200">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                    @endauth
+                                </div>
+                                <div class="text-amber-800 mt-2">
+                                    <p>{{ $commentaire->content }}</p>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="text-center py-8">
+                                <p class="text-amber-800 italic">No comments yet. Be the first to share your thoughts!</p>
+                            </div>
+                        @endforelse
+                    </div>
+                    <!-- Flash Messages -->
+                    @if(session('success'))
+                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded" role="alert">
+                        <p>{{ session('success') }}</p>
+                    </div>
+                    @endif
+
+                    @if(session('error'))
+                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded" role="alert">
+                        <p>{{ session('error') }}</p>
+                    </div>
+                    @endif
+                    <!-- Comment Form -->
+                    @auth
+                        <div class="bg-amber-50 p-6 rounded-lg border border-amber-200">
+                            <h4 class="text-xl font-bold text-amber-900 mb-4 font-serif">Leave a Comment</h4>
+                            <form action="{{ route('commentaires.store') }}" method="POST" class="space-y-4">
+                                @csrf
+                                <input type="hidden" name="article_id" value="{{ $article->id }}">
+                                <div>
+                                    <textarea name="content" rows="4" class="w-full bg-amber-100 border border-amber-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition @error('content') border-red-500 @enderror" placeholder="Partagez vos réflexions sur cet article...">{{ old('content') }}</textarea>
+                                    @error('content')
+                                        <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="flex justify-end">
+                                    <button type="submit" class="bg-amber-700 text-amber-100 px-6 py-2 rounded-lg font-semibold hover:bg-amber-600 transition-all duration-300 transform hover:scale-105 shadow-md">
+                                        <i class="fas fa-paper-plane mr-2"></i> Publier le commentaire
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                    @else
+                        <div class="bg-amber-50 p-6 rounded-lg border border-amber-200 text-center">
+                            <p class="text-amber-800 mb-4">You must be logged in to comment on this article.</p>
+                            <a href="{{ route('login') }}" class="inline-block bg-amber-700 text-amber-100 px-6 py-2 rounded-lg font-semibold hover:bg-amber-600 transition-all duration-300">
+                                <i class="fas fa-sign-in-alt mr-2"></i> Login to Comment
+                            </a>
+                        </div>
+                    @endauth
+                </div>
+            </div>
         </div>
     </section>
-
-
 
     <!-- Call to Action Section -->
     <section class="py-16 parchment">
