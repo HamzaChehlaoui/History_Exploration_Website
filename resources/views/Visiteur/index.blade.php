@@ -38,13 +38,16 @@
                 <!-- Event Cards with vintage styling -->
                 @foreach($articles as $article)
     <div class="bg-amber-100 rounded-lg shadow-md overflow-hidden border border-amber-200 hover:shadow-xl transition-shadow">
-        <img src="https://t3.ftcdn.net/jpg/09/13/76/72/360_F_913767210_YnpVVDo3KlinDAcV8gMu9aOs1PmXo4qV.jpg" alt="Historical Event 1" class="w-full h-48 object-cover"/>
+        <img src="{{$article->images->first()->path}}" alt="Historical Event 1" class="w-full h-48 object-cover"/>
         <div class="p-6">
             <h4 class="text-xl font-semibold mb-2 text-amber-900">{{$article->title}}</h4>
             <p class="text-amber-800">{{$article->description}}</p>
             <div class="mt-4">
-                <a href="/article/{{$article->id}}" class="inline-block bg-amber-500 text-white font-medium py-2 px-4 rounded-md hover:bg-amber-600 transition-colors">
-                    Show Details
+                <a href="/article/{{$article->id}}" class="inline-flex items-center justify-center bg-amber-700 text-white font-medium py-2 px-6 rounded hover:bg-amber-800 transition-colors shadow-sm border border-amber-800">
+                    <span>Show Details</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
                 </a>
             </div>
         </div>
