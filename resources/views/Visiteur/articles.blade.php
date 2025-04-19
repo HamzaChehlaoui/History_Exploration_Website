@@ -4,7 +4,7 @@
 
     <!-- Article Hero Section -->
     <div class="relative pt-16 pb-24 flex content-center items-center justify-center">
-        <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('https://img.le-dictionnaire.com/histoire-temps.jpg');">
+        <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('https://i.pinimg.com/originals/56/c3/45/56c345c29b5179d85891b1500fccc8e9.gif');">
             <span class="w-full h-full absolute opacity-50 bg-amber-900"></span>
         </div>
         <div class="container relative mx-auto">
@@ -32,7 +32,19 @@
     <section class="py-16 parchment">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-amber-100 rounded-lg shadow-lg overflow-hidden border border-amber-200 mb-10">
-                <img src="https://t3.ftcdn.net/jpg/09/13/76/72/360_F_913767210_YnpVVDo3KlinDAcV8gMu9aOs1PmXo4qV.jpg" alt="{{ $article->title }}" class="w-full h-72 object-cover"/>
+                <br>
+                <h3 class="text-2xl font-bold text-amber-900 mb-4 font-serif"> {{ $article->title }} :</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
+                    @foreach($article->images as $image)
+                    <img src="{{ $image->path }}" alt="Article Image">
+
+                    @endforeach
+                </div>
+                <!-- Display a placeholder image if no images are available -->
+                {{-- <img src="https://via.placeholder.com/800x400?text=No+Image+Available" alt="{{ $article->title }}" class="w-full h-72 object-cover"/> --}}
+
+
+                {{-- <img src="{{$image->path}}" alt="{{ $article->title }}" class="w-full h-72 object-cover"/> --}}
 
                 <div class="p-8">
                     <div class="prose prose-amber max-w-none text-amber-900">
