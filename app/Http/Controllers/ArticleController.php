@@ -11,17 +11,26 @@ use App\Http\Requests\UpdateArticleRequest;
 
 class ArticleController extends Controller
 {
-    public function index($id)
-    {
-       $article = Article::where('id', $id)->first();
-        return view('Visiteur.articles', compact('article'));
-    }
-
     public function show($id)
-    {
-        $article = Article::with(['utilisateur', 'category'])->findOrFail($id);
-        return view('articles.show', compact('article'));
-    }
+{
+    $article = Article::with(['images', 'utilisateur', 'category'])->findOrFail($id);
+
+    // Add related articles query
+    $relatedArticles = Article::where('category_id', $article->category_id)
+                            ->where('id', '!=', $article->id)
+                            ->limit(3)
+                            ->get();
+
+    return view('Visiteur.articles', compact('article', 'relatedArticles'));
+}
+
+public function index($id)
+{
+    $article = Article::with('images')->where('id', $id)->first();
+    return view('Visiteur.articles', compact('article'));
+}
+
+
 
     public function create()
     {
