@@ -120,45 +120,7 @@
         </div>
     </section>
 
-    <!-- Related Articles Section -->
-    <section class="py-16 bg-amber-800 text-amber-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl font-bold font-serif mb-8">Explore Related Articles</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @foreach($relatedArticles ?? [] as $relatedArticle)
-                <div class="bg-amber-900/50 rounded-lg shadow-md overflow-hidden border border-amber-700 hover:shadow-xl transition-shadow">
-                    <img src="https://t3.ftcdn.net/jpg/09/13/76/72/360_F_913767210_YnpVVDo3KlinDAcV8gMu9aOs1PmXo4qV.jpg" alt="{{ $relatedArticle->title }}" class="w-full h-48 object-cover"/>
-                    <div class="p-6">
-                        <h4 class="text-xl font-semibold mb-2 text-amber-100">{{ $relatedArticle->title }}</h4>
-                        <p class="text-amber-200">{{ $relatedArticle->description }}</p>
-                        <div class="mt-4">
-                            <a href="/article/{{ $relatedArticle->id }}" class="inline-block bg-amber-600 text-white font-medium py-2 px-4 rounded-md hover:bg-amber-500 transition-colors">
-                                Read Article
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
 
-                @if(!isset($relatedArticles) || count($relatedArticles) == 0)
-                    @for($i = 1; $i <= 3; $i++)
-                    <div class="bg-amber-900/50 rounded-lg shadow-md overflow-hidden border border-amber-700 hover:shadow-xl transition-shadow">
-                        <img src="https://t3.ftcdn.net/jpg/09/13/76/72/360_F_913767210_YnpVVDo3KlinDAcV8gMu9aOs1PmXo4qV.jpg" alt="Historical Event" class="w-full h-48 object-cover"/>
-                        <div class="p-6">
-                            <h4 class="text-xl font-semibold mb-2 text-amber-100">Another Historical Event {{ $i }}</h4>
-                            <p class="text-amber-200">A fascinating look at this important moment in history and its lasting impact.</p>
-                            <div class="mt-4">
-                                <a href="#" class="inline-block bg-amber-600 text-white font-medium py-2 px-4 rounded-md hover:bg-amber-500 transition-colors">
-                                    Read Article
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    @endfor
-                @endif
-            </div>
-        </div>
-    </section>
 
     <!-- Call to Action Section -->
     <section class="py-16 parchment">
