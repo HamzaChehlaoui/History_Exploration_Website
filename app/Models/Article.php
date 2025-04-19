@@ -32,4 +32,11 @@ class Article extends Model
     {
         return $this->hasMany(ArticleImage::class, 'article_id');
     }
+    /**
+ * Get the comments for the article.
+ */
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class);
+    }
 }
