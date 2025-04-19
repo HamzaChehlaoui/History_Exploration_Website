@@ -39,25 +39,23 @@ class CommentaireController extends Controller
      * @param  \App\Models\Commentaire  $commentaire
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Commentaire $commentaire)
+    public function update(Request $request, $id)
     {
-        if (Auth::id() != $commentaire->utilisateur_id) {
-            return redirect()->back()->with('error', 'Vous n\'êtes pas autorisé à modifier ce commentaire.');
+        $request->validate([
+            'content' => 'required|string|max:1000',
+        ]);
+
+        // Find the comment
+        $commentaire = Commentaire::findOrFail($id);
+
+        if (auth()->id() != $commentaire->utilisateur_id) {
+            return redirect()->back()->with('error', 'You are not authorized to edit this comment.');
         }
 
-        $validated = $request->validate([
-            'content' => 'required|string|min:3|max:1000',
-        ], [
-            'content.required' => 'Le commentaire ne peut pas être vide.',
-            'content.min' => 'Le commentaire doit contenir au moins 3 caractères.',
-            'content.max' => 'Le commentaire ne peut pas dépasser 1000 caractères.',
-        ]);
+        $commentaire->content = $request->content;
+        $commentaire->save();
 
-        $commentaire->update([
-            'content' => $validated['content'],
-        ]);
-
-        return redirect()->back()->with('success', 'Commentaire mis à jour avec succès!');
+        return redirect()->back()->with('success', 'Comment updated successfully.');
     }
 
     /**
