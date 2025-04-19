@@ -38,7 +38,7 @@ Route::group([] ,function (){
     // Comment routes
 Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store');
 Route::put('/commentaires/{commentaire}', [CommentaireController::class, 'update'])->name('commentaires.update');
-Route::put('/commentaires/{id}', [CommentaireController::class, 'update'])->name('commentaires.update');
+Route::PATCH('/commentaires/{id}', [CommentaireController::class, 'update'])->name('commentaires.update');
 Route::delete('/commentaires/{id}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy');
 
 
