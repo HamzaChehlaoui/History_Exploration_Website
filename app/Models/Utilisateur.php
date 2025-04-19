@@ -17,11 +17,19 @@ class Utilisateur extends Authenticatable
         'email',
         'password',
         'role_id',
-        
+
     ];
 
     protected $hidden = [
         'password',
     ];
+
+    /**
+ * Get the comments for the user.
+ */
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class);
+    }
 }
 
