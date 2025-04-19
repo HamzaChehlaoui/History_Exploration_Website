@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             CommandesSeeder::class,
             FavoritesSeeder::class,
             CivilizationsSeeder::class,
+            ArticleImageSeeder::class,
         ]);
+
     }
 }
