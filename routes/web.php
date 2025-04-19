@@ -6,6 +6,7 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentaireController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,10 @@ Route::group([] ,function (){
     Route::view('/PageConditions','Visiteur.PageConditions');
     Route::view('/cart','User.Cart_page');
     Route::get('/article/{id}', [ArticleController::class,'index'])->name('visiteur.article.index');
+    // Comment routes
+Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store')->middleware('auth');
+Route::put('/commentaires/{commentaire}', [CommentaireController::class, 'update'])->name('commentaires.update')->middleware('auth');
+Route::delete('/commentaires/{commentaire}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy')->middleware('auth');
 
 
 });
