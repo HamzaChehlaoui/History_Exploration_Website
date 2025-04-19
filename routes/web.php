@@ -36,9 +36,11 @@ Route::group([] ,function (){
     Route::view('/cart','User.Cart_page');
     Route::get('/article/{id}', [ArticleController::class,'index'])->name('visiteur.article.index');
     // Comment routes
-Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store')->middleware('auth');
-Route::put('/commentaires/{commentaire}', [CommentaireController::class, 'update'])->name('commentaires.update')->middleware('auth');
-Route::delete('/commentaires/{commentaire}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy')->middleware('auth');
+Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store');
+Route::put('/commentaires/{commentaire}', [CommentaireController::class, 'update'])->name('commentaires.update');
+Route::put('/commentaires/{id}', [CommentaireController::class, 'update'])->name('commentaires.update');
+Route::delete('/commentaires/{id}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy');
+
 
 
 });
