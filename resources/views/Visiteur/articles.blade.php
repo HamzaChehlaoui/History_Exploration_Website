@@ -1,4 +1,5 @@
 @extends('Visiteur.master')
+
 @section('content')
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
 
@@ -36,7 +37,7 @@
                 <h3 class="text-2xl font-bold text-amber-900 mb-4 font-serif"> {{ $article->title }} :</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
                     @foreach($article->images as $image)
-                    <img src="{{ $image->path }}" alt="Article Image">
+                        <img src="{{ $image->path }}" alt="Article Image">
                     @endforeach
                 </div>
 
@@ -45,7 +46,7 @@
                         {!! $article->content !!}
                     </div>
 
-                    <!-- Time Period Context -->
+                    <!-- Historical Context -->
                     <div class="mt-12 bg-amber-50 p-6 rounded-lg border border-amber-200">
                         <h3 class="text-2xl font-bold text-amber-900 mb-4 font-serif">Historical Context</h3>
                         <p class="text-amber-800">{{ $article->historical_context ?? 'This event took place during a pivotal moment in history, influencing various aspects of society, culture, and politics of the era.' }}</p>
@@ -57,10 +58,10 @@
                         <h3 class="text-2xl font-bold text-amber-900 mb-4 font-serif">Key Historical Figures</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             @foreach($article->key_figures as $figure)
-                            <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
-                                <h4 class="text-lg font-semibold text-amber-900">{{ $figure->name }}</h4>
-                                <p class="text-amber-800">{{ $figure->description }}</p>
-                            </div>
+                                <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                                    <h4 class="text-lg font-semibold text-amber-900">{{ $figure->name }}</h4>
+                                    <p class="text-amber-800">{{ $figure->description }}</p>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -89,7 +90,7 @@
                         <h3 class="text-2xl font-bold text-amber-900 mb-4 font-serif">Sources & References</h3>
                         <ul class="list-disc pl-5 text-amber-800">
                             @for($i = 1; $i <= 3; $i++)
-                            <li class="mb-2">Historical reference {{ $i }}: "{{ $article->title }} and Its Impact", Journal of Historical Studies</li>
+                                <li class="mb-2">Historical reference {{ $i }}: "{{ $article->title }} and Its Impact", Journal of Historical Studies</li>
                             @endfor
                         </ul>
                     </div>
@@ -134,21 +135,17 @@
                                         </div>
                                     </div>
                                     @auth
-                                        @if(auth()->id() == $commentaire->utilisateur_id)
-                                            <div class="flex space-x-2">
-                                                <button class="text-amber-600 hover:text-amber-800 transition-colors duration-200">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <form action="{{ route('commentaires.destroy', $commentaire->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="text-amber-600 hover:text-amber-800 transition-colors duration-200">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        @endif
-                                    @endauth
+                        @if(auth()->id() == $commentaire->utilisateur_id)
+                            <div class="flex space-x-2">
+                                <button class="text-amber-600 hover:text-amber-800"><i class="fas fa-edit">edit</i></button>
+                                <form action="{{ route('commentaires.destroy', $commentaire->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-amber-600 hover:text-amber-800"><i class="fas fa-trash">delete</i></button>
+                                </form>
+                            </div>
+                        @endif
+                    @endauth
                                 </div>
                                 <div class="text-amber-800 mt-2">
                                     <p>{{ $commentaire->content }}</p>
@@ -160,18 +157,20 @@
                             </div>
                         @endforelse
                     </div>
+
                     <!-- Flash Messages -->
                     @if(session('success'))
-                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded" role="alert">
-                        <p>{{ session('success') }}</p>
-                    </div>
+                        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded" role="alert">
+                            <p>{{ session('success') }}</p>
+                        </div>
                     @endif
 
                     @if(session('error'))
-                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded" role="alert">
-                        <p>{{ session('error') }}</p>
-                    </div>
+                        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded" role="alert">
+                            <p>{{ session('error') }}</p>
+                        </div>
                     @endif
+
                     <!-- Comment Form -->
                     @auth
                         <div class="bg-amber-50 p-6 rounded-lg border border-amber-200">
@@ -191,7 +190,6 @@
                                     </button>
                                 </div>
                             </form>
-
                         </div>
                     @else
                         <div class="bg-amber-50 p-6 rounded-lg border border-amber-200 text-center">
@@ -212,15 +210,11 @@
             <h3 class="text-3xl font-bold text-amber-900 mb-4 font-serif">Continue Your Historical Journey</h3>
             <p class="text-amber-800 mb-8 max-w-2xl mx-auto">Join our community of history enthusiasts and discover more fascinating stories from the past</p>
             <div class="space-x-4">
-                <a href="#" class="inline-block bg-gradient-to-r from-amber-700 to-amber-600 text-amber-100 px-8 py-3 rounded-lg font-semibold hover:from-amber-600 hover:to-amber-500 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Become a Member
-                </a>
-                <a href="#" class="inline-block bg-gradient-to-r from-amber-100 to-amber-200 text-amber-900 px-8 py-3 rounded-lg font-semibold hover:from-amber-200 hover:to-amber-300 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Browse More Articles
-                </a>
+                <a href="#" class="inline-block bg-gradient-to-r from-amber-700 to-amber-600 text-amber-100 px-8 py-3 rounded-lg font-semibold hover:from-amber-600 hover:to-amber-500 transition-all duration-300 transform hover:scale-105 shadow-lg">Become a Member</a>
+                <a href="#" class="inline-block bg-gradient-to-r from-amber-100 to-amber-200 text-amber-900 px-8 py-3 rounded-lg font-semibold hover:from-amber-200 hover:to-amber-300 transition-all duration-300 transform hover:scale-105 shadow-lg">Browse More Articles</a>
             </div>
         </div>
     </section>
-@endsection
+
 </body>
-</html>
+@endsection
