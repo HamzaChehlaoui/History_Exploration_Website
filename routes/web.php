@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\ArticleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,7 +33,7 @@ Route::group([] ,function (){
     Route::view('/login', 'Auth.login');
     Route::view('/PageConditions','Visiteur.PageConditions');
     Route::view('/cart','User.Cart_page');
-
+    Route::get('/article/{id}', [ArticleController::class,'index'])->name('visiteur.article.show');
 
 
 });
