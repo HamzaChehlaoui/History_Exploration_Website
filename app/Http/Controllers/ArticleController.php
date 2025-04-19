@@ -11,11 +11,11 @@ use App\Http\Requests\UpdateArticleRequest;
 
 class ArticleController extends Controller
 {
-    // public function index()
-    // {
-    //     $articles = Article::with(['utilisateur', 'category'])->get();
-    //     return view('articles.index', compact('articles'));
-    // }
+    public function index($id)
+    {
+       $article = Article::where('id', $id)->first();
+        return view('Visiteur.articles', compact('article'));
+    }
 
     public function show($id)
     {
