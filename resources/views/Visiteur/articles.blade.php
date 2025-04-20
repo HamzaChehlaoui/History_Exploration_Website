@@ -38,6 +38,9 @@
                         <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-amber-100 mb-6 font-serif">
                             {{ $article->title }}
                         </h1>
+                        @auth
+
+                    @endauth
                         <p class="text-xl text-amber-200 mb-4 max-w-3xl mx-auto">
                             {{ $article->description }}
                         </p>
@@ -57,7 +60,21 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-amber-100 rounded-lg shadow-lg overflow-hidden border border-amber-200 mb-10">
                 <br>
-                <h3 class="text-2xl font-bold text-amber-900 mb-4 font-serif"> {{ $article->title }} :</h3>
+                <div class="flex justify-between items-center mb-6 px-4">
+                    <h3 class="text-2xl font-bold text-amber-900 font-serif">
+                        {{ $article->title }} :
+                    </h3>
+
+                    <form action="{{ route('favorites.toggle', $article->id) }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit"
+                            class="flex items-center gap-2 text-amber-700 hover:text-white font-semibold px-4 py-2 rounded border border-amber-400 bg-white hover:bg-amber-500 transition-all duration-300">
+                            <i class="fas fa-star {{ auth()->user()->favorites->contains('article_id', $article->id) ? 'text-yellow-400' : 'text-gray-400' }}"></i>
+                            {{ auth()->user()->favorites->contains('article_id', $article->id) ? 'Retirer des favoris' : 'Ajouter aux favoris' }}
+                        </button>
+                    </form>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
                     @foreach($article->images as $image)
                         <img src="{{ $image->path }}" alt="Article Image">
