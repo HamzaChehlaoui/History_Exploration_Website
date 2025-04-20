@@ -178,7 +178,7 @@
          location: "Florence, Italy",
          position: { lat: 43.7696, lng: 11.2558 },
          description: "A cultural movement that profoundly affected European intellectual life.",
-         wikiLink: "https://en.wikipedia.org/wiki/Renaissance",
+         wikiLink: "http://127.0.0.1:8000/article/2",
          category: "Cultural Movements",
          significance: 90,
          views: 12500
