@@ -12,9 +12,11 @@ class Article extends Model
 
     protected $fillable = [
         'title',
-        'content',
+        'time_period',
+        'location',
         'description',
-        'date_publication',
+        'content',
+        'references',
         'category_id',
         'utilisateur_id',
     ];
@@ -40,8 +42,13 @@ class Article extends Model
         return $this->hasMany(Commentaire::class);
     }
     public function isFavoritedBy($userId)
-{
-    return $this->favorites()->where('utilisateur_id', $userId)->exists();
-}
+    {
+        return $this->favorites()->where('utilisateur_id', $userId)->exists();
+    }
+
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
 
 }
