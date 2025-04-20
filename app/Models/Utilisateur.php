@@ -31,5 +31,11 @@ class Utilisateur extends Authenticatable
     {
         return $this->hasMany(Commentaire::class);
     }
+
+    public function favorites()
+{
+    return $this->hasMany(Favorite::class, 'utilisateur_id');
+}
+
 }
 
