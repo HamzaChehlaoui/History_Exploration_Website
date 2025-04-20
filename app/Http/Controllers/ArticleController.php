@@ -8,42 +8,91 @@ use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
+use Illuminate\Support\Facades\DB;
+use App\Models\ArticleImage;
+use App\Models\Media;
 
 class ArticleController extends Controller
 {
     public function show($id)
-{
-    $article = Article::with(['images', 'utilisateur', 'category'])->findOrFail($id);
+    {
+        $article = Article::with(['images', 'utilisateur', 'category', 'favorites'])->findOrFail($id);
 
-    // Add related articles query
-    $relatedArticles = Article::where('category_id', $article->category_id)
-                            ->where('id', '!=', $article->id)
-                            ->limit(3)
-                            ->get();
+        // Add related articles query
+        $relatedArticles = Article::where('category_id', $article->category_id)
+                                ->where('id', '!=', $article->id)
+                                ->limit(3)
+                                ->get();
 
-    return view('Visiteur.articles', compact('article', 'relatedArticles'));
-}
+        return view('Visiteur.articles', compact('article', 'relatedArticles'));
+    }
 
-public function index($id)
-{
-    $article = Article::with('images')->where('id', $id)->first();
-    return view('Visiteur.articles', compact('article'));
-}
+    public function index($id)
+    {
+        $article = Article::with('images')->where('id', $id)->first();
+        return view('Visiteur.articles', compact('article'));
+    }
 
 
 
     public function create()
     {
-        $categories = Category::all();
-        $utilisateurs = Utilisateur::all();
-        return view('articles.create', compact('categories', 'utilisateurs'));
+        return view('User.Add_Article');
     }
 
     public function store(StoreArticleRequest $request)
     {
-        $article = Article::create($request->validated());
-        return redirect()->route('articles.index')->with('success', 'Article créé avec succès');
+        // dd($request->all());
+        DB::beginTransaction();
+
+        try {
+
+            $article = Article::create([
+                'title' => $request->title,
+                'time_period' => $request->time_period,
+                'location' => $request->location,
+                'description' => $request->description,
+                'content' => $request->content,
+                'references' => $request->references,
+                'category_id' => 1,
+                'utilisateur_id' => auth()->id(),
+            ]);
+
+            if ($request->image_links) {
+                foreach ($request->image_links as $link) {
+                    if ($link) {
+                        ArticleImage::create([
+                            'article_id' => $article->id,
+                            'path' => $link,
+                        ]);
+                    }
+                }
+            }
+
+
+            if ($request->media_links && $request->media_types) {
+                foreach ($request->media_links as $index => $link) {
+                    if ($link) {
+                        Media::create([
+                            'article_id' => $article->id,
+                            'type' => $request->media_types[$index],
+                            'lien' => $link,
+                        ]);
+                    }
+                }
+            }
+
+            DB::commit();
+
+            return redirect('/')->with('success', 'Article créé avec succès');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            DB::rollBack();
+            return redirect('/')->with('error', 'Erreur lors de la sauvegarde.');
+        }
     }
+
+
 
     public function edit($id)
     {
