@@ -66,28 +66,22 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center mb-8">
                 <h3 class="text-3xl font-bold font-serif">Featured Discoveries</h3>
-                <div class="space-x-4">
-                    <select class="rounded-lg bg-amber-700 text-amber-100 py-2 px-4 border-amber-600">
-                        <option>All Regions</option>
-                        <option>Europe</option>
-                        <option>Asia</option>
-                        <option>Americas</option>
-                    </select>
-                    <select class="rounded-lg bg-amber-700 text-amber-100 py-2 px-4 border-amber-600">
-                        <option>All Time Periods</option>
-                        <option>Ancient</option>
-                        <option>Medieval</option>
-                        <option>Modern</option>
-                    </select>
-                </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 @foreach($articles->take(2)  as $article)
                 <div class="flex space-x-4 bg-amber-900/50 p-4 rounded-lg">
-                    <img src="https://static.wixstatic.com/media/c90d45_579e8fb78f23465f918e86976c74144b~mv2.webp/v1/fill/w_568,h_324,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/c90d45_579e8fb78f23465f918e86976c74144b~mv2.webp" alt="Featured 2" class="w-32 h-32 object-cover rounded-lg"/>
+                    <img src="{{$article->images->get(1)?->path}}" alt="Featured 2" class="w-32 h-32 object-cover rounded-lg"/>
                     <div>
                         <h4 class="text-xl font-semibold mb-2">{{$article->title}}</h4>
                         <p class="text-amber-200">{{$article->description}}</p>
+                    </div>
+                    <div class="mt-4">
+                        <a href="/article/{{$article->id}}" class="inline-flex items-center justify-center bg-amber-700 text-white font-medium py-2 px-6 rounded hover:bg-amber-800 transition-colors shadow-sm border border-amber-800">
+                            <span>Show Details</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
                 @endforeach
