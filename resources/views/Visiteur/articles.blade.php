@@ -1,6 +1,29 @@
 @extends('Visiteur.master')
 
 @section('content')
+
+<style>
+
+    .scroll-beautiful::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .scroll-beautiful::-webkit-scrollbar-track {
+        background: #fef3c7;
+        border-radius: 10px;
+    }
+
+    .scroll-beautiful::-webkit-scrollbar-thumb {
+        background-color: #d97706;
+        border-radius: 10px;
+        border: 2px solid #fef3c7;
+    }
+
+    .scroll-beautiful {
+        scrollbar-color: #d97706 #fef3c7;
+        scrollbar-width: thin;
+    }
+</style>
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
 
     <!-- Article Hero Section -->
@@ -121,7 +144,7 @@
                     </h3>
 
                     <!-- Modify your existing comment section to include edit functionality -->
-<div class="space-y-6 mb-8">
+<div class="space-y-6 mb-8 max-h-[500px] overflow-y-auto pr-2 scroll-beautiful">
     @forelse($article->commentaires ?? [] as $commentaire)
         <div class="bg-amber-50 p-4 rounded-lg border border-amber-200" id="comment-{{ $commentaire->id }}">
             <div class="flex justify-between items-start mb-2">
