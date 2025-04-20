@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\FavoriteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +42,7 @@ Route::put('/commentaires/{commentaire}', [CommentaireController::class, 'update
 Route::PATCH('/commentaires/{id}', [CommentaireController::class, 'update'])->name('commentaires.update');
 Route::delete('/commentaires/{id}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy');
 
+Route::post('/favorites/{article}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
 
 
 });
