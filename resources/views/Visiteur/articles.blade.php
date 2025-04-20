@@ -137,11 +137,13 @@
                 @auth
                     @if(auth()->id() == $commentaire->utilisateur_id)
                         <div class="flex space-x-2">
-                            <button onclick="toggleEditComment({{ $commentaire->id }})" class="text-amber-600 hover:text-amber-800"><i class="fas fa-edit"></i> edit</button>
-                            <form action="{{ route('commentaires.destroy', $commentaire->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment?')">
+                            <button onclick="toggleEditComment({{ $commentaire->id }})" class="text-amber-600 hover:text-amber-800"><i class="fas fa-edit"></i> </button>
+                            <form action="{{ route('commentaires.destroy', $commentaire->id) }}" method="POST" class="delete-comment-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-amber-600 hover:text-amber-800"><i class="fas fa-trash"></i> delete</button>
+                                <button type="submit" class="text-amber-600 hover:text-amber-800 delete-comment-btn">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </form>
                         </div>
                     @endif
@@ -238,19 +240,42 @@
 </body>
 @endsection
 
-<!-- Add this JavaScript at the end of your file or in a separate JS file -->
 <script>
+     document.addEventListener('DOMContentLoaded', function () {
+
+    document.querySelectorAll('.delete-comment-form').forEach(function(form) {
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to undo this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33', // Red confirm button
+                cancelButtonColor: '#3085d6', // Blue cancel button
+                confirmButtonText: 'Yes, delete the comment!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+});
+
     function toggleEditComment(commentId) {
-        // Toggle visibility of comment content and edit form
-        const contentElement = document.getElementById(`comment-content-${commentId}`);
-        const formElement = document.getElementById(`comment-edit-form-${commentId}`);
+
+        let contentElement = document.getElementById(`comment-content-${commentId}`);
+        let formElement = document.getElementById(`comment-edit-form-${commentId}`);
 
         if (contentElement.classList.contains('hidden')) {
-            // Show content, hide form
             contentElement.classList.remove('hidden');
             formElement.classList.add('hidden');
         } else {
-            // Hide content, show form
+
             contentElement.classList.add('hidden');
             formElement.classList.remove('hidden');
         }
