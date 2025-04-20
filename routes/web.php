@@ -44,6 +44,10 @@ Route::delete('/commentaires/{id}', [CommentaireController::class, 'destroy'])->
 
 Route::post('/favorites/{article}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
 
+Route::get('/submit-article', [ArticleController::class, 'create'])->name('article.create');
+Route::post('/submit-article', [ArticleController::class, 'store'])->name('article.store');
+
+
 
 });
 
