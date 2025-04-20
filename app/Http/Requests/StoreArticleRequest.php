@@ -22,12 +22,22 @@ class StoreArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'description' => 'required|string',
-            'date_publication' => 'required|date',
-            'category_id' => 'required|exists:categories,id',
-            'utilisateur_id' => 'required|exists:utilisateurs,id',
+        'title' => 'required|string|max:255',
+        'time_period' => 'required|string|max:100',
+        'location' => 'required|string|max:255',
+        'description' => 'required|string',
+        'content' => 'required|string',
+
+        'images' => 'nullable|array',
+        'images.*' => 'nullable|image|max:2048',
+
+        'media_links' => 'nullable|array',
+        'media_links.*' => 'nullable|url',
+
+        'media_types' => 'nullable|array',
+        'media_types.*' => 'nullable|string|in:video,audio,pdf',
+
+        'references' => 'nullable|string|max:5000',
         ];
     }
 }
