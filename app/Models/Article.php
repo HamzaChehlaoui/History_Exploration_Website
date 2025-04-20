@@ -39,4 +39,9 @@ class Article extends Model
     {
         return $this->hasMany(Commentaire::class);
     }
+    public function isFavoritedBy($userId)
+{
+    return $this->favorites()->where('utilisateur_id', $userId)->exists();
+}
+
 }
