@@ -9,5 +9,8 @@
     <script src="https://unpkg.com/three-globe"></script>
     <script src="https://unpkg.com/d3@7"></script>
     <script src="https://unpkg.com/topojson-client@3"></script> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </head>
