@@ -6,6 +6,7 @@ use App\Models\Produit;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProduitRequest;
 use App\Http\Requests\UpdateProduitRequest;
+use App\Models\ProduitImage;
 
 class ProduitController extends Controller
 {
@@ -23,16 +24,35 @@ class ProduitController extends Controller
 
     public function create()
     {
-        return view('produits.create');
+        return view('Admin.Add_prodact');
     }
-
     public function store(StoreProduitRequest $request)
     {
-        Produit::create($request->validated());
+        $validated = $request->validated();
 
-        return redirect()->route('produits.index')->with('success', 'Produit créé avec succès.');
+        // Créer le produit
+        $produit = Produit::create([
+            'name' => $validated['name'],
+            'description' => $validated['description'] ?? null,
+            'prix' => $validated['prix'],
+            'quantite' => $validated['quantite'],
+        ]);
+
+        // Traiter les URLs d'images
+        if ($request->has('image_urls') && is_array($request->image_urls)) {
+            foreach ($request->image_urls as $imageUrl) {
+
+                if (!empty($imageUrl)) {
+                    ProduitImage::create([
+                        'produit_id' => $produit->id,
+                        'path' => $imageUrl
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->back()->with('success', 'Produit ajouté avec succès.');
     }
-
 
     public function show(Produit $produit)
     {
