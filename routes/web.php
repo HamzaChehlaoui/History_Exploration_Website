@@ -30,6 +30,9 @@ Route::group([] ,function (){
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
     Route::view('/', 'Visiteur.index');
     Route::view('/Explorer', 'Visiteur.Explorer_Page');
     Route::get('/Stor', [ProduitController::class, 'index'])->name('store');
