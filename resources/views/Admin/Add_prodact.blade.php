@@ -34,107 +34,130 @@
     <main class="pt-24 pb-12 px-4">
         <div class="max-w-3xl mx-auto">
             <div class="store-card rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold text-amber-900 mb-6">Add New Product</h2>
+                <h2 class="text-3xl font-bold text-amber-900 mb-6">Ajouter Nouveau Produit</h2>
 
-                <form class="space-y-6">
-                    <!-- Basic Information -->
+                <form class="space-y-6" method="POST" action="{{ route('produits.store') }}">
+                    @csrf
+
+                    @if(session('success'))
+                        <div class="mb-4 p-4 bg-green-100 text-green-800 rounded-lg shadow">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    <!-- Informations de Base -->
                     <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-amber-900">Basic Information</h3>
+                        <h3 class="text-xl font-semibold text-amber-900">Informations de Base</h3>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-amber-900 mb-2" for="productName">Product Name</label>
-                                <input type="text" id="productName" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-
-                            <div>
-                                <label class="block text-amber-900 mb-2" for="category">Category</label>
-                                <select id="category" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                    <option>Books</option>
-                                    <option>Historical Maps</option>
-                                    <option>Souvenirs</option>
-                                    <option>Educational Tools</option>
-                                </select>
-                            </div>
+                        <div>
+                            <label class="block text-amber-900 mb-2" for="name">Nom du Produit</label>
+                            <input type="text" id="name" name="name" value="{{ old('name') }}" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            @error('name')
+                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
                             <label class="block text-amber-900 mb-2" for="description">Description</label>
-                            <textarea id="description" rows="4" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                            <textarea id="description" name="description" rows="4" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">{{ old('description') }}</textarea>
+                            @error('description')
+                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 
-                    <!-- Pricing & Inventory -->
+                    <!-- Prix & Inventaire -->
                     <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-amber-900">Pricing & Inventory</h3>
+                        <h3 class="text-xl font-semibold text-amber-900">Prix & Inventaire</h3>
 
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-amber-900 mb-2" for="price">Price ($)</label>
-                                <input type="number" id="price" step="0.01" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                <label class="block text-amber-900 mb-2" for="prix">Prix (€)</label>
+                                <input type="number" id="prix" name="prix" step="0.01" value="{{ old('prix') }}" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                @error('prix')
+                                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div>
-                                <label class="block text-amber-900 mb-2" for="stock">Stock Quantity</label>
-                                <input type="number" id="stock" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            </div>
-
-                            <div>
-                                <label class="block text-amber-900 mb-2" for="sku">SKU</label>
-                                <input type="text" id="sku" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                <label class="block text-amber-900 mb-2" for="quantite">Quantité en Stock</label>
+                                <input type="number" id="quantite" name="quantite" value="{{ old('quantite') }}" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                @error('quantite')
+                                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                     </div>
 
-                    <!-- Product Image -->
+                    <!-- Images du Produit (URLs uniquement) -->
                     <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-amber-900">Product Image</h3>
+                        <h3 class="text-xl font-semibold text-amber-900">Images du Produit</h3>
 
-                        <div class="border-2 border-dashed border-amber-300 rounded-lg p-8 text-center">
-                            <div class="space-y-2">
-                                <svg class="mx-auto h-12 w-12 text-amber-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <div class="text-sm text-amber-700">
-                                    <label for="file-upload" class="relative cursor-pointer bg-amber-800 rounded-md font-medium text-amber-100 hover:text-amber-200 px-4 py-2">
-                                        <span>Upload a file</span>
-                                        <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                    </label>
-                                    <p class="mt-2">or drag and drop</p>
+                        <div>
+                            <label class="block text-amber-900 mb-2">URLs d'images</label>
+                            <div class="space-y-3" id="image-urls-container">
+                                <div class="flex items-center gap-2">
+                                    <input type="url" name="image_urls[]" placeholder="https://exemple.com/image.jpg" class="flex-1 px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    <button type="button" class="add-url-btn px-3 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700">
+                                        <span class="sr-only">Ajouter</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
                                 </div>
-                                <p class="text-xs text-amber-600">PNG, JPG, GIF up to 10MB</p>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Product Status -->
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-amber-900">Product Status</h3>
-
-                        <div class="flex items-center space-x-4">
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="status" value="active" class="form-radio text-amber-800">
-                                <span class="ml-2 text-amber-900">Active</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="radio" name="status" value="draft" class="form-radio text-amber-800">
-                                <span class="ml-2 text-amber-900">Draft</span>
-                            </label>
+                            @error('image_urls.*')
+                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                            <p class="text-xs text-amber-600 mt-2">Entrez les URLs complètes des images (format: https://exemple.com/image.jpg)</p>
                         </div>
                     </div>
 
                     <!-- Submit Buttons -->
                     <div class="flex justify-end space-x-4 pt-6">
                         <button type="button" class="px-6 py-2 bg-amber-100 text-amber-900 rounded-lg hover:bg-amber-200 transition-colors">
-                            Cancel
+                            Annuler
                         </button>
                         <button type="submit" class="px-6 py-2 bg-amber-800 text-amber-100 rounded-lg hover:bg-amber-700 transition-colors">
-                            Add Product
+                            Ajouter Produit
                         </button>
                     </div>
                 </form>
+
+
+
+
+
             </div>
         </div>
     </main>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gérer l'ajout dynamique de champs d'URL d'image
+        const container = document.getElementById('image-urls-container');
+
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.add-url-btn')) {
+                const newRow = document.createElement('div');
+                newRow.className = 'flex items-center gap-2';
+                newRow.innerHTML = `
+                    <input type="url" name="image_urls[]" placeholder="https://exemple.com/image.jpg" class="flex-1 px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <button type="button" class="remove-url-btn px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                        <span class="sr-only">Supprimer</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                `;
+                container.appendChild(newRow);
+            }
+
+            if (e.target.closest('.remove-url-btn')) {
+                e.target.closest('.flex').remove();
+            }
+        });
+    });
+    </script>
+
 </html>
