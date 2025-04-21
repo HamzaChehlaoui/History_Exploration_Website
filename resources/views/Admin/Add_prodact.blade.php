@@ -135,11 +135,11 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Gérer l'ajout dynamique de champs d'URL d'image
-        const container = document.getElementById('image-urls-container');
+        let container = document.getElementById('image-urls-container');
 
         document.addEventListener('click', function(e) {
             if (e.target.closest('.add-url-btn')) {
-                const newRow = document.createElement('div');
+                let newRow = document.createElement('div');
                 newRow.className = 'flex items-center gap-2';
                 newRow.innerHTML = `
                     <input type="url" name="image_urls[]" placeholder="https://exemple.com/image.jpg" class="flex-1 px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
