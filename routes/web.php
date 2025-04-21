@@ -8,6 +8,7 @@ use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\CommandeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,8 @@ Route::group([] ,function (){
 
     Route::get('/Add_prodact', [ProduitController::class, 'create'])->name('produits.create');
     Route::post('/Add_prodact', [ProduitController::class, 'store'])->name('produits.store');
+    Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
+
 
 });
 
