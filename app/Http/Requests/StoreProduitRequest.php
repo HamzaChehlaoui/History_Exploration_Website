@@ -23,9 +23,30 @@ class StoreProduitRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'prix' => 'required|numeric',
-            'quantite' => 'required|integer',
+            'description' => 'nullable|string',
+            'prix' => 'required|numeric|min:0',
+            'quantite' => 'required|integer|min:0',
+            'image_urls' => 'nullable|array',
+            'image_urls.*' => 'nullable|url|max:2048',
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Le nom du produit est obligatoire',
+            'prix.required' => 'Le prix est obligatoire',
+            'prix.numeric' => 'Le prix doit être un nombre',
+            'prix.min' => 'Le prix doit être positif',
+            'quantite.required' => 'La quantité est obligatoire',
+            'quantite.integer' => 'La quantité doit être un nombre entier',
+            'quantite.min' => 'La quantité doit être positive',
+            'image_urls.*.url' => 'Veuillez entrer une URL valide',
         ];
     }
 }
