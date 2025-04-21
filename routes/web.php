@@ -8,6 +8,7 @@ use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\FavoriteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,17 +38,18 @@ Route::group([] ,function (){
     Route::view('/cart','User.Cart_page');
     Route::get('/article/{id}', [ArticleController::class,'index'])->name('visiteur.article.index');
     // Comment routes
-Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store');
-Route::put('/commentaires/{commentaire}', [CommentaireController::class, 'update'])->name('commentaires.update');
-Route::PATCH('/commentaires/{id}', [CommentaireController::class, 'update'])->name('commentaires.update');
-Route::delete('/commentaires/{id}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy');
+    Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store');
+    Route::put('/commentaires/{commentaire}', [CommentaireController::class, 'update'])->name('commentaires.update');
+    Route::PATCH('/commentaires/{id}', [CommentaireController::class, 'update'])->name('commentaires.update');
+    Route::delete('/commentaires/{id}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy');
 
-Route::post('/favorites/{article}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
+    Route::post('/favorites/{article}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
 
-Route::get('/submit-article', [ArticleController::class, 'create'])->name('article.create');
-Route::post('/submit-article', [ArticleController::class, 'store'])->name('article.store');
+    Route::get('/submit-article', [ArticleController::class, 'create'])->name('article.create');
+    Route::post('/submit-article', [ArticleController::class, 'store'])->name('article.store');
 
-
+    Route::get('/Add_prodact', [ProduitController::class, 'create'])->name('produits.create');
+    Route::post('/Add_prodact', [ProduitController::class, 'store'])->name('produits.store');
 
 });
 
