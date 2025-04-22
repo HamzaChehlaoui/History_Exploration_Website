@@ -9,6 +9,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +56,12 @@ Route::group([] ,function (){
     Route::get('/Add_prodact', [ProduitController::class, 'create'])->name('produits.create');
     Route::post('/Add_prodact', [ProduitController::class, 'store'])->name('produits.store');
     Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
-    Route::view('/profile', 'User.PageProfile');
+    Route::get('/profile/{id?}', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit/{id?}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/favorites/{id?}', [ProfileController::class, 'favorites'])->name('profile.favorites');
+    Route::get('/articles', [ArticleController::class, 'index'])->name('article.index');
+    Route::post('/profile/favorites/toggle/{articleId}', [ProfileController::class, 'toggleFavorite'])->name('profile.toggleFavorite');
+
 
 
 });
