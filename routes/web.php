@@ -55,6 +55,7 @@ Route::group([] ,function (){
     Route::get('/Add_prodact', [ProduitController::class, 'create'])->name('produits.create');
     Route::post('/Add_prodact', [ProduitController::class, 'store'])->name('produits.store');
     Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
+    Route::view('/profile', 'User.PageProfile');
 
 
 });
