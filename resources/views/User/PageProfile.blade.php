@@ -300,7 +300,7 @@
                             <h3 class="text-lg font-semibold text-amber-900 mb-2">Runic Message Stick</h3>
                             <p class="text-amber-800 mb-3">A wooden stick carved with Norse runes containing a personal message between merchants, offering insights into daily Viking communication.</p>
                             <div class="flex justify-between">
-                                <span class="text-sm text-amber-700">December 7, 2024</span>
+                                <span class="text-sm text-amber-700">December 7, 2024</span> 
                                 <span class="text-sm font-medium text-amber-900">985 AD</span>
                             </div>
                         </div>
@@ -354,7 +354,7 @@
 
     <!-- Scripts -->
     <script>
-        // Simple scroll animation for timeline items
+
         document.addEventListener('DOMContentLoaded', function() {
             let scrollTriggers = document.querySelectorAll('.scroll-trigger');
 
@@ -362,17 +362,14 @@
                 scrollTriggers.forEach(element => {
                     let position = element.getBoundingClientRect();
 
-                    // Check if element is in viewport
                     if(position.top < window.innerHeight - 100) {
                         element.classList.add('visible');
                     }
                 });
             };
 
-            // Check visibility on load
             checkVisibility();
 
-            // Check visibility on scroll
             window.addEventListener('scroll', checkVisibility);
         });
     </script>
