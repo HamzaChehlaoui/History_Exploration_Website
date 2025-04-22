@@ -32,7 +32,7 @@
                     </svg>
                     Explore
                 </a>
-                <a href="/store" class="text-amber-200 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-amber-700/80 hover:text-white flex items-center gap-1">
+                <a href="/Stor" class="text-amber-200 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-amber-700/80 hover:text-white flex items-center gap-1">
                     <span class="text-lg">🛍️</span>
                     Store
                 </a>
