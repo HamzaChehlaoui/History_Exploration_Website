@@ -44,23 +44,52 @@
                 </a>
 
                 @auth
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="text-amber-200 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-amber-700/80 hover:text-white flex items-center gap-1 mt-[1rem]">
+                <!-- User dropdown menu -->
+                <div class="relative ml-3">
+                    <button type="button" id="user-menu-button" aria-expanded="false" aria-haspopup="true" class="text-amber-200 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-amber-700/80 hover:text-white flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
-                        Logout
+                        Account
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
                     </button>
-                </form>
-            @else
+                    <!-- Dropdown menu -->
+                    <div id="user-dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-amber-800 ring-1 ring-black ring-opacity-5 focus:outline-none z-10" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                        <div class="py-1" role="none">
+                            <a href="/profile" class="text-amber-200 hover:bg-amber-700 hover:text-white block px-4 py-2 text-sm flex items-center gap-2" role="menuitem">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                                Profile
+                            </a>
+                            <a href="/favorites" class="text-amber-200 hover:bg-amber-700 hover:text-white block px-4 py-2 text-sm flex items-center gap-2" role="menuitem">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                                Favorites
+                            </a>
+                            <form method="POST" action="{{ route('logout') }}" class="block">
+                                @csrf
+                                <button type="submit" class="text-amber-200 hover:bg-amber-700 hover:text-white w-full text-left px-4 py-2 text-sm flex items-center gap-2" role="menuitem">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                    </svg>
+                                    Logout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @else
                 <a href="{{ route('login') }}" class="text-amber-200 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-amber-700/80 hover:text-white flex items-center gap-1">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                     Login
                 </a>
-            @endauth
+                @endauth
             </div>
 
             <!-- Search -->
@@ -81,7 +110,16 @@
             <a href="/about" class="text-amber-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800">About</a>
 
             @auth
-                <a href="/logout" class="text-amber-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800">Logout</a>
+                <a href="/profile" class="text-amber-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800">
+                    Profile
+                </a>
+                <a href="/favorites" class="text-amber-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800">
+                    Favorites
+                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="text-amber-200 hover:text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800">Logout</button>
+                </form>
             @else
                 <a href="/login" class="text-amber-200 hover:text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800">Login</a>
             @endauth
@@ -95,3 +133,27 @@
         </div>
     </div>
 </nav>
+
+<!-- JavaScript for dropdown toggle -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userMenuButton = document.getElementById('user-menu-button');
+        const userDropdown = document.getElementById('user-dropdown');
+
+        if (userMenuButton && userDropdown) {
+            userMenuButton.addEventListener('click', function() {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !expanded);
+                userDropdown.classList.toggle('hidden');
+            });
+
+            // Close the dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!userMenuButton.contains(event.target) && !userDropdown.contains(event.target)) {
+                    userMenuButton.setAttribute('aria-expanded', 'false');
+                    userDropdown.classList.add('hidden');
+                }
+            });
+        }
+    });
+</script>
