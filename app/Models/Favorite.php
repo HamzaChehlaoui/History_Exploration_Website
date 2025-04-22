@@ -19,9 +19,9 @@ class Favorite extends Model
 
     public function utilisateur()
     {
-        return $this->belongsTo(Utilisateur::class);
+        return $this->belongsTo(Utilisateur::class, 'utilisateur_id');
     }
-
+    
     public function article()
     {
         return $this->belongsTo(Article::class);
