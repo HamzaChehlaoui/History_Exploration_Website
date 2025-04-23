@@ -61,6 +61,8 @@ Route::group([] ,function (){
     Route::get('/profile/favorites/{id?}', [ProfileController::class, 'favorites'])->name('profile.favorites');
     Route::get('/articles', [ArticleController::class, 'index'])->name('article.index');
     Route::post('/profile/favorites/toggle/{articleId}', [ProfileController::class, 'toggleFavorite'])->name('profile.toggleFavorite');
+    Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('article.show');
+
 
 
 
