@@ -168,7 +168,7 @@
                             @if ($article->images->count() > 0)
                             <div class="flex flex-wrap gap-4">
                                 @foreach ($article->images->take(2) as $image)
-                                <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $article->title }}" class="h-24 w-32 object-cover rounded-md">
+                                <img src="{{  $image->path }}" alt="{{ $article->title }}" class="h-24 w-32 object-cover rounded-md">
                                 @endforeach
                             </div>
                             @endif
