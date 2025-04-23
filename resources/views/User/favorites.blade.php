@@ -254,12 +254,7 @@
                                 <a href="{{ route('articles.show', $article->id) }}" class="text-amber-700 hover:text-amber-900 font-semibold text-sm">
                                     Lire plus <i class="fas fa-arrow-right ml-1"></i>
                                 </a>
-                                <form action="{{ route('favorites.toggle', $article->id) }}" method="POST" class="inline">
-                                    @csrf
-                                    <button type="submit" class="text-amber-700 hover:text-amber-900">
-                                        <i class="fas fa-star {{ auth()->user()->favorites->contains('article_id', $article->id) ? 'text-yellow-400' : 'text-gray-400' }}"></i>
-                                    </button>
-                                </form>
+
                             </div>
                         </div>
                     </div>
