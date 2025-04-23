@@ -63,7 +63,7 @@
                     <img src="{{ $user->profileImage ? asset('storage/' . $user->profileImage->path) : asset('storage/profile-images/default.jpg') }}" alt="Profile Picture" class="h-full w-full object-cover">
                 </div>
             </div>
-            <div class="ml-6 pb-4">
+            <div class="ml-6 pb-4 mt-[2.5rem]">
                 <h1 class="text-3xl font-bold text-amber-700">{{ $user->name }}</h1>
                 <p class="text-amber-700">{{ $user->email }}</p>
                 @if ($isOwnProfile)
