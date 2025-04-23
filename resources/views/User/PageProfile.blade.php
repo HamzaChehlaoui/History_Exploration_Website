@@ -67,7 +67,7 @@
                 <h1 class="text-3xl font-bold text-amber-700">{{ $user->name }}</h1>
                 <p class="text-amber-700">{{ $user->email }}</p>
                 @if ($isOwnProfile)
-                <a href="{{ route('profile.edit') }}" class="mt-2 inline-block px-4 py-2 bg-amber-700 text-amber-100 rounded-md hover:bg-amber-800 transition-colors">Edit Profile</a>
+                <a href="{{ route('edit.profile') }}" class="mt-2 inline-block px-4 py-2 bg-amber-700 text-amber-100 rounded-md hover:bg-amber-800 transition-colors">Edit Profile</a>
                 @endif
             </div>
         </div>
@@ -104,7 +104,7 @@
             <div class="mt-8 pt-6 border-t border-amber-200">
                 <h4 class="text-lg font-semibold text-amber-900 mb-4">Account Options</h4>
                 <ul class="space-y-2">
-                    <li><a href="{{ route('profile.edit') }}" class="flex items-center text-amber-700 hover:text-amber-900">
+                    <li><a href="{{ route('edit.profile') }}" class="flex items-center text-amber-700 hover:text-amber-900">
                         <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
