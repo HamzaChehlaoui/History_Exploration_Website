@@ -45,6 +45,10 @@ class Article extends Model
     {
         return $this->favorites()->where('utilisateur_id', $userId)->exists();
     }
+    public function favorites()
+{
+    return $this->hasMany(Favorite::class);
+}
 
     public function media()
     {
