@@ -1,15 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\{
+    AuthController,
+    ProduitController,
+    ArticleController,
+    CommentaireController,
+    FavoriteController,
+    CommandeController,
+    ProfileController,
+    PayPalController
+};
 use App\Http\Controllers\Auth\SocialAuthController;
-use App\Http\Controllers\PayPalController;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\CommentaireController;
-use App\Http\Controllers\FavoriteController;
-use App\Http\Controllers\CommandeController;
-use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,72 +20,81 @@ use App\Http\Controllers\ProfileController;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| be assigned to the "web" middleware group.
 |
 */
 
+// Static pages
+Route::view('/', 'Visiteur.index')->name('home');
+Route::view('/Explorer', 'Visiteur.Explorer_Page')->name('explorer');
+Route::view('/about', 'Visiteur.Page_About')->name('about');
+Route::view('/PageConditions', 'Visiteur.PageConditions')->name('conditions');
+Route::view('/cart', 'User.Cart_page')->name('cart');
 
-
-// Other routes for your site
-
-Route::group([] ,function (){
-
-    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
-    Route::post('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-
-    Route::view('/', 'Visiteur.index');
-    Route::view('/Explorer', 'Visiteur.Explorer_Page');
-    Route::get('/Stor', [ProduitController::class, 'index'])->name('store');
-    Route::view('/about', 'Visiteur.Page_About');
-    Route::view('/login', 'Auth.login');
-    Route::view('/PageConditions','Visiteur.PageConditions');
-    Route::view('/cart','User.Cart_page');
-    Route::get('/article/{id}', [ArticleController::class,'index'])->name('visiteur.article.index');
-    // Comment routes
-    Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store');
-    Route::put('/commentaires/{commentaire}', [CommentaireController::class, 'update'])->name('commentaires.update');
-    Route::PATCH('/commentaires/{id}', [CommentaireController::class, 'update'])->name('commentaires.update');
-    Route::delete('/commentaires/{id}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy');
-
-    Route::post('/favorites/{article}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
-
-    Route::get('/submit-article', [ArticleController::class, 'create'])->name('article.create');
-    Route::post('/submit-article', [ArticleController::class, 'store'])->name('article.store');
-
-    Route::get('/Add_prodact', [ProduitController::class, 'create'])->name('produits.create');
-    Route::post('/Add_prodact', [ProduitController::class, 'store'])->name('produits.store');
-    Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
-    Route::get('/profile/{id?}', [ProfileController::class, 'show'])->name('profile.show');
-    Route::get('/profile/edit/{id?}', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/profile/favorites/{id?}', [ProfileController::class, 'favorites'])->name('profile.favorites');
-    Route::get('/articles', [ArticleController::class, 'index'])->name('article.index');
-    Route::post('/profile/favorites/toggle/{articleId}', [ProfileController::class, 'toggleFavorite'])->name('profile.toggleFavorite');
-    Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('article.show');
-
-    // Add these routes to your routes/web.php file
-    Route::resource('articles', ArticleController::class);
-
-// Route for displaying the favorites page
-Route::get('/favorites', [App\Http\Controllers\FavoriteController::class, 'index'])->name('favorites.index')->middleware('auth');
-
-// Route for toggling favorite status (you already have this based on your code)
-// Route::post('/favorites/toggle/{article}', [App\Http\Controllers\FavoriteController::class, 'toggle'])->name('favorites.toggle')->middleware('auth');
-
-
+// Authentication routes
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/register', 'showRegisterForm')->name('register.form');
+    Route::post('/register', 'register')->name('register');
+    Route::post('/login', 'login')->name('login');
+    Route::post('/logout', 'logout')->name('logout');
+    Route::view('/login', 'Auth.login')->name('login.form');
 });
 
-Route::post('/api/paypal/create-order', [PayPalController::class, 'createPayPalOrder'])->name('paypal.create.order');
-Route::post('/api/paypal/capture-order', [PayPalController::class, 'capturePayPalOrder'])->name('paypal.capture.order');
-
+// Social authentication routes
 Route::middleware(['web'])->group(function () {
+    Route::controller(SocialAuthController::class)->group(function () {
+        Route::get('auth/google', 'redirectToGoogle')->name('login.google');
+        Route::get('auth/google/callback', 'handleGoogleCallback');
+        Route::get('auth/facebook', 'redirectToFacebook')->name('login.facebook');
+        Route::get('auth/facebook/callback', 'handleFacebookCallback');
+    });
+});
 
-    Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('login.google');
-    Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
-    Route::get('auth/facebook', [SocialAuthController::class, 'redirectToFacebook'])->name('login.facebook');
-    Route::get('auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback']);
+// Store and products routes
+Route::controller(ProduitController::class)->group(function () {
+    Route::get('/Stor', 'index')->name('store');
+    Route::get('/Add_prodact', 'create')->name('produits.create');
+    Route::post('/Add_prodact', 'store')->name('produits.store');
+});
 
+// Article routes
+Route::controller(ArticleController::class)->group(function () {
+    Route::get('/article/{id}', 'index')->name('article.index');
+    Route::get('/articles', 'index');
+    Route::get('/articles/{id}', 'show')->name('article.show');
+    Route::get('/submit-article', 'create')->name('article.create');
+    Route::post('/submit-article', 'store')->name('article.store');
+});
+Route::resource('articles', ArticleController::class);
 
+// Comment routes
+Route::controller(CommentaireController::class)->prefix('commentaires')->name('commentaires.')->group(function () {
+    Route::post('/', 'store')->name('store');
+    Route::put('/{commentaire}', 'update')->name('update');
+    Route::patch('/{id}', 'update')->name('update');
+    Route::delete('/{id}', 'destroy')->name('destroy');
+});
+
+// Favorites routes
+Route::controller(FavoriteController::class)->group(function () {
+    Route::post('/favorites/{article}', 'toggle')->name('favorites.toggle');
+    Route::get('/favorites', 'index')->name('favorites.index')->middleware('auth');
+});
+
+// Profile routes
+Route::controller(ProfileController::class)->group(function () {
+    Route::get('/profile/{id?}', 'show')->name('profile.show');
+    Route::get('/edit.profile', 'edit')->name('edit.profile');
+    Route::put('/profile/update', 'update')->name('profile.update');
+    Route::get('/profile/favorites/{id?}', 'favorites')->name('profile.favorites');
+    Route::post('/profile/favorites/toggle/{articleId}', 'toggleFavorite')->name('profile.toggleFavorite');
+});
+
+// Order routes
+Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
+
+// PayPal routes
+Route::controller(PayPalController::class)->prefix('api/paypal')->name('paypal.')->group(function () {
+    Route::post('/create-order', 'createPayPalOrder')->name('create.order');
+    Route::post('/capture-order', 'capturePayPalOrder')->name('capture.order');
 });
