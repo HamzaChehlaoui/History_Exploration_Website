@@ -33,7 +33,9 @@
                     Explore
                 </a>
                 <a href="/Stor" class="text-amber-200 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-amber-700/80 hover:text-white flex items-center gap-1">
-                    <span class="text-lg">🛍️</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2a2 2 0 100-4zm10 0a2 2 0 100 4 2 2 0 000-4zM7.334 14l.94-2H17a1 1 0 00.96-.74l1.6-6A1 1 0 0018.6 4H6.21l-.28-1.39A1 1 0 005 2H2v2h2l3.6 7.59-1.35 2.44A1 1 0 007 16h12v-2H7.334z"/>
+                      </svg>
                     Store
                 </a>
                 <a href="/about" class="text-amber-200 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-amber-700/80 hover:text-white flex items-center gap-1">
