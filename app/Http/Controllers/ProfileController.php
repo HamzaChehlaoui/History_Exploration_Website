@@ -54,7 +54,7 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = Auth::user();
-        return view('User.PageProfile', compact('user'));
+        return view('User.User_settings_page', compact('user'));
     }
 
     /**
@@ -65,7 +65,7 @@ class ProfileController extends Controller
      */
     public function update(UpdateProfileRequest $request)
     {
-        $user = Auth::utilisateur();
+        $user = Auth::user();
 
         $validatedData = $request->validated();
 
@@ -95,7 +95,7 @@ class ProfileController extends Controller
             }
         }
 
-        return redirect('User.PageProfile')->with('success', 'Profile updated successfully');
+        return redirect('/profile')->with('success', 'Profile updated successfully');
     }
 
     /**
