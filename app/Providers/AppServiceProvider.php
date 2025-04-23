@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(
             ['Visiteur.index', 'articles.create'],
             function ($view) {
-                $articles = Article::paginate(3);
+                $articles = Article::paginate(6);
                 $view->with('articles', $articles);
             }
         );
