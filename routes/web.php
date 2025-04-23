@@ -63,7 +63,14 @@ Route::group([] ,function (){
     Route::post('/profile/favorites/toggle/{articleId}', [ProfileController::class, 'toggleFavorite'])->name('profile.toggleFavorite');
     Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('article.show');
 
+    // Add these routes to your routes/web.php file
+    Route::resource('articles', ArticleController::class);
 
+// Route for displaying the favorites page
+Route::get('/favorites', [App\Http\Controllers\FavoriteController::class, 'index'])->name('favorites.index')->middleware('auth');
+
+// Route for toggling favorite status (you already have this based on your code)
+// Route::post('/favorites/toggle/{article}', [App\Http\Controllers\FavoriteController::class, 'toggle'])->name('favorites.toggle')->middleware('auth');
 
 
 });
