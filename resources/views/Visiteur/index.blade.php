@@ -1,35 +1,45 @@
 @extends('Visiteur.master')
 @section('content')
+<!-- Tailwind Custom Animations -->
+<style>
+    @keyframes fade-in-down {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade-in-up {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in-down {
+        animation: fade-in-down 1s ease-out forwards;
+    }
+
+    .animate-fade-in-up {
+        animation: fade-in-up 1.2s ease-out forwards;
+    }
+</style>
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
     <!-- Hero Section -->
-    <div class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen">
-        <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('https://img.le-dictionnaire.com/histoire-temps.jpg');">
-            <span class="w-full h-full absolute opacity-50 bg-amber-900"></span>
+    <div class="relative pt-24 pb-32 flex items-center justify-center min-h-screen">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.alphacoders.com/119/1198811.jpeg');">
+            <div class="absolute inset-0 bg-amber-900 opacity-60"></div>
         </div>
-        <div class="container relative mx-auto">
-            <div class="flex flex-wrap items-center">
-                <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-                    <div class="floating">
-                        <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold text-amber-100 mb-6 font-serif">
-                            Where Time Becomes
-                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 to-amber-400">Adventure</span>
-                        </h1>
-                        <p class="text-xl text-amber-200 mb-8 max-w-2xl mx-auto">
-                            Step through the portals of time and witness history unfold before your eyes
-                        </p>
-                        <div class="space-x-4">
-                            <a href="#" class="inline-block bg-gradient-to-r from-amber-700 to-amber-600 text-amber-100 px-8 py-3 rounded-lg font-semibold hover:from-amber-600 hover:to-amber-500 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                                Begin Your Journey
-                            </a>
-                            <a href="#" class="inline-block bg-gradient-to-r from-amber-100 to-amber-200 text-amber-900 px-8 py-3 rounded-lg font-semibold hover:from-amber-200 hover:to-amber-300 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                                Join Our Community
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="container relative z-10 text-center px-4">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-amber-100 tracking-tight animate-fade-in-down">
+                Where Time Becomes<br>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 to-amber-500">Adventure</span>
+            </h1>
+            <p class="mt-4 text-sm sm:text-base md:text-lg text-amber-200 max-w-2xl mx-auto animate-fade-in-up leading-relaxed">
+                Step through the portals of time and witness history unfold before your eyes.
+            </p>
         </div>
+
+
     </div>
+
+
     <!-- Historical Events Section -->
     <section class="py-16 parchment">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
