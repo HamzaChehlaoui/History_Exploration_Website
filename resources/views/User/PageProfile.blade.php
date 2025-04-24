@@ -110,7 +110,7 @@
                         </svg>
                         Edit Profile
                     </a></li>
-                    <li><a href="{{ route('profile.favorites') }}" class="flex items-center text-amber-700 hover:text-amber-900">
+                    <li><a href="/favorites" class="flex items-center text-amber-700 hover:text-amber-900">
                         <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
@@ -150,71 +150,77 @@
 
                 <!-- Timeline Events (Favorite Articles) -->
                 <div class="space-y-12">
-                    @forelse ($favoriteArticles as $index => $article)
-                    <!-- Timeline Event -->
-                    <div class="relative pl-12 scroll-trigger">
-                        <div class="absolute left-0 w-8 h-8 bg-amber-800 rounded-full flex items-center justify-center">
-                            <span class="text-amber-100 font-bold">{{ $index + 1 }}</span>
-                        </div>
-                        <div class="parchment p-5 rounded-lg shadow-md border border-amber-300">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-semibold text-amber-900">{{ $article->title }}</h3>
-                                <span class="px-3 py-1 bg-amber-200 text-amber-800 rounded-full text-sm">{{ $article->created_at->format('Y') }}</span>
+                    @if ($favoriteArticles->isNotEmpty())
+                        @foreach ($favoriteArticles as $index => $article)
+                        <!-- Timeline Event -->
+                        <div class="relative pl-12 scroll-trigger">
+                            <div class="absolute left-0 w-8 h-8 bg-amber-800 rounded-full flex items-center justify-center">
+                                <span class="text-amber-100 font-bold">{{ $index + 1 }}</span>
                             </div>
-                            <p class="text-amber-800 mb-4">
-                                {{ Str::limit($article->content, 150) }}
-                            </p>
+                            <div class="parchment p-5 rounded-lg shadow-md border border-amber-300">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-semibold text-amber-900">{{ $article->title }}</h3>
+                                    <span class="px-3 py-1 bg-amber-200 text-amber-800 rounded-full text-sm">{{ $article->created_at->format('Y') }}</span>
+                                </div>
+                                <p class="text-amber-800 mb-4">
+                                    {{ Str::limit($article->content, 150) }}
+                                </p>
 
-                            @if ($article->images->count() > 0)
-                            <div class="flex flex-wrap gap-4">
-                                @foreach ($article->images->take(2) as $image)
-                                <img src="{{  $image->path }}" alt="{{ $article->title }}" class="h-24 w-32 object-cover rounded-md">
-                                @endforeach
-                            </div>
-                            @endif
+                                @if ($article->images->count() > 0)
+                                <div class="flex flex-wrap gap-4">
+                                    @foreach ($article->images->take(2) as $image)
+                                    <img src="{{  $image->path }}" alt="{{ $article->title }}" class="h-24 w-32 object-cover rounded-md">
+                                    @endforeach
+                                </div>
+                                @endif
 
-                            <div class="mt-4 flex justify-between items-center">
-                                <a href="{{ route('article.show', $article->id) }}" class="text-amber-700 hover:text-amber-900 font-medium">
-                                    Read more →
-                                </a>
-                                <div class="flex items-center">
-                                    <span class="text-amber-700 text-sm mr-2">By {{ $article->utilisateur->name }}</span>
-                                    @if (Auth::check())
-                                    <button
-                                        class="favorite-button {{ Auth::user()->favorites->contains('article_id', $article->id) ? 'active' : '' }}"
-                                        data-article-id="{{ $article->id }}"
-                                        onclick="toggleFavorite({{ $article->id }})">
-                                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                        </svg>
-                                    </button>
-                                    @endif
+                                <div class="mt-4 flex justify-between items-center">
+                                    <a href="{{ route('article.show', $article->id) }}" class="text-amber-700 hover:text-amber-900 font-medium">
+                                        Read more →
+                                    </a>
+                                    <div class="flex items-center">
+                                        <span class="text-amber-700 text-sm mr-2">By {{ $article->utilisateur->name }}</span>
+                                        @if (Auth::check())
+                                        <button
+                                            class="favorite-button {{ Auth::user()->favorites->contains('article_id', $article->id) ? 'active' : '' }}"
+                                            data-article-id="{{ $article->id }}"
+                                            onclick="toggleFavorite({{ $article->id }})">
+                                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                            </svg>
+                                        </button>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @empty
-                    <div class="relative pl-12 scroll-trigger">
-                        <div class="absolute left-0 w-8 h-8 bg-amber-800 rounded-full flex items-center justify-center">
-                            <span class="text-amber-100 font-bold">!</span>
-                        </div>
-                        <div class="parchment p-5 rounded-lg shadow-md border border-amber-300">
-                            <p class="text-amber-800">
-                                No favorite articles yet. Explore the timeline to discover and save articles that interest you!
-                            </p>
-                            <a href="{{ route('article.index') }}" class="mt-3 inline-block px-4 py-2 bg-amber-700 text-amber-100 rounded-md hover:bg-amber-800 transition-colors">Explore Articles</a>
-                        </div>
-                    </div>
-                    @endforelse
+                        @endforeach
 
-                    @if ($favoriteArticles->count() > 0)
-                    <div class="relative pl-12 text-center mt-8">
-                        <a href="{{ route('profile.favorites') }}" class="inline-block px-6 py-3 bg-amber-700 text-amber-100 rounded-md hover:bg-amber-800 transition-colors">
-                            View All Favorites
-                        </a>
-                    </div>
+                        <!-- View All Favorites -->
+                        <div class="relative pl-12 text-center mt-8">
+                            <a href="/favorites" class="inline-block px-6 py-3 bg-amber-700 text-amber-100 rounded-md hover:bg-amber-800 transition-colors">
+                                View All Favorites
+                            </a>
+                        </div>
+
+                    @else
+                        <!-- No Favorites Message -->
+                        <div class="relative pl-12 scroll-trigger">
+                            <div class="absolute left-0 w-8 h-8 bg-amber-800 rounded-full flex items-center justify-center">
+                                <span class="text-amber-100 font-bold">!</span>
+                            </div>
+                            <div class="parchment p-5 rounded-lg shadow-md border border-amber-300">
+                                <p class="text-amber-800">
+                                    No favorite articles yet. Explore the timeline to discover and save articles that interest you!
+                                </p>
+                                <a href="/" class="mt-3 inline-block px-4 py-2 bg-amber-700 text-amber-100 rounded-md hover:bg-amber-800 transition-colors">
+                                    Explore Articles
+                                </a>
+                            </div>
+                        </div>
                     @endif
                 </div>
+
             </div>
         </div>
     </div>
