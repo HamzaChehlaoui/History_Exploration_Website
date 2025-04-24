@@ -56,6 +56,7 @@
                 </a>
 
                 <!-- Auth section (placeholder) -->
+                @auth
                 <div class="relative ml-3">
                     <button type="button" id="user-menu-button" aria-expanded="false" aria-haspopup="true" class="text-amber-200 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-amber-700/80 hover:text-white flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -81,9 +82,10 @@
                                 </svg>
                                 Favorites
                             </a>
-                            <form method="POST" action="/logout" class="block">
-                                <button type="submit" class="text-amber-200 hover:bg-amber-700 hover:text-white w-full text-left px-4 py-2 text-sm flex items-center gap-2" role="menuitem">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <button type="submit" class="text-amber-200 hover:text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800 flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                     </svg>
                                     Logout
@@ -92,6 +94,14 @@
                         </div>
                     </div>
                 </div>
+                @else
+                <a href="{{ route('login') }}" class="text-amber-200 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-amber-700/80 hover:text-white flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    Login
+                </a>
+            @endauth
             </div>
 
             <!-- Search (desktop only) -->
@@ -165,6 +175,7 @@
                 Favorites
             </a>
             <form method="POST" action="/logout">
+                @csrf
                 <button type="submit" class="text-amber-200 hover:text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800 flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
