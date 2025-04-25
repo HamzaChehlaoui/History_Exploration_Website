@@ -24,7 +24,7 @@
     <!-- Hero Section -->
     <div class="relative flex items-center justify-center min-h-screen" style="padding-top: 6rem; padding-bottom: 8rem;">
         <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.alphacoders.com/119/1198811.jpeg');">
-            <div class="absolute inset-0 bg-amber-900 opacity-60"></div>
+            <div class="absolute inset-0 bg-amber-900 opacity-0"></div>
         </div>
 
         <div class="container relative z-10 text-center px-4 mx-auto max-w-6xl">
