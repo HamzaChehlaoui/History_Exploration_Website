@@ -28,8 +28,8 @@
 
     <!-- Article Hero Section -->
     <div class="relative pt-16 pb-24 flex content-center items-center justify-center">
-        <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('https://i.pinimg.com/originals/56/c3/45/56c345c29b5179d85891b1500fccc8e9.gif');">
-            <span class="w-full h-full absolute opacity-50 bg-amber-900"></span>
+        <div class="absolute top-0 w-full h-full bg-center bg-cover" style="background-image: url('https://t4.ftcdn.net/jpg/05/62/05/73/360_F_562057377_jbuKO8yjBC5t9ctheD64Xxwcgsvmulrt.jpg');">
+            <span class="w-full h-full absolute opacity-0 bg-amber-900"></span>
         </div>
         <div class="container relative mx-auto">
             <div class="flex flex-wrap items-center">
