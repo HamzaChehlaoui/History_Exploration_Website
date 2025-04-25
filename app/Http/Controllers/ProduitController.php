@@ -7,25 +7,26 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreProduitRequest;
 use App\Http\Requests\UpdateProduitRequest;
 use App\Models\ProduitImage;
+use App\Notifications\ProduitCreated;
 
 class ProduitController extends Controller
 {
     public function index(Request $request)
-{
-    $produits = Produit::paginate(4);
+    {
+        $produits = Produit::paginate(4);
 
-    if ($request->ajax()) {
-        return view('Visiteur.Partials.produits', compact('produits'))->render();
+        if ($request->ajax()) {
+            return view('Visiteur.Partials.produits', compact('produits'))->render();
+        }
+
+        return view('Visiteur.Online_Stor', compact('produits'));
     }
-
-    return view('Visiteur.Online_Stor', compact('produits'));
-}
-
 
     public function create()
     {
         return view('Admin.Add_prodact');
     }
+
     public function store(StoreProduitRequest $request)
     {
         $validated = $request->validated();
@@ -50,7 +51,9 @@ class ProduitController extends Controller
                 }
             }
         }
-
+        /** @var \App\Models\Utilisateur $user */
+        $user =auth()->user();
+        $user -> notify(new ProduitCreated($produit));
         return redirect()->back()->with('success', 'Produit ajouté avec succès.');
     }
 
