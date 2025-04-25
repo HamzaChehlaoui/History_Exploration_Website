@@ -3,6 +3,7 @@
 namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use App\Models\Article;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -29,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('articles', $articles);
             }
         );
+        View::composer('partials.navbare_visitoure.nav', function ($view) {
+            $count = Auth::check() ? Auth::user()->unreadNotifications()->count() : 0;
+            $view->with('unreadNotificationsCount', $count);
+        });
 
     }
 }
