@@ -113,17 +113,14 @@
                     <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
                         <h3 class="text-lg font-semibold text-amber-900 mb-2">Active Articles</h3>
                         <p class="text-3xl font-bold text-amber-700">2,453</p>
-                        <p class="text-sm text-amber-600">+38 this week</p>
                     </div>
                     <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
                         <h3 class="text-lg font-semibold text-amber-900 mb-2">Pending Reviews</h3>
                         <p class="text-3xl font-bold text-amber-700">47</p>
-                        <p class="text-sm text-amber-600">12 high priority</p>
                     </div>
                     <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
                         <h3 class="text-lg font-semibold text-amber-900 mb-2">User Reports</h3>
                         <p class="text-3xl font-bold text-amber-700">18</p>
-                        <p class="text-sm text-amber-600">5 requiring attention</p>
                     </div>
                 </div>
 
