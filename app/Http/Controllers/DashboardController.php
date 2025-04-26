@@ -16,7 +16,9 @@ class DashboardController extends Controller
         $totalArticles = Article::count();
         $totalProducts = Produit::count();
         $totalCommands = Commande::count();
+        $users = Utilisateur::paginate(5);;
 
-        return view('Admin.Dashbord_admin', compact('totalUsers', 'totalArticles', 'totalProducts', 'totalCommands'));
+
+        return view('Admin.Dashbord_admin', compact('totalUsers', 'totalArticles', 'totalProducts', 'totalCommands','users'));
     }
 }
