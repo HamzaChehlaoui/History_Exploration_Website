@@ -1,3 +1,4 @@
+@if($role===null || $role !== 1)
 <nav class="fixed w-full bg-gradient-to-r from-amber-950 to-amber-800 backdrop-blur-md shadow-xl z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 md:h-20 items-center">
@@ -200,6 +201,7 @@
         </div>
     </div>
 </nav>
+@endif
 
 <!-- JavaScript for improved responsive functionality -->
 <script>
