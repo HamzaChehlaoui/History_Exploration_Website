@@ -25,7 +25,7 @@ class AuthController extends Controller
             ]);
 
 
-            return redirect('/ogin')->with('success', 'Welcome! Registration successful.');
+            return redirect('/login')->with('success', 'Welcome! Registration successful.');
         }
     public function login(Request $request)
         {
