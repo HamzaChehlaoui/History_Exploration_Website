@@ -25,7 +25,7 @@ class AuthController extends Controller
             ]);
 
 
-            return redirect('/')->with('success', 'Welcome! Registration successful.');
+            return redirect('/ogin')->with('success', 'Welcome! Registration successful.');
         }
     public function login(Request $request)
         {
@@ -39,7 +39,7 @@ class AuthController extends Controller
                 'email' => 'Email or password incorrect.',
             ])->withInput();
         }
-    
+
     public function logout()
         {
             Auth::logout();
