@@ -27,12 +27,18 @@ class AuthController extends Controller
 
             return redirect('/login')->with('success', 'Welcome! Registration successful.');
         }
-    public function login(Request $request)
+        public function login(Request $request)
         {
             $credentials = $request->only('email', 'password');
 
             if (Auth::attempt($credentials, $request->remember)) {
-                return redirect('/')->with('success', 'Welcome! Login successful.');
+                $role = auth()->user()->role_id; 
+
+                if ($role === 1) {
+                    return redirect('/Dashbord_admin')->with('success', 'Welcome! Login successful.');
+                } else {
+                    return redirect('/')->with('success', 'Welcome! Login successful.');
+                }
             }
 
             return back()->withErrors([
@@ -40,9 +46,11 @@ class AuthController extends Controller
             ])->withInput();
         }
 
+
     public function logout()
         {
             Auth::logout();
+
             return redirect('/')->with('success', 'You have been logged out.');
         }
 
