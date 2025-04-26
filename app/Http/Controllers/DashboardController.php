@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Utilisateur;
+use App\Models\Article;
+use App\Models\Produit;
+use App\Models\Commande;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // $unreadNotificationsCount = auth()->user()->unreadNotifications->count();
+        $totalUsers = Utilisateur::count();
+        $totalArticles = Article::count();
+        $totalProducts = Produit::count();
+        $totalCommands = Commande::count();
 
-        // return view('partials.navbare_visitoure.nav', [
-        //     'unreadNotificationsCount' => $unreadNotificationsCount
-        // ]);
+        return view('Admin.Dashbord_admin', compact('totalUsers', 'totalArticles', 'totalProducts', 'totalCommands'));
     }
 }
