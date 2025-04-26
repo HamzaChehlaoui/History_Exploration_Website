@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TimeTrekker - User Profile</title>
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4645/4645379.png">
-    <script src="https://cdn.tailwindcss.com"></script>
+@extends('Visiteur.master')
 
-</head>
+@section('content')
+<body>
 <style>
     .timeline-track {
         background: repeating-linear-gradient(
@@ -54,25 +48,26 @@
 </style>
 
 <!-- Profile Header Section -->
-<section class="relative h-64 bg-cover bg-center" style="background-image: url('https://www.pcworld.com/wp-content/uploads/2023/09/AssassinsCreedMirage_01_Aufmacher.jpg?quality=50&strip=all');">
-    <div class="absolute inset-0 bg-amber-900 opacity-60"></div>
-    <div class="absolute bottom-0 left-0 w-full transform translate-y-1/2 px-4">
-        <div class="max-w-6xl mx-auto flex items-end">
-            <div class="relative z-10">
-                <div class="rounded-full border-4 border-amber-100 overflow-hidden h-36 w-36 shadow-xl">
-                    <img src="{{ $user->profileImage ? asset('storage/' . $user->profileImage->path) : asset('storage/profile-images/default.jpg') }}" alt="Profile Picture" class="h-full w-full object-cover">
-                </div>
+<section class="relative h-80 bg-cover bg-center bg-no-repeat" style="background-image: url('https://www.pcworld.com/wp-content/uploads/2023/09/AssassinsCreedMirage_01_Aufmacher.jpg?quality=50&strip=all');">
+    <div class="absolute inset-0 bg-amber-900/60"></div>
+    <div class="absolute bottom-0 left-0 w-full px-4 pb-6">
+        <div class="max-w-6xl mx-auto flex items-end gap-6">
+            <div class="relative">
+                <div class="h-36 w-36 rounded-full border-4 border-amber-100 overflow-hidden shadow-lg">
+                    <img src="{{ $user->profileImage ? $user->profileImage : 'https://www.pcworld.com/wp-content/uploads/2023/09/AssassinsCreedMirage_01_Aufmacher.jpg?quality=50&strip=all' }}" alt="Profile Picture" class="h-full w-full object-cover">
+   </div>
             </div>
-            <div class="ml-6 pb-4 mt-[2.5rem]">
-                <h1 class="text-3xl font-bold text-amber-700">{{ $user->name }}</h1>
-                <p class="text-amber-700">{{ $user->email }}</p>
+            <div class="flex flex-col justify-end">
+                <h1 class="text-3xl font-bold text-amber-100">{{ $user->name }}</h1>
+                <p class="text-amber-100">{{ $user->email }}</p>
                 @if ($isOwnProfile)
-                <a href="{{ route('edit.profile') }}" class="mt-2 inline-block px-4 py-2 bg-amber-700 text-amber-100 rounded-md hover:bg-amber-800 transition-colors">Edit Profile</a>
+                <a href="{{ route('edit.profile') }}" class="mt-2 inline-block px-4 py-2 bg-amber-700 text-white rounded-md hover:bg-amber-800 transition-colors text-sm">Edit Profile</a>
                 @endif
             </div>
         </div>
     </div>
 </section>
+
 
 <!-- Main Profile Content -->
 <div class="max-w-6xl mx-auto px-4 pt-24 pb-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -225,7 +220,8 @@
         </div>
     </div>
 </div>
-
+</body>
+@endsection
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         let scrollTriggers = document.querySelectorAll('.scroll-trigger');
