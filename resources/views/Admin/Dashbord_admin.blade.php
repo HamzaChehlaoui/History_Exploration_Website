@@ -104,25 +104,25 @@
             <div id="dashboard" class="tab-content active">
                 <h2 class="text-2xl font-bold text-amber-900 mb-6">Dashboard Overview</h2>
 
-                <!-- Statistics Overview -->
-                <div class="stats-grid mb-8">
-                    <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
-                        <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Users</h3>
-                        <p class="text-3xl font-bold text-amber-700">15,847</p>
-                    </div>
-                    <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
-                        <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Articles</h3>
-                        <p class="text-3xl font-bold text-amber-700">2,453</p>
-                    </div>
-                    <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
-                        <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Prodact</h3>
-                        <p class="text-3xl font-bold text-amber-700">47</p>
-                    </div>
-                    <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
-                        <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Commands</h3>
-                        <p class="text-3xl font-bold text-amber-700">18</p>
-                    </div>
-                </div>
+               <!-- Statistics Overview -->
+    <div class="stats-grid mb-8">
+        <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
+            <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Users</h3>
+            <p class="text-3xl font-bold text-amber-700">{{ $totalUsers }}</p>
+        </div>
+        <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
+            <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Articles</h3>
+            <p class="text-3xl font-bold text-amber-700">{{ $totalArticles }}</p>
+        </div>
+        <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
+            <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Products</h3>
+            <p class="text-3xl font-bold text-amber-700">{{ $totalProducts }}</p>
+        </div>
+        <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
+            <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Commands</h3>
+            <p class="text-3xl font-bold text-amber-700">{{ $totalCommands }}</p>
+        </div>
+    </div>
 
                 <!-- Activity Graph -->
                 <section class="content-section bg-amber-50 py-6">
