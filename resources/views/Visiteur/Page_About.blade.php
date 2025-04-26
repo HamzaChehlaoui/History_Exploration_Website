@@ -117,13 +117,13 @@
             <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
                 <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
                     <div class="flex flex-col items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf78nWglJ-W-tD4tGNFI4vU0k3eUMC6skWSw&s" alt="Team member" class="w-32 h-32 rounded-full mb-4">
-                        <dt class="font-semibold text-amber-900">Dr. Sarah Chen</dt>
+                        <img src="	https://intranet.youcode.ma/storage/users/profile/thumbnail/1465-1728555112.jpg" alt="Team member" class="w-32 h-32 rounded-full mb-4">
+                        <dt class="font-semibold text-amber-900">Dr. Zakariae El Hassad</dt>
                         <dd class="text-amber-800">Ancient Civilizations Expert</dd>
                     </div>
                     <div class="flex flex-col items-center">
-                        <img src="https://mediaassets.cbre.com/-/media/cbre/global-shared/headshots/m/i/c/michael-thompson3.jpg" alt="Team member" class="w-32 h-32 rounded-full mb-4">
-                        <dt class="font-semibold text-amber-900">Prof. Michael Thompson</dt>
+                        <img src="	https://intranet.youcode.ma/storage/users/profile/thumbnail/34-1669653739.jpg" alt="Team member" class="w-32 h-32 rounded-full mb-4">
+                        <dt class="font-semibold text-amber-900">Prof. Achraf Chaoub</dt>
                         <dd class="text-amber-800">Medieval History Specialist</dd>
                     </div>
                     <div class="flex flex-col items-center">
