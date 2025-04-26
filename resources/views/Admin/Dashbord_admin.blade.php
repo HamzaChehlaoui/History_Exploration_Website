@@ -111,15 +111,15 @@
                         <p class="text-3xl font-bold text-amber-700">15,847</p>
                     </div>
                     <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
-                        <h3 class="text-lg font-semibold text-amber-900 mb-2">Active Articles</h3>
+                        <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Articles</h3>
                         <p class="text-3xl font-bold text-amber-700">2,453</p>
                     </div>
                     <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
-                        <h3 class="text-lg font-semibold text-amber-900 mb-2">Pending Reviews</h3>
+                        <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Prodact</h3>
                         <p class="text-3xl font-bold text-amber-700">47</p>
                     </div>
                     <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
-                        <h3 class="text-lg font-semibold text-amber-900 mb-2">User Reports</h3>
+                        <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Commands</h3>
                         <p class="text-3xl font-bold text-amber-700">18</p>
                     </div>
                 </div>
