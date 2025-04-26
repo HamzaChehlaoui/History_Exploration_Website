@@ -9,7 +9,8 @@ use App\Http\Controllers\{
     FavoriteController,
     CommandeController,
     ProfileController,
-    PayPalController
+    PayPalController,
+    DashboardController
 };
 use App\Http\Controllers\Auth\SocialAuthController;
 
@@ -30,8 +31,7 @@ Route::view('/Explorer', 'Visiteur.Explorer_Page')->name('explorer');
 Route::view('/about', 'Visiteur.Page_About')->name('about');
 Route::view('/PageConditions', 'Visiteur.PageConditions')->name('conditions');
 Route::view('/cart', 'User.Cart_page')->name('cart');
-Route::view('/Dashbord_admin', 'Admin.Dashbord_admin');
-// Authentication routes
+
 Route::controller(AuthController::class)->group(function () {
     Route::get('/register', 'showRegisterForm')->name('register.form');
     Route::post('/register', 'register')->name('register');
@@ -92,6 +92,8 @@ Route::controller(ProfileController::class)->group(function () {
 
 // Order routes
 Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
+Route::get('/Dashbord_admin', [DashboardController::class, 'index'])->name('dashboard.index');// Authentication routes
+
 
 // PayPal routes
 Route::controller(PayPalController::class)->prefix('api/paypal')->name('paypal.')->group(function () {
