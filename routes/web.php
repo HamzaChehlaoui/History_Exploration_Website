@@ -93,6 +93,7 @@ Route::controller(ProfileController::class)->group(function () {
 // Order routes
 Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
 Route::get('/Dashbord_admin', [DashboardController::class, 'index'])->name('dashboard.index');// Authentication routes
+Route::delete('/users/{user}', [DashboardController::class, 'destroy'])->name('users.destroy');
 
 
 // PayPal routes
