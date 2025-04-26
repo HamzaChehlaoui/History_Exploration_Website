@@ -31,8 +31,18 @@ class AppServiceProvider extends ServiceProvider
             }
         );
         View::composer('partials.navbare_visitoure.nav', function ($view) {
-            $count = Auth::check() ? Auth::user()->unreadNotifications()->count() : 0;
-            $view->with('unreadNotificationsCount', $count);
+            if (Auth::check()) {
+                $role = auth()->user()->role_id;
+                $count = auth()->user()->unreadNotifications()->count();
+            } else {
+                $role = null;
+                $count = 0;
+            }
+
+            $view->with([
+                'unreadNotificationsCount' => $count,
+                'role' => $role,
+            ]);
         });
 
     }
