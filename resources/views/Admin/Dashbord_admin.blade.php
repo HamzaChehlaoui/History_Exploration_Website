@@ -8,6 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         .stats-grid {
             display: grid;
@@ -215,7 +217,11 @@
                                         <td class="px-4 py-3">
                                             <div class="flex space-x-2">
                                                 @if($user->role_id !== 1)
-                                                <button class="text-red-600 hover:text-red-900">
+                                                <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                                <button class="text-red-600 hover:text-red-900" onclick="confirmDelete({{ $user->id }})">
                                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                                     </svg>
@@ -535,7 +541,7 @@ The influence of Egyptian mathematics extended to later Greek mathematics and th
         </div>
     </div>
 
-    <script>
+<script>
         // Tab navigation
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -699,6 +705,22 @@ The influence of Egyptian mathematics extended to later Greek mathematics and th
                 });
             }
         });
-    </script>
+        function confirmDelete(userId) {
+            Swal.fire({
+                title: 'Are you sure you want to delete this user?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + userId).submit();
+                }
+            });
+        }
+</script>
 </body>
 </html>
