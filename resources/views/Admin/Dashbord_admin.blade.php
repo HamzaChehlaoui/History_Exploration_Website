@@ -64,6 +64,15 @@
                         </div>
                     </div>
                 </div>
+                <form method="POST" action="/logout">
+                    @csrf
+                    <button type="submit" class="text-amber-200 hover:text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        Logout
+                    </button>
+                </form>
             </div>
         </div>
     </nav>
@@ -100,7 +109,6 @@
                     <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
                         <h3 class="text-lg font-semibold text-amber-900 mb-2">Total Users</h3>
                         <p class="text-3xl font-bold text-amber-700">15,847</p>
-                        <p class="text-sm text-amber-600">+124 this week</p>
                     </div>
                     <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-xl p-6 border border-amber-200">
                         <h3 class="text-lg font-semibold text-amber-900 mb-2">Active Articles</h3>
