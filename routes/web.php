@@ -30,7 +30,7 @@ Route::view('/Explorer', 'Visiteur.Explorer_Page')->name('explorer');
 Route::view('/about', 'Visiteur.Page_About')->name('about');
 Route::view('/PageConditions', 'Visiteur.PageConditions')->name('conditions');
 Route::view('/cart', 'User.Cart_page')->name('cart');
-
+Route::view('/Dashbord_admin', 'Admin.Dashbord_admin');
 // Authentication routes
 Route::controller(AuthController::class)->group(function () {
     Route::get('/register', 'showRegisterForm')->name('register.form');
