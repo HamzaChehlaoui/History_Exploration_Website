@@ -91,7 +91,11 @@
                 </div>
                 <div class="flex justify-between">
                     <span class="text-amber-700">Member Since:</span>
-                    <span class="font-medium text-amber-900">{{ $user->created_at->format('M Y') }}</span>
+                    <span class="font-medium text-amber-900">@if($user->birth_date)
+                        {{ $user->birth_date->format('M Y') }}
+                    @else
+                        <span>Date of birth not specified</span>
+                    @endif </span>
                 </div>
             </div>
 
