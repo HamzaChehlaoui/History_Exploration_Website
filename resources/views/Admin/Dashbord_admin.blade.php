@@ -173,15 +173,7 @@
                         <h3 class="text-xl font-bold text-amber-900">Users</h3>
                         <div class="flex space-x-2">
                             <input type="text" placeholder="Search users..." class="rounded-lg bg-amber-50 text-amber-900 py-1 px-3 border border-amber-200">
-                            <select class="rounded-lg bg-amber-50 text-amber-900 py-1 px-3 border border-amber-200">
-                                <option>All Users</option>
-                                <option>Active</option>
-                                <option>Suspended</option>
-                                <option>Pending</option>
-                            </select>
-                            <button class="bg-amber-700 text-white py-1 px-4 rounded-lg hover:bg-amber-800 transition-colors">
-                                Add User
-                            </button>
+
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -197,165 +189,50 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="border-b border-amber-100">
-                                    <td class="px-4 py-3">
-                                        <div class="flex items-center">
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY48mP_RrEOMRCUTUws1Ltv2oNf7OiwnFh4w&s" alt="User" class="h-8 w-8 rounded-full mr-2"/>
-                                            <div>
-                                                <div class="text-amber-900">Michael Brown</div>
-                                                <div class="text-sm text-amber-600">michael@example.com</div>
+                                @foreach ($users as $user)
+                                    <tr class="border-b border-amber-100">
+                                        <td class="px-4 py-3">
+                                            <div class="flex items-center">
+                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY48mP_RrEOMRCUTUws1Ltv2oNf7OiwnFh4w&s" alt="User" class="h-8 w-8 rounded-full mr-2"/>
+                                                <div>
+                                                    <div class="text-amber-900">{{ $user->name }}</div>
+                                                    <div class="text-sm text-amber-600">{{ $user->email }}</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-3 text-amber-700">Contributor</td>
-                                    <td class="px-4 py-3">
-                                        <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">Active</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-amber-700">15</td>
-                                    <td class="px-4 py-3 text-amber-700">2025-04-25</td>
-                                    <td class="px-4 py-3">
-                                        <div class="flex space-x-2">
-                                            <button class="text-amber-600 hover:text-amber-500">Edit</button>
-                                            <button class="text-red-600 hover:text-red-500">Suspend</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-amber-100">
-                                    <td class="px-4 py-3">
-                                        <div class="flex items-center">
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVparuZ4feRMJDAKgjimGIgPRBCI5jgvPrQ&s" alt="User" class="h-8 w-8 rounded-full mr-2"/>
-                                            <div>
-                                                <div class="text-amber-900">Sarah Johnson</div>
-                                                <div class="text-sm text-amber-600">sarah@example.com</div>
+                                        </td>
+                                        <td class="px-4 py-3 text-amber-700">
+                                            @if($user->role_id === 1)
+                                                Admin
+                                            @else
+                                                User
+                                            @endif
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">Active</span>
+                                        </td>
+                                        <td class="px-4 py-3 text-amber-700">{{ $user->articles_count }}</td>
+                                        <td class="px-4 py-3 text-amber-700">2025-04-25</td>
+                                        <td class="px-4 py-3">
+                                            <div class="flex space-x-2">
+                                                @if($user->role_id !== 1)
+                                                <button class="text-red-600 hover:text-red-900">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                    </svg>
+                                                </button>
+                                                @endif
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-3 text-amber-700">Editor</td>
-                                    <td class="px-4 py-3">
-                                        <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm">Suspended</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-amber-700">8</td>
-                                    <td class="px-4 py-3 text-amber-700">2025-04-20</td>
-                                    <td class="px-4 py-3">
-                                        <div class="flex space-x-2">
-                                            <button class="text-amber-600 hover:text-amber-500">Edit</button>
-                                            <button class="text-green-600 hover:text-green-500">Activate</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-amber-100">
-                                    <td class="px-4 py-3">
-                                        <div class="flex items-center">
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu1SGBWRJOmgeY77YCOJ25cnsvwK6UlBzm-g&s" alt="User" class="h-8 w-8 rounded-full mr-2"/>
-                                            <div>
-                                                <div class="text-amber-900">James Wilson</div>
-                                                <div class="text-sm text-amber-600">james@example.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-3 text-amber-700">Moderator</td>
-                                    <td class="px-4 py-3">
-                                        <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">Active</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-amber-700">23</td>
-                                    <td class="px-4 py-3 text-amber-700">2025-04-24</td>
-                                    <td class="px-4 py-3">
-                                        <div class="flex space-x-2">
-                                            <button class="text-amber-600 hover:text-amber-500">Edit</button>
-                                            <button class="text-red-600 hover:text-red-500">Suspend</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-amber-100">
-                                    <td class="px-4 py-3">
-                                        <div class="flex items-center">
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVUK0rL-1gBSRiGWQ9IfP2HLh5DAuEV_iMhg&s" alt="User" class="h-8 w-8 rounded-full mr-2"/>
-                                            <div>
-                                                <div class="text-amber-900">Lisa Chen</div>
-                                                <div class="text-sm text-amber-600">lisa@example.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-3 text-amber-700">Contributor</td>
-                                    <td class="px-4 py-3">
-                                        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Pending</span>
-                                    </td>
-                                    <td class="px-4 py-3 text-amber-700">0</td>
-                                    <td class="px-4 py-3 text-amber-700">-</td>
-                                    <td class="px-4 py-3">
-                                        <div class="flex space-x-2">
-                                            <button class="text-amber-600 hover:text-amber-500">Edit</button>
-                                            <button class="text-green-600 hover:text-green-500">Approve</button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
+
                         </table>
                     </div>
-                    <div class="mt-4 flex justify-between items-center">
-                        <div class="text-amber-700">Showing 1-4 of 15,847 users</div>
-                        <div class="flex space-x-2">
-                            <button class="px-3 py-1 bg-amber-100 text-amber-900 rounded-md">&lt;</button>
-                            <button class="px-3 py-1 bg-amber-700 text-white rounded-md">1</button>
-                            <button class="px-3 py-1 bg-amber-100 text-amber-900 rounded-md">2</button>
-                            <button class="px-3 py-1 bg-amber-100 text-amber-900 rounded-md">3</button>
-                            <button class="px-3 py-1 bg-amber-100 text-amber-900 rounded-md">&gt;</button>
-                        </div>
-                    </div>
+                    {{ $users->links() }}
                 </div>
 
-                <!-- User Details Modal (Hidden by default) -->
-                <div id="userModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
-                    <div class="bg-white rounded-lg p-6 w-full max-w-2xl mx-4">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-xl font-bold text-amber-900">Edit User</h3>
-                            <button class="text-amber-900 hover:text-amber-700" id="closeUserModal">✕</button>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <label class="block text-amber-700 mb-1">First Name</label>
-                                <input type="text" value="Michael" class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200">
-                            </div>
-                            <div>
-                                <label class="block text-amber-700 mb-1">Last Name</label>
-                                <input type="text" value="Brown" class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200">
-                            </div>
-                            <div>
-                                <label class="block text-amber-700 mb-1">Email</label>
-                                <input type="email" value="michael@example.com" class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200">
-                            </div>
-                            <div>
-                                <label class="block text-amber-700 mb-1">Role</label>
-                                <select class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200">
-                                    <option>Contributor</option>
-                                    <option>Editor</option>
-                                    <option>Moderator</option>
-                                    <option>Admin</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-amber-700 mb-1">Status</label>
-                                <select class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200">
-                                    <option>Active</option>
-                                    <option>Suspended</option>
-                                    <option>Pending</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-amber-700 mb-1">Date Joined</label>
-                                <input type="date" value="2024-10-15" class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200" disabled>
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-amber-700 mb-1">Biography</label>
-                            <textarea class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200 h-24">Michael is a history enthusiast with expertise in ancient civilizations and early mathematics.</textarea>
-                        </div>
-                        <div class="flex justify-end space-x-2">
-                            <button class="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition-colors">Cancel</button>
-                            <button class="bg-amber-700 text-white py-2 px-4 rounded-lg hover:bg-amber-800 transition-colors">Save Changes</button>
-                        </div>
-                    </div>
-                </div>
+
             </div>
 
             <!-- Content Management Tab -->
