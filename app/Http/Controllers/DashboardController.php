@@ -21,4 +21,10 @@ class DashboardController extends Controller
 
         return view('Admin.Dashbord_admin', compact('totalUsers', 'totalArticles', 'totalProducts', 'totalCommands','users'));
     }
+    public function destroy($id)
+    {
+        $user = Utilisateur::findOrFail($id);
+        $user->delete();
+        return redirect('/Dashbord_admin')->with('success', 'User deleted successfully');
+    }
 }
