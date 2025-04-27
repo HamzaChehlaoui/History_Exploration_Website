@@ -62,21 +62,22 @@ class ProduitController extends Controller
         return view('produits.show', compact('produit'));
     }
 
-    public function edit(Produit $produit)
+    public function edit($id)
     {
-        return view('produits.edit', compact('produit'));
+        $produit = Produit::findOrFail($id);
+        return view('Admin.edit', compact('produit'));
     }
 
     public function update(UpdateProduitRequest $request, Produit $produit)
     {
         $produit->update($request->validated());
 
-        return redirect()->route('produits.index')->with('success', 'Produit mis à jour.');
+        return redirect('/Dashbord_admin')->with('success', 'Produit mis à jour.');
     }
 
     public function destroy(Produit $produit)
     {
         $produit->delete();
-        return redirect()->route('produits.index')->with('success', 'Produit supprimé.');
+        return redirect('/Dashbord_admin')->with('success', 'Produit supprimé.');
     }
 }
