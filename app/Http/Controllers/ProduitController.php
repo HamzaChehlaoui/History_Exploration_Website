@@ -75,8 +75,9 @@ class ProduitController extends Controller
         return redirect('/Dashbord_admin')->with('success', 'Produit mis à jour.');
     }
 
-    public function destroy(Produit $produit)
+    public function destroy($id)
     {
+        $produit = Produit::findOrFail($id);
         $produit->delete();
         return redirect('/Dashbord_admin')->with('success', 'Produit supprimé.');
     }
