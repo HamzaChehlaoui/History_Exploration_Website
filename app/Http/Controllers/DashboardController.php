@@ -17,16 +17,46 @@ class DashboardController extends Controller
         $totalProducts = Produit::count();
         $totalCommands = Commande::count();
 
-        $users = Utilisateur::paginate(5);
+        $searchUser = $request->input('search_user');
 
-        $search = $request->input('search');
+        $users = Utilisateur::when($searchUser, function ($query, $searchUser) {
+            return $query->where('name', 'like', "%{$searchUser}%")
+                         ->orWhere('email', 'like', "%{$searchUser}%");
+        })->paginate(5);
 
-        $products = Produit::when($search, function ($query, $search) {
-            return $query->where('name', 'like', "%{$search}%");
+
+        $searchProduct = $request->get('search_product');
+        $products = Produit::when($searchProduct, function ($query, $searchProduct) {
+            return $query->where('name', 'like', "%{$searchProduct}%");
         })->paginate(4);
 
-        return view('Admin.Dashbord_admin', compact('totalUsers', 'totalArticles', 'totalProducts', 'totalCommands', 'users', 'products'));
+        $searchArticle = $request->get('search_article');
+        $status = $request->get('status');
+
+        $articlesQuery = Article::query();
+
+        if ($searchArticle) {
+            $articlesQuery->where('title', 'like', "%{$searchArticle}%");
+        }
+
+        if ($status) {
+            $articlesQuery->where('status', $status);
+        }
+
+        $articles = $articlesQuery->paginate(5);
+
+        return view('Admin.Dashbord_admin', compact(
+            'totalUsers',
+            'totalArticles',
+            'totalProducts',
+            'totalCommands',
+            'users',
+            'products',
+            'articles'
+        ));
     }
+
+
     public function destroy($id)
     {
         $user = Utilisateur::findOrFail($id);
