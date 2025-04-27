@@ -31,6 +31,7 @@ class DashboardController extends Controller
 
     public function destroy_Article($id)
         {
+
             $article = Article::findOrFail($id);
             $article->delete();
             return redirect('/Dashbord_admin')->with('success', 'Article supprimé');
