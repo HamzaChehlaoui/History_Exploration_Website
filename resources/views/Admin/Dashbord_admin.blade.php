@@ -323,10 +323,13 @@
                 <h2 class="text-3xl font-bold text-amber-900">Product Management</h2>
                 <div class="flex gap-4 w-full sm:w-auto">
                     <div class="relative flex-1 sm:flex-initial">
-                        <input type="search" placeholder="Search products..." class="w-full pl-10 pr-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                        <svg class="w-5 h-5 absolute left-3 top-2.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
+                        <form action="{{ url()->current() }}" method="GET" class="relative flex-1 sm:flex-initial">
+                            <input type="search" name="search" placeholder="Search products..." value="{{ request()->query('search') }}" class="w-full pl-10 pr-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            <svg class="w-5 h-5 absolute left-3 top-2.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </form>
+
                     </div>
                     <a href="/Add_prodact">
                     <button class="px-4 py-2 bg-amber-800 text-amber-100 rounded-lg hover:bg-amber-700 transition-colors flex items-center gap-2">
@@ -462,7 +465,7 @@
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
-                document.getElementById('deleteForm').submit(); 
+                document.getElementById('deleteForm').submit();
             }
         });
     });
