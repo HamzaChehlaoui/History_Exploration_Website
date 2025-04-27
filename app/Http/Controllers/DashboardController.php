@@ -27,21 +27,7 @@ class DashboardController extends Controller
         $user->delete();
         return redirect('/Dashbord_admin')->with('success', 'User deleted successfully');
     }
-    public function approve(Article $article)
-    {
-        $article->status = 'approved';
-        $article->save();
-
-        return redirect()->back()->with('success', 'Article approved.');
-    }
-
-    public function reject(Article $article)
-    {
-        $article->status = 'rejected';
-        $article->save();
-
-        return redirect()->back()->with('success', 'Article rejected.');
-    }
+    
     public function destroy_Article($id)
         {
             $article = Article::findOrFail($id);
