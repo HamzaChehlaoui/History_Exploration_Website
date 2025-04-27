@@ -17,9 +17,10 @@ class DashboardController extends Controller
         $totalProducts = Produit::count();
         $totalCommands = Commande::count();
         $users = Utilisateur::paginate(5);;
+        $products = Produit::paginate(4);
 
 
-        return view('Admin.Dashbord_admin', compact('totalUsers', 'totalArticles', 'totalProducts', 'totalCommands','users'));
+        return view('Admin.Dashbord_admin', compact('totalUsers', 'totalArticles', 'totalProducts', 'totalCommands','users','products'));
     }
     public function destroy($id)
     {
@@ -27,7 +28,7 @@ class DashboardController extends Controller
         $user->delete();
         return redirect('/Dashbord_admin')->with('success', 'User deleted successfully');
     }
-    
+
     public function destroy_Article($id)
         {
             $article = Article::findOrFail($id);
