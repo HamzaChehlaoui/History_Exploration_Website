@@ -346,7 +346,6 @@
                         <thead class="bg-amber-800 text-amber-100">
                             <tr>
                                 <th class="px-6 py-3 text-left">Product</th>
-                                <th class="px-6 py-3 text-left">Category</th>
                                 <th class="px-6 py-3 text-left">Price</th>
                                 <th class="px-6 py-3 text-left">Stock</th>
                                 <th class="px-6 py-3 text-left">Status</th>
@@ -354,75 +353,55 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-amber-200">
-                            <!-- Product Row 1 -->
+                            @foreach ($products as $product)
                             <tr class="hover:bg-amber-50">
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
-                                        <img src="https://th.bing.com/th/id/OIP.x2ECQILsY0coJ2IjDmllJwHaJu?rs=1&pid=ImgDetMain" alt="Ancient Civilizations Book" class="w-12 h-12 object-cover rounded"/>
+                                        <img src="{{ $product->images->first()->path ?? 'default.jpg' }}" alt="{{ $product->name }}" class="w-12 h-12 object-cover rounded"/>
                                         <div>
-                                            <div class="font-semibold text-amber-900">Ancient Civilizations: A Complete Guide</div>
-                                            <div class="text-sm text-amber-700">SKU: ACB001</div>
+                                            <div class="font-semibold text-amber-900">{{ $product->name }}</div>
+                                            <div class="text-sm text-amber-700">SKU: {{ $product->id }}</div>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 text-amber-700">Books</td>
-                                <td class="px-6 py-4 text-amber-700">$29.99</td>
-                                <td class="px-6 py-4 text-amber-700">45</td>
+                                <td class="px-6 py-4 text-amber-700">${{ number_format($product->prix, 2) }}</td>
+                                <td class="px-6 py-4 text-amber-700">{{ $product->quantite }}</td>
                                 <td class="px-6 py-4">
+                                    @if($product->quantite > 0)
                                     <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">Active</span>
+                                    @else
+                                    <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm">Out of Stock</span>
+                                    @endif
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex justify-end gap-3">
-                                        <button class="text-amber-600 hover:text-amber-900" onclick="showEditModal()">
+                                        <a href="{{ route('products.edit', $product->id) }}" class="text-amber-600 hover:text-amber-900">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                             </svg>
-                                        </button>
-                                        <button class="text-red-600 hover:text-red-900" onclick="showDeleteModal()">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                            </svg>
-                                        </button>
+                                        </a>
+                                        <form method="POST" action="{{ route('products.destroy', $product->id) }}" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-600 hover:text-red-900">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                </svg>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
-
-                            <!-- Product Row 2 -->
-                            <tr class="hover:bg-amber-50">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <img src="https://th.bing.com/th/id/R.980228e453700a479d1e30b4cc51fc2b?rik=9O6%2bhWTbwQE4lA&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2ff%2fd%2fd%2f327266.jpg&ehk=Wqx0bJSWeQrEHBfr75MYvRoZAaX2zJ06wVngblP%2bF0c%3d&risl=&pid=ImgRaw&r=0" alt="Vintage World Map" class="w-12 h-12 object-cover rounded"/>
-                                        <div>
-                                            <div class="font-semibold text-amber-900">Vintage World Map (1800s)</div>
-                                            <div class="text-sm text-amber-700">SKU: VWM002</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-amber-700">Historical Maps</td>
-                                <td class="px-6 py-4 text-amber-700">$49.99</td>
-                                <td class="px-6 py-4 text-amber-700">23</td>
-                                <td class="px-6 py-4">
-                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Draft</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex justify-end gap-3">
-                                        <button class="text-amber-600 hover:text-amber-900" onclick="showEditModal()">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                            </svg>
-                                        </button>
-                                        <button class="text-red-600 hover:text-red-900" onclick="showDeleteModal()">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
+
+                <div class="mt-4">
+                    {{ $products->links() }}
+                </div>
             </div>
+
         </div>
     </main>
             </div>
