@@ -10,6 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+
     <style>
         .stats-grid {
             display: grid;
@@ -255,11 +257,12 @@
                                 <option>Pending</option>
                                 <option>Approved</option>
                                 <option>Rejected</option>
-                                <option>Featured</option>
                             </select>
+                            <a href="{{ route('article.create') }}">
                             <button class="bg-amber-700 text-white py-1 px-4 rounded-lg hover:bg-amber-800 transition-colors">
                                 Add Article
                             </button>
+                        </a>
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -269,154 +272,41 @@
                                     <th class="px-4 py-2 text-left text-amber-900">Title</th>
                                     <th class="px-4 py-2 text-left text-amber-900">Author</th>
                                     <th class="px-4 py-2 text-left text-amber-900">Category</th>
-                                    <th class="px-4 py-2 text-left text-amber-900">Published</th>
                                     <th class="px-4 py-2 text-left text-amber-900">Status</th>
                                     <th class="px-4 py-2 text-left text-amber-900">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            @foreach($articles as $article)
                                 <tr class="border-b border-amber-100">
-                                    <td class="px-4 py-3 text-amber-900">Ancient Egyptian Mathematics</td>
-                                    <td class="px-4 py-3 text-amber-700">John Smith</td>
-                                    <td class="px-4 py-3 text-amber-700">Mathematics</td>
-                                    <td class="px-4 py-3 text-amber-700">-</td>
+                                    <td class="px-4 py-3 text-amber-900">{{ $article->title }}</td>
+                                    <td class="px-4 py-3 text-amber-700">{{ $article->utilisateur->name ?? 'N/A' }}</td>
+                                    <td class="px-4 py-3 text-amber-700">{{ $article->category->name ?? 'N/A' }}</td>
                                     <td class="px-4 py-3">
-                                        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Pending</span>
+                                        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">{{ ucfirst($article->status) }}</span>
                                     </td>
                                     <td class="px-4 py-3">
                                         <div class="flex space-x-2">
-                                            <button class="text-amber-600 hover:text-amber-500">Review</button>
-                                            <button class="text-green-600 hover:text-green-500">Approve</button>
-                                            <button class="text-red-600 hover:text-red-500">Reject</button>
+                                            <form action="{{ route('article.approve', $article->id) }}" method="POST" class="approve-form">
+                                                @csrf
+                                                <button type="submit" class="text-green-600 hover:text-green-500">Approve</button>
+                                            </form>
+
+                                            <form action="{{ route('article.reject', $article->id) }}" method="POST" class="reject-form">
+                                                @csrf
+                                                <button type="submit" class="text-yellow-600 hover:text-yellow-500">Reject</button>
+                                            </form>
+
+                                            <form action="{{ route('article.destroy', $article->id) }}" method="POST" class="delete-form">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-600 hover:text-red-500">Delete</button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr class="border-b border-amber-100">
-                                    <td class="px-4 py-3 text-amber-900">The Renaissance Period</td>
-                                    <td class="px-4 py-3 text-amber-700">Emma Wilson</td>
-                                    <td class="px-4 py-3 text-amber-700">Art History</td>
-                                    <td class="px-4 py-3 text-amber-700">2025-04-15</td>
-                                    <td class="px-4 py-3">
-                                        <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm">Approved</span>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <div class="flex space-x-2">
-                                            <button class="text-amber-600 hover:text-amber-500">Edit</button>
-                                            <button class="text-purple-600 hover:text-purple-500">Feature</button>
-                                            <button class="text-red-600 hover:text-red-500">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-amber-100">
-                                    <td class="px-4 py-3 text-amber-900">Roman Engineering Marvels</td>
-                                    <td class="px-4 py-3 text-amber-700">James Wilson</td>
-                                    <td class="px-4 py-3 text-amber-700">Engineering</td>
-                                    <td class="px-4 py-3 text-amber-700">2025-04-22</td>
-                                    <td class="px-4 py-3">
-                                        <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Featured</span>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <div class="flex space-x-2">
-                                            <button class="text-amber-600 hover:text-amber-500">Edit</button>
-                                            <button class="text-amber-600 hover:text-amber-500">Unfeature</button>
-                                            <button class="text-red-600 hover:text-red-500">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-amber-100">
-                                    <td class="px-4 py-3 text-amber-900">Medieval Medicine Practices</td>
-                                    <td class="px-4 py-3 text-amber-700">Sarah Johnson</td>
-                                    <td class="px-4 py-3 text-amber-700">Medicine</td>
-                                    <td class="px-4 py-3 text-amber-700">-</td>
-                                    <td class="px-4 py-3">
-                                        <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm">Rejected</span>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <div class="flex space-x-2">
-                                            <button class="text-amber-600 hover:text-amber-500">Review</button>
-                                            <button class="text-green-600 hover:text-green-500">Reconsider</button>
-                                            <button class="text-red-600 hover:text-red-500">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
-                    </div>
-                    <div class="mt-4 flex justify-between items-center">
-                        <div class="text-amber-700">Showing 1-4 of 2,453 articles</div>
-                        <div class="flex space-x-2">
-                            <button class="px-3 py-1 bg-amber-100 text-amber-900 rounded-md">&lt;</button>
-                            <button class="px-3 py-1 bg-amber-700 text-white rounded-md">1</button>
-                            <button class="px-3 py-1 bg-amber-100 text-amber-900 rounded-md">2</button>
-                            <button class="px-3 py-1 bg-amber-100 text-amber-900 rounded-md">3</button>
-                            <button class="px-3 py-1 bg-amber-100 text-amber-900 rounded-md">&gt;</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Article Details Modal (Hidden by default) -->
-                <div id="articleModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
-<div class="bg-white rounded-lg p-6 w-full max-w-4xl mx-4 max-h-[90vh] overflow-y-auto">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-xl font-bold text-amber-900">Edit Article</h3>
-                            <button class="text-amber-900 hover:text-amber-700" id="closeArticleModal">✕</button>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div class="md:col-span-2">
-                                <label class="block text-amber-700 mb-1">Title</label>
-                                <input type="text" value="Ancient Egyptian Mathematics" class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200">
-                            </div>
-                            <div>
-                                <label class="block text-amber-700 mb-1">Author</label>
-                                <select class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200">
-                                    <option>John Smith</option>
-                                    <option>Emma Wilson</option>
-                                    <option>James Wilson</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-amber-700 mb-1">Category</label>
-                                <select class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200">
-                                    <option>Mathematics</option>
-                                    <option>Art History</option>
-                                    <option>Engineering</option>
-                                    <option>Medicine</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-amber-700 mb-1">Status</label>
-                                <select class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200">
-                                    <option>Pending</option>
-                                    <option>Approved</option>
-                                    <option>Rejected</option>
-                                    <option>Featured</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-amber-700 mb-1">Time Period</label>
-                                <select class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200">
-                                    <option>Ancient (Before 500 CE)</option>
-                                    <option>Medieval (500-1500 CE)</option>
-                                    <option>Renaissance (1400-1700 CE)</option>
-                                    <option>Modern (1700-1900 CE)</option>
-                                    <option>Contemporary (1900-Present)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-amber-700 mb-1">Article Content</label>
-                            <textarea class="w-full rounded-lg bg-amber-50 text-amber-900 py-2 px-3 border border-amber-200 h-64">Ancient Egyptian mathematics was a crucial part of their civilization, developing alongside their architectural and engineering achievements. The Egyptians used a decimal system and had symbols for numbers 1-9, 10, 100, 1000, etc. They employed these mathematical concepts for practical purposes like land measurement, pyramid construction, and timekeeping.
-
-The Rhind Mathematical Papyrus, dated around 1650 BCE, demonstrates their advanced understanding of fractions, algebra, and geometry. Egyptians had sophisticated methods for computing the areas of shapes and volumes of solids, essential for their monumental building projects.
-
-Their mathematical notation system, while different from ours today, shows remarkable ingenuity and practical applications. Egyptian mathematicians could solve linear equations and had methods for calculating proportions that were crucial for their architectural achievements.
-
-The influence of Egyptian mathematics extended to later Greek mathematics and thereby into our modern mathematical understanding.</textarea>
-                        </div>
-                        <div class="flex justify-end space-x-2">
-                            <button class="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition-colors">Cancel</button>
-                            <button class="bg-amber-700 text-white py-2 px-4 rounded-lg hover:bg-amber-800 transition-colors">Save Changes</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -542,6 +432,45 @@ The influence of Egyptian mathematics extended to later Greek mathematics and th
     </div>
 
 <script src="/js/Dashbord_admin.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function confirmAction(form, title, text, icon) {
+            event.preventDefault();
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: icon,
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, confirm!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+
+        document.querySelectorAll('.approve-form').forEach(form => {
+            form.addEventListener('submit', function (event) {
+                confirmAction(form, 'Approve Article', 'Are you sure you want to approve this article?', 'success');
+            });
+        });
+
+        document.querySelectorAll('.reject-form').forEach(form => {
+            form.addEventListener('submit', function (event) {
+                confirmAction(form, 'Reject Article', 'Are you sure you want to reject this article?', 'warning');
+            });
+        });
+
+        document.querySelectorAll('.delete-form').forEach(form => {
+            form.addEventListener('submit', function (event) {
+                confirmAction(form, 'Delete Article', 'Are you sure you want to delete this article?', 'error');
+            });
+        });
+    });
+    </script>
+
 
 </body>
 </html>
