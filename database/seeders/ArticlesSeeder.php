@@ -78,6 +78,7 @@ The Roman Empire s rise was fueled by military strength, innovation, and governa
                 'utilisateur_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
+                'status' =>'approved',
             ],
             [
                 'title' => 'Ancient Egypt: The Land of Pharaohs',
@@ -97,6 +98,7 @@ Perhaps most distinctive was Egypt\'s elaborate preparation for the afterlife, i
                 'utilisateur_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
+                'status' =>'approved',
             ],
             [
                 'title' => 'First Sample Article',
@@ -109,6 +111,7 @@ Perhaps most distinctive was Egypt\'s elaborate preparation for the afterlife, i
                 'utilisateur_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
+                'status' =>'approved',
             ],
         ]);
     }
