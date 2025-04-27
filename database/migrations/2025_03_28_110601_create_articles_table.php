@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('time_period');        
+            $table->string('time_period');
             $table->string('location');
             $table->text('description');
             $table->text('content');
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreignId('utilisateur_id')->constrained('utilisateurs')->onDelete('cascade');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
 
