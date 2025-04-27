@@ -95,8 +95,8 @@ Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes
 Route::get('/Dashbord_admin', [DashboardController::class, 'index'])->name('dashboard.index');// Authentication routes
 Route::delete('/users/{user}', [DashboardController::class, 'destroy'])->name('users.destroy');
 Route::get('/admin/articles', [ArticleController::class, 'adminIndex'])->name('admin.articles.index');
-Route::post('/admin/articles/{article}/approve', [DashboardController::class, 'approve'])->name('article.approve');
-Route::post('/admin/articles/{article}/reject', [DashboardController::class, 'reject'])->name('article.reject');
+Route::post('/admin/articles/{article}/approve', [ArticleController::class, 'approve'])->name('article.approve');
+Route::post('/admin/articles/{article}/reject', [ArticleController::class, 'reject'])->name('article.reject');
 Route::delete('/admin/articles/{article}', [DashboardController::class, 'destroy_Article'])->name('article.destroy');
 
 
