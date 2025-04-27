@@ -114,4 +114,19 @@ class ArticleController extends Controller
             $article->delete();
             return redirect()->route('articles.index')->with('success', 'Article supprimé');
         }
+        public function approve(Article $article)
+    {
+        $article->status = 'approved';
+        $article->save();
+
+        return redirect()->back()->with('success', 'Article approved.');
+    }
+
+    public function reject(Article $article)
+    {
+        $article->status = 'rejected';
+        $article->save();
+
+        return redirect()->back()->with('success', 'Article rejected.');
+    }
 }
