@@ -56,6 +56,8 @@ Route::controller(ProduitController::class)->group(function () {
     Route::get('/Stor', 'index')->name('store');
     Route::get('/Add_prodact', 'create')->name('produits.create');
     Route::post('/Add_prodact', 'store')->name('produits.store');
+    Route::put('/produits/{produit}',  'update')->name('produits.update');
+
 });
 
 // Article routes
