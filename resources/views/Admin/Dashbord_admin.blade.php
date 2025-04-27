@@ -176,8 +176,18 @@
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-xl font-bold text-amber-900">Users</h3>
                         <div class="flex space-x-2">
-                            <input type="text" placeholder="Search users..." class="rounded-lg bg-amber-50 text-amber-900 py-1 px-3 border border-amber-200">
-
+                            <form method="GET" action="{{ url()->current() }}" class="flex space-x-2">
+                                <input
+                                    type="text"
+                                    name="search_user"
+                                    value="{{ request('search_user') }}"
+                                    placeholder="Search users..."
+                                    class="rounded-lg bg-amber-50 text-amber-900 py-1 px-3 border border-amber-200"
+                                >
+                                <button type="submit" class="bg-amber-700 text-white py-1 px-4 rounded-lg hover:bg-amber-800 transition-colors">
+                                    Search
+                                </button>
+                            </form>
                         </div>
                     </div>
                     <div class="overflow-x-auto">
@@ -251,13 +261,8 @@
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-xl font-bold text-amber-900">Articles</h3>
                         <div class="flex space-x-2">
-                            <input type="text" placeholder="Search articles..." class="rounded-lg bg-amber-50 text-amber-900 py-1 px-3 border border-amber-200">
-                            <select class="rounded-lg bg-amber-50 text-amber-900 py-1 px-3 border border-amber-200">
-                                <option>All Status</option>
-                                <option>Pending</option>
-                                <option>Approved</option>
-                                <option>Rejected</option>
-                            </select>
+
+
                             <a href="{{ route('article.create') }}">
                             <button class="bg-amber-700 text-white py-1 px-4 rounded-lg hover:bg-amber-800 transition-colors">
                                 Add Article
@@ -323,12 +328,24 @@
                 <h2 class="text-3xl font-bold text-amber-900">Product Management</h2>
                 <div class="flex gap-4 w-full sm:w-auto">
                     <div class="relative flex-1 sm:flex-initial">
-                        <form action="{{ url()->current() }}" method="GET" class="relative flex-1 sm:flex-initial">
-                            <input type="search" name="search" placeholder="Search products..." value="{{ request()->query('search') }}" class="w-full pl-10 pr-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                            <svg class="w-5 h-5 absolute left-3 top-2.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                            </svg>
+                        <form method="GET" action="{{ url()->current() }}" class="flex gap-2 w-full sm:w-auto">
+                            <div class="relative flex-1 sm:flex-initial">
+                                <input
+                                    type="search"
+                                    name="search_product"
+                                    value="{{ request('search_product') }}"
+                                    placeholder="Search products..."
+                                    class="w-full pl-10 pr-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                                >
+                                <svg class="w-5 h-5 absolute left-3 top-2.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
+                            </div>
+                            <button type="submit" class="px-4 py-2 bg-amber-800 text-amber-100 rounded-lg hover:bg-amber-700 transition-colors">
+                                Search
+                            </button>
                         </form>
+
 
                     </div>
                     <a href="/Add_prodact">
