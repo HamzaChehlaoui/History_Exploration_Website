@@ -10,17 +10,22 @@ use App\Models\Commande;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $totalUsers = Utilisateur::count();
         $totalArticles = Article::count();
         $totalProducts = Produit::count();
         $totalCommands = Commande::count();
-        $users = Utilisateur::paginate(5);;
-        $products = Produit::paginate(4);
 
+        $users = Utilisateur::paginate(5);
 
-        return view('Admin.Dashbord_admin', compact('totalUsers', 'totalArticles', 'totalProducts', 'totalCommands','users','products'));
+        $search = $request->input('search');
+
+        $products = Produit::when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%{$search}%");
+        })->paginate(4);
+
+        return view('Admin.Dashbord_admin', compact('totalUsers', 'totalArticles', 'totalProducts', 'totalCommands', 'users', 'products'));
     }
     public function destroy($id)
     {
