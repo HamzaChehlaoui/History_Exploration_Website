@@ -1,10 +1,6 @@
-//shopping_cart.js
-
 document.addEventListener('DOMContentLoaded', function() {
-
     let dateInput = document.querySelector('input[name="date_commande"]');
     if (dateInput) {
-
         let today = new Date();
         let yyyy = today.getFullYear();
         let mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -22,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (selectedDate < currentDate) {
                 this.value = formattedToday;
-                // alert("Please select today or a future date for your order.");
+                console.log("Please select today or a future date for your order.");
             }
         });
     }
@@ -31,9 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let savedTotal = parseFloat(localStorage.getItem('cartTotalPrice')) || 0;
     let shipping = 5.99;
 
-
     function renderCartItems() {
         let cartContainer = document.getElementById('cart-items-container');
+        if (!cartContainer) return;
 
         cartContainer.innerHTML = '';
 
@@ -59,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="flex-1">
                         <div class="flex justify-between">
                             <h3 class="text-lg font-semibold text-amber-900">${item.name}</h3>
-                            <button class="text-amber-700 hover:text-amber-900 remove-item" data-index="${index}">
+                            <button class="text-amber-700 hover:text-amber-900 remove-item" data-index="${index}" data-product-id="${item.id}">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                 </svg>
@@ -67,9 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <p class="text-amber-700 text-sm">Historical item</p>
                         <div class="flex justify-between items-center mt-2">
-                            <div class="flex items-center space-x-2">
-                                <span class="w-8 text-center item-quantity">${item.quantity}</span>
-                            </div>
                             <span class="text-lg font-bold text-amber-900 item-price" data-unit-price="${item.price}">$${(item.price * item.quantity).toFixed(2)}</span>
                         </div>
                     </div>
@@ -77,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             cartContainer.appendChild(itemElement);
         });
-
 
         addCartEventListeners();
     }
@@ -91,23 +83,32 @@ document.addEventListener('DOMContentLoaded', function() {
         let tax = subtotal * 0.1; // 10% tax
         let total = subtotal + shipping + tax;
 
-        document.getElementById('summary-subtotal').textContent = `$${subtotal.toFixed(2)}`;
-        document.getElementById('summary-shipping').textContent = `$${shipping.toFixed(2)}`;
-        document.getElementById('summary-tax').textContent = `$${tax.toFixed(2)}`;
-        document.getElementById('summary-total').textContent = `$${total.toFixed(2)}`;
+        const summarySubtotal = document.getElementById('summary-subtotal');
+        const summaryShipping = document.getElementById('summary-shipping');
+        const summaryTax = document.getElementById('summary-tax');
+        const summaryTotal = document.getElementById('summary-total');
 
-        document.getElementById('payment-items-count').textContent = `${cartItems.length} Item${cartItems.length !== 1 ? 's' : ''}`;
-        document.getElementById('payment-subtotal').textContent = `$${subtotal.toFixed(2)}`;
-        document.getElementById('payment-shipping').value = shipping.toFixed(2);
-        document.getElementById('payment-tax').value = tax.toFixed(2);
-        document.getElementById('payment-total').value = total.toFixed(2);
+        if (summarySubtotal) summarySubtotal.textContent = `$${subtotal.toFixed(2)}`;
+        if (summaryShipping) summaryShipping.textContent = `$${shipping.toFixed(2)}`;
+        if (summaryTax) summaryTax.textContent = `$${tax.toFixed(2)}`;
+        if (summaryTotal) summaryTotal.textContent = `$${total.toFixed(2)}`;
+
+        const paymentItemsCount = document.getElementById('payment-items-count');
+        const paymentSubtotal = document.getElementById('payment-subtotal');
+        const paymentShipping = document.getElementById('payment-shipping');
+        const paymentTax = document.getElementById('payment-tax');
+        const paymentTotal = document.getElementById('payment-total');
+
+        if (paymentItemsCount) paymentItemsCount.textContent = `${cartItems.length} Item${cartItems.length !== 1 ? 's' : ''}`;
+        if (paymentSubtotal) paymentSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+        if (paymentShipping) paymentShipping.value = shipping.toFixed(2);
+        if (paymentTax) paymentTax.value = tax.toFixed(2);
+        if (paymentTotal) paymentTotal.value = total.toFixed(2);
 
         localStorage.setItem('cartTotalPrice', subtotal);
     }
 
-
     function addCartEventListeners() {
-
         document.querySelectorAll('.decrease-quantity').forEach(button => {
             button.addEventListener('click', function() {
                 let index = parseInt(this.getAttribute('data-index'));
@@ -147,19 +148,59 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.remove-item').forEach(button => {
             button.addEventListener('click', function() {
                 let index = parseInt(this.getAttribute('data-index'));
+                let productId = this.getAttribute('data-product-id');
+                const originalButtonText = this.innerHTML; // Store original button content
+                this.disabled = true; // Disable the button
+                this.innerHTML = '<span class="loading"></span> Removing...'; // Optionally show a loading indicator
 
-                cartItems.splice(index, 1);
-
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-                renderCartItems();
-                updateSummary();
+                fetch('/restore-stock', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({ product_id: productId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    this.disabled = false; // Re-enable the button
+                    this.innerHTML = originalButtonText; // Restore original button content
+                    if (data.success) {
+                        let removedItem = cartItems[index];
+                        cartItems.splice(index, 1);
+                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                        renderCartItems();
+                        updateSummary();
+                        console.log('Stock restored successfully for product ID:', productId);
+                    } else if (data.error) {
+                        console.error('Error restoring stock for product ID:', productId, data.error);
+                        // Optionally, display an error message to the user
+                    }
+                })
+                .catch(error => {
+                    this.disabled = false;
+                    this.innerHTML = originalButtonText;
+                    console.error('Error communicating with the server to restore stock:', error);
+                });
             });
         });
     }
 
     renderCartItems();
     updateSummary();
+
+    const orderForm = document.getElementById('order-form');
+    if (orderForm) {
+        orderForm.addEventListener('submit', function(e) {
+            const cartItemsInput = document.createElement('input');
+            cartItemsInput.type = 'hidden';
+            cartItemsInput.name = 'cart_items';
+            cartItemsInput.value = JSON.stringify(cartItems);
+            orderForm.appendChild(cartItemsInput);
+
+
+        });
+    }
 
     let checkoutButton = document.getElementById('checkout-button');
     if (checkoutButton) {
@@ -169,5 +210,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
+    // Add success message handler to clear cart after successful purchase
+    document.addEventListener('DOMContentLoaded', function() {
+        const successMessage = document.querySelector('.bg-green-100');
+        if (successMessage && successMessage.textContent.includes('succès')) {
+            localStorage.removeItem('cartItems');
+            localStorage.removeItem('cartTotalPrice');
+        }
+    });
 });
