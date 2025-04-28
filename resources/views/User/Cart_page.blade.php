@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4645/4645379.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         .store-card {
             background: linear-gradient(to bottom right, rgba(251, 243, 219, 0.9), rgba(251, 243, 219, 0.7));
