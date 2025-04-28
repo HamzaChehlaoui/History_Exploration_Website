@@ -10,7 +10,8 @@ use App\Http\Controllers\{
     CommandeController,
     ProfileController,
     PayPalController,
-    DashboardController
+    DashboardController,
+    SearchController
 
 };
 use App\Http\Controllers\Auth\SocialAuthController;
@@ -57,9 +58,12 @@ Route::controller(ProduitController::class)->group(function () {
     Route::get('/Add_prodact', 'create')->name('produits.create');
     Route::post('/Add_prodact', 'store')->name('produits.store');
     Route::put('/produits/{produit}',  'update')->name('produits.update');
+    Route::post('/update-stock',  'updateStock')->name('update.stock');
+
+
 
 });
-
+Route::post('/restore-stock', [ProduitController::class, 'restoreStock']);
 // Article routes
 Route::controller(ArticleController::class)->group(function () {
     Route::get('/article/{id}', 'index')->name('article.index');
@@ -103,6 +107,7 @@ Route::post('/admin/articles/{article}/reject', [ArticleController::class, 'reje
 Route::delete('/admin/articles/{article}', [DashboardController::class, 'destroy_Article'])->name('article.destroy');
 
 Route::resource('products', ProduitController::class);
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 
 // PayPal routes
