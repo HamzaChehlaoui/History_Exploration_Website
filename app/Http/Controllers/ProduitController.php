@@ -8,12 +8,12 @@ use App\Http\Requests\StoreProduitRequest;
 use App\Http\Requests\UpdateProduitRequest;
 use App\Models\ProduitImage;
 use App\Notifications\ProduitCreated;
-
+use Illuminate\Support\Facades\Log;
 class ProduitController extends Controller
 {
     public function index(Request $request)
     {
-        $produits = Produit::paginate(4);
+        $produits = Produit::paginate(8);
 
         if ($request->ajax()) {
             return view('Visiteur.Partials.produits', compact('produits'))->render();
@@ -81,4 +81,41 @@ class ProduitController extends Controller
         $produit->delete();
         return redirect('/Dashbord_admin')->with('success', 'Produit supprimé.');
     }
+
+    public function updateStock(Request $request)
+{
+    $product = Produit::find($request->product_id);
+
+    if (!$product) {
+        return response()->json(['error' => 'Product not found.'], 404);
+    }
+
+    if ($product->quantite <= 0) {
+        return response()->json(['error' => 'Product out of stock.'], 400);
+    }
+
+    $product->quantite -= 1;
+    $product->save();
+
+    return response()->json([
+        'success' => true,
+        'new_quantity' => $product->quantite
+    ]);
+}
+public function restoreStock(Request $request)
+{
+    $product = Produit::find($request->product_id);
+
+    if (!$product) {
+        return response()->json(['error' => 'Product not found.'], 404);
+    }
+
+    $product->quantite += 1; // Increase the quantity
+    $product->save();
+
+    return response()->json([
+        'success' => true,
+        'new_quantity' => $product->quantite
+    ]);
+}
 }
