@@ -19,27 +19,31 @@ class StoreCommandeRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules()
-{
-    return [
-        'date_commande' => 'required|date',
-        'total_price' => 'required|numeric',
-        'tax' => 'nullable|numeric',
-        'shipping_cost' => 'nullable|numeric',
-        'status' => 'required|in:en_attente,valide,annule',
-        'payment_status' => 'required|in:en_attente,payé,échoué',
-        'payment_method' => 'nullable|string',
-        'payment_reference' => 'nullable|string',
-        'shipping_address' => 'nullable|string',
-        'shipping_city' => 'nullable|string',
-        'shipping_state' => 'nullable|string',
-        'shipping_zip_code' => 'nullable|string',
-        'shipping_country' => 'nullable|string',
-        'shipping_method' => 'nullable|string',
-        'tracking_number' => 'nullable|string',
-        'notes' => 'nullable|string',
-        'utilisateur_id' => 'required|exists:utilisateurs,id',
-    ];
-}
-
+    public function rules(): array
+    {
+        return [
+            'date_commande' => 'required|date',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'shipping_address' => 'required|string|max:255',
+            'shipping_city' => 'required|string|max:255',
+            'shipping_state' => 'required|string|max:255',
+            'shipping_zip_code' => 'required|string|max:20',
+            'shipping_country' => 'required|string|max:255',
+            'shipping_method' => 'required|string|max:50',
+            'shipping_cost' => 'required|numeric',
+            'tax' => 'required|numeric',
+            'total_price' => 'required|numeric',
+            'notes' => 'nullable|string',
+            'payment_method' => 'required|string|max:50',
+            'payment_reference' => 'nullable|string|max:255',
+            'payment_status' => 'required|string|max:50',
+            'status' => 'required|string|max:50',
+            'tracking_number' => 'nullable|string|max:255',
+            'utilisateur_id' => 'required|exists:utilisateurs,id',
+            'cart_items' => 'required|string',
+        ];
+    }
 }
