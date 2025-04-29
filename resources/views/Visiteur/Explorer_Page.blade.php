@@ -178,7 +178,7 @@
          location: "Florence, Italy",
          position: { lat: 43.7696, lng: 11.2558 },
          description: "A cultural movement that profoundly affected European intellectual life.",
-         wikiLink: "http://127.0.0.1:8000/article/2",
+         wikiLink: "https://youtu.be/_dvjrsDAH04?si=jVQL8NiFnK9gVRAl",
          category: "Cultural Movements",
          significance: 90,
          views: 12500
@@ -191,7 +191,7 @@
          location: "Manchester, England",
          position: { lat: 53.4808, lng: -2.2426 },
          description: "The transition to new manufacturing processes in Europe and the United States.",
-         wikiLink: "https://en.wikipedia.org/wiki/Industrial_Revolution",
+         wikiLink: "https://www.youtube.com/watch?v=xLhNP0qp38Q",
          category: "Scientific Discoveries",
          significance: 95,
          views: 15600
@@ -204,7 +204,7 @@
          location: "Paris, France",
          position: { lat: 48.8566, lng: 2.3522 },
          description: "A period of radical social and political upheaval in French history.",
-         wikiLink: "https://en.wikipedia.org/wiki/French_Revolution",
+         wikiLink: "https://youtu.be/DvK2m-WStgY?si=ATFgtR7ttcfX75sB",
          category: "Political Events",
          significance: 93,
          views: 14800
@@ -217,7 +217,7 @@
          location: "Rome, Italy",
          position: { lat: 41.9028, lng: 12.4964 },
          description: "An ancient civilization that grew into a vast empire.",
-         wikiLink: "https://en.wikipedia.org/wiki/Ancient_Rome",
+         wikiLink: "https://youtu.be/J1X2LwzP5Yo?si=1EThlVWsVoAd_0qp",
          category: "Ancient",
          significance: 98,
          views: 19200
@@ -230,7 +230,7 @@
          location: "Chang'an (Xi'an), China",
          position: { lat: 34.3416, lng: 108.9398 },
          description: "An ancient trade route connecting East and West.",
-         wikiLink: "https://en.wikipedia.org/wiki/Silk_Road",
+         wikiLink: "https://youtu.be/uQU3lbWBT70?si=f_Io6HXl0KeyHhnv",
          category: "Cultural Movements",
          significance: 88,
          views: 9500
@@ -243,7 +243,7 @@
          location: "Cusco, Peru",
          position: { lat: -13.5320, lng: -71.9675 },
          description: "Largest empire in pre-Columbian America.",
-         wikiLink: "https://en.wikipedia.org/wiki/Inca_Empire",
+         wikiLink: "https://youtu.be/UO5ktwPXsyM?si=fMeKI2whrWYk8wiS",
          category: "Ancient",
          significance: 82,
          views: 8300
@@ -256,7 +256,7 @@
          location: "Istanbul, Turkey",
          position: { lat: 41.0082, lng: 28.9784 },
          description: "Eastern Roman Empire during the Middle Ages.",
-         wikiLink: "https://en.wikipedia.org/wiki/Byzantine_Empire",
+         wikiLink: "https://youtu.be/JsDg78HbiXo?si=mjCq6cx692lyLMBs",
          category: "Ancient",
          significance: 87,
          views: 7900
@@ -269,7 +269,7 @@
          location: "Chichen Itza, Mexico",
          position: { lat: 20.6843, lng: -88.5677 },
          description: "Advanced civilization in Mesoamerica.",
-         wikiLink: "https://en.wikipedia.org/wiki/Maya_civilization",
+         wikiLink: "https://youtu.be/D-tqixliAdA?si=6klgpiKGgbtcdx4s",
          category: "Ancient",
          significance: 86,
          views: 9800
@@ -282,7 +282,7 @@
          location: "Cairo, Egypt",
          position: { lat: 30.0444, lng: 31.2357 },
          description: "One of the oldest and most influential civilizations.",
-         wikiLink: "https://en.wikipedia.org/wiki/Ancient_Egypt",
+         wikiLink: "https://youtu.be/NxfMwJfevOo?si=-YgsvNXSKZnOKNkQ",
          category: "Ancient",
          significance: 96,
          views: 18500
@@ -295,7 +295,7 @@
          location: "Karakorum, Mongolia",
          position: { lat: 47.2075, lng: 102.8447 },
          description: "The largest contiguous land empire in history.",
-         wikiLink: "https://en.wikipedia.org/wiki/Mongol_Empire",
+         wikiLink: "https://youtu.be/-fdVhGeOsfQ?si=2u0UIo3FaDch_teD",
          category: "Wars & Conflicts",
          significance: 90,
          views: 11200
@@ -308,7 +308,7 @@
          location: "Baghdad, Iraq",
          position: { lat: 33.3152, lng: 44.3661 },
          description: "A golden era of science, culture and innovation.",
-         wikiLink: "https://en.wikipedia.org/wiki/Islamic_Golden_Age",
+         wikiLink: "https://youtu.be/MpcgXTnd_74?si=q7OAL2-qy33yQ89V",
          category: "Cultural Movements",
          significance: 89,
          views: 8700
@@ -367,7 +367,7 @@
                      <p style="color: #92400e; margin: 5px 0;"><strong>${event.period}</strong> | ${event.location}</p>
                      <p style="margin-bottom: 8px;">${event.description}</p>
                      <div style="text-align: right;">
-                         <a href="${event.wikiLink}" target="_blank" style="display: inline-block; background-color: #FF0000; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-size: 12px;">Read on Wikipedia</a>
+                         <a href="${event.wikiLink}" target="_blank" style="display: inline-block; background-color: #FF0000; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-size: 12px;">Watch on YouTube</a>
                      </div>
                  </div>
              `,
@@ -400,7 +400,7 @@
 
              let wikiLink = document.createElement('a');
              wikiLink.href = event.wikiLink;
-             wikiLink.textContent = 'Read more on Wikipedia';
+             wikiLink.textContent = 'Watch on YouTube';
              wikiLink.target = '_blank';
              wikiLink.style.color = '#FF0000';
              wikiLink.style.fontWeight = 'bold';
