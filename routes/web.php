@@ -9,9 +9,9 @@ use App\Http\Controllers\{
     FavoriteController,
     CommandeController,
     ProfileController,
-    PayPalController,
     DashboardController,
-    SearchController
+    SearchController,
+    StripeController
 
 };
 use App\Http\Controllers\Auth\SocialAuthController;
@@ -33,7 +33,7 @@ Route::view('/Explorer', 'Visiteur.Explorer_Page')->name('explorer');
 Route::view('/about', 'Visiteur.Page_About')->name('about');
 Route::view('/PageConditions', 'Visiteur.PageConditions')->name('conditions');
 Route::view('/cart', 'User.Cart_page')->name('cart');
-
+Route::view('/thank_you', 'User.thank_you');
 Route::controller(AuthController::class)->group(function () {
     Route::get('/register', 'showRegisterForm')->name('register.form');
     Route::post('/register', 'register')->name('register');
@@ -64,6 +64,7 @@ Route::controller(ProduitController::class)->group(function () {
 
 });
 Route::post('/restore-stock', [ProduitController::class, 'restoreStock']);
+
 // Article routes
 Route::controller(ArticleController::class)->group(function () {
     Route::get('/article/{id}', 'index')->name('article.index');
@@ -98,7 +99,6 @@ Route::controller(ProfileController::class)->group(function () {
 });
 
 // Order routes
-Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
 Route::get('/Dashbord_admin', [DashboardController::class, 'index'])->name('dashboard.index');// Authentication routes
 Route::delete('/users/{user}', [DashboardController::class, 'destroy'])->name('users.destroy');
 Route::get('/admin/articles', [ArticleController::class, 'adminIndex'])->name('admin.articles.index');
@@ -109,12 +109,13 @@ Route::delete('/admin/articles/{article}', [DashboardController::class, 'destroy
 Route::resource('products', ProduitController::class);
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
+Route::post('/process-payment', [CommandeController::class, 'store'])->name('process.payment');
 
-// PayPal routes
-Route::controller(PayPalController::class)->prefix('api/paypal')->name('paypal.')->group(function () {
-    Route::post('/create-order', 'createPayPalOrder')->name('create.order');
-    Route::post('/capture-order', 'capturePayPalOrder')->name('capture.order');
-});
+Route::post('/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');
+Route::get('/success', [StripeController::class, 'success'])->name('stripe.success');
+Route::get('/cancel', [StripeController::class, 'cancel'])->name('stripe.cancel');
+Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
