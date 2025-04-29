@@ -64,7 +64,36 @@
                     <h3 class="text-2xl font-bold text-amber-900 font-serif">
                         {{ $article->title }} :
                     </h3>
+                    @auth
+    @if(auth()->id() === $article->utilisateur_id || auth()->user()->role_id===1)
+        <!-- Article Action Buttons -->
+<div class="flex items-center gap-3 mb-6 mt-4">
+    @if(auth()->id() === $article->utilisateur_id)
+        <a href="{{ route('articles.edit', $article->id) }}"
+           class="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-medium text-sm text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+            Edit
+        </a>
+    @endif
 
+    <form id="delete-article-form" action="{{ route('articles.destroy', $article->id) }}" method="POST" class="hidden">
+        @csrf
+        @method('DELETE')
+    </form>
+
+    <button type="button" id="delete-article-btn"
+            class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-medium text-sm text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-150 ease-in-out">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
+        Delete
+    </button>
+</div>
+    @endif
+@endauth
+                    @if(auth()->user()->role_id !==1)
                     <form action="{{ route('favorites.toggle', $article->id) }}" method="POST" class="inline">
                         @csrf
                         <button type="submit"
@@ -73,6 +102,7 @@
                             {{ auth()->user()->favorites->contains('article_id', $article->id) ? 'Retirer des favoris' : 'Ajouter aux favoris' }}
                         </button>
                     </form>
+                    @endif
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
