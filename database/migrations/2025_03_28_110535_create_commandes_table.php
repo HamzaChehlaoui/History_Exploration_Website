@@ -14,24 +14,30 @@ return new class extends Migration
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
             $table->date('date_commande');
-            $table->float('total_price');
-            $table->float('tax')->default(0);
+
+            // Shipping and contact info
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
+            $table->string('phone')->nullable();
+            $table->string('shipping_address');
+            $table->string('shipping_city');
+            $table->string('shipping_country');
+
+            // Order financial summary
             $table->float('shipping_cost')->default(0);
-            $table->enum('status', ['en_attente', 'valide', 'annule']);
-            $table->enum('payment_status', ['en_attente', 'payé', 'échoué'])->default('en_attente');
-            $table->string('payment_method')->nullable();
-            $table->string('payment_reference')->nullable();
-            $table->string('shipping_address')->nullable();
-            $table->string('shipping_city')->nullable();
-            $table->string('shipping_state')->nullable();
-            $table->string('shipping_zip_code')->nullable();
-            $table->string('shipping_country')->nullable();
-            $table->string('shipping_method')->nullable();
-            $table->string('tracking_number')->nullable();
+            $table->float('tax')->default(0);
+            $table->float('total_price');
+
+            // Optional notes
             $table->text('notes')->nullable();
+
+            // Relation to user
             $table->foreignId('utilisateur_id')->constrained('utilisateurs')->onDelete('cascade');
+
             $table->timestamps();
         });
+
 
     }
 
