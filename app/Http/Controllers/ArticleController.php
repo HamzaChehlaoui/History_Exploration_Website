@@ -98,7 +98,7 @@ class ArticleController extends Controller
             $article = Article::findOrFail($id);
             $categories = Category::all();
             $utilisateurs = Utilisateur::all();
-            return view('articles.edit', compact('article', 'categories', 'utilisateurs'));
+            return view('User.Edit_Article', compact('article', 'categories', 'utilisateurs'));
         }
 
         public function update(UpdateArticleRequest $request, $id)
@@ -112,7 +112,10 @@ class ArticleController extends Controller
         {
             $article = Article::findOrFail($id);
             $article->delete();
-            return redirect()->route('articles.index')->with('success', 'Article supprimé');
+            if(auth()->user()->role_id===1){
+                return redirect('/Dashbord_admin')->with('success', 'Article supprimé');
+            }
+            return redirect('/')->with('success', 'Article supprimé');
         }
         public function approve(Article $article)
     {
