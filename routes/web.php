@@ -73,6 +73,9 @@ Route::controller(ArticleController::class)->group(function () {
     Route::get('/submit-article', 'create')->name('article.create');
     Route::post('/submit-article', 'store')->name('article.store');
 });
+Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit')->can('update', 'article');
+Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+
 Route::resource('articles', ArticleController::class);
 
 // Comment routes
