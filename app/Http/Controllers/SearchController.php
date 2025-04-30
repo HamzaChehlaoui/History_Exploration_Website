@@ -8,27 +8,15 @@ use App\Models\Produit;
 
 class SearchController extends Controller
 {
-    public function index(Request $request)
+    public function search(Request $request)
 {
-    $query = $request->input('query');
-    $type = $request->input('type'); // Search type
+    
+    $query = $request->input('q');
+    $articles = Article::where('title', 'LIKE', '%' . $query . '%')
+                       ->orWhere('description', 'LIKE', '%' . $query . '%')
+                       ->paginate(9);
 
-    if ($type == 'articles') {
-        $results = Article::where('title', 'like', "%$query%")
-                          ->orWhere('content', 'like', "%$query%")
-                          ->get();
-    } elseif ($type == 'products') {
-        $results = Produit::where('name', 'like', "%$query%")
-                          ->orWhere('description', 'like', "%$query%")
-                          ->get();
-    } else {
-        $results = collect();
-    }
-
-    // Return the data as JSON
-    return response()->json([
-        'results' => $results
-    ]);
+                       return view('Visiteur.search_results', compact('articles'));
 }
 
 }
