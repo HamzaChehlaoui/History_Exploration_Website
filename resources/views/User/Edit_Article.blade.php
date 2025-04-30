@@ -117,7 +117,6 @@
                         <select name="media_types[]" class="w-full px-4 py-2 border border-amber-200 rounded-lg">
                             <option value="video">Video</option>
                             <option value="audio">Audio</option>
-                            <option value="pdf">PDF</option>
                         </select>
                         <input type="url" name="media_links[]" class="w-full px-4 py-2 border border-amber-200 rounded-lg" placeholder="https://example.com/media-link">
                     </div>
@@ -145,9 +144,7 @@
                 Cancel
             </a>
             <div class="flex space-x-4">
-                <button type="submit" name="save_draft" value="1" class="px-6 py-2 bg-amber-100 text-amber-900 rounded-lg hover:bg-amber-200 transition duration-150">
-                    Save Draft
-                </button>
+
                 <button type="submit" class="px-6 py-2 bg-amber-700 text-amber-100 rounded-lg hover:bg-amber-600 transition duration-150">
                     Update Article
                 </button>
