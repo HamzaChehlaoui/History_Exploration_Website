@@ -67,16 +67,16 @@ Route::post('/restore-stock', [ProduitController::class, 'restoreStock']);
 
 // Article routes
 Route::controller(ArticleController::class)->group(function () {
-    Route::get('/article/{id}', 'index')->name('article.index');
+    Route::get('/article/{id}', 'index')->name('articles.index');
     Route::get('/articles', 'index');
-    Route::get('/articles/{id}', 'show')->name('article.show');
+    Route::get('/articles/{id}', 'show')->name('articles.show');
     Route::get('/submit-article', 'create')->name('article.create');
     Route::post('/submit-article', 'store')->name('article.store');
+    Route::get('/articles/{id}/edit', 'edit')->name('articles.edit');
+    Route::delete('/articles/{id}',  'destroy')->name('articles.destroy');
+    Route::put('/article/{id}', 'update')->name('articles.update');
 });
-Route::get('/articles/{id}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
-Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
-Route::put('/articles/{id}', [ArticleController::class, 'update'])->name('articles.update');
-Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
+
 
 
 // Route::resource('articles', ArticleController::class);
