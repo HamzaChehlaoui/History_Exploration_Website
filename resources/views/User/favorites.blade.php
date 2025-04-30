@@ -175,7 +175,7 @@
                                 </div>
                                 <h4 class="text-xl font-semibold text-amber-900 mb-4">Vous n'avez pas encore d'articles favoris</h4>
                                 <p class="text-amber-800 mb-8">Parcourez nos articles et ajoutez-les à vos favoris pour les retrouver facilement ici</p>
-                                <a href="{{ route('articles.index') }}" class="btn-primary px-6 py-3">
+                                <a href="/" class="btn-primary px-6 py-3">
                                     <i class="fas fa-search mr-2"></i> Découvrir des articles
                                 </a>
                             </div>
@@ -193,41 +193,6 @@
                 </div>
             </div>
 
-            <!-- Filter Section -->
-            <div class="card mb-10">
-                <div class="p-8">
-                    <h3 class="section-heading text-xl">
-                        <i class="fas fa-filter mr-2"></i> Filtrer vos favoris
-                    </h3>
-                    <form action="{{ route('favorites.index') }}" method="GET" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div>
-                            <label for="category" class="block text-amber-800 mb-2">Catégorie</label>
-                            <select name="category" id="category" class="w-full bg-amber-50 border border-amber-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                <option value="">Toutes les catégories</option>
-                                @foreach($categories ?? [] as $category)
-                                    <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div>
-                            <label for="date" class="block text-amber-800 mb-2">Trier par</label>
-                            <select name="sort" id="sort" class="w-full bg-amber-50 border border-amber-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Date d'ajout (récent)</option>
-                                <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Date d'ajout (ancien)</option>
-                                <option value="title_asc" {{ request('sort') == 'title_asc' ? 'selected' : '' }}>Titre (A-Z)</option>
-                                <option value="title_desc" {{ request('sort') == 'title_desc' ? 'selected' : '' }}>Titre (Z-A)</option>
-                            </select>
-                        </div>
-                        <div class="flex items-end">
-                            <button type="submit" class="w-full btn-primary">
-                                <i class="fas fa-search mr-2"></i> Appliquer les filtres
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -270,7 +235,7 @@
             <p class="text-amber-800 mb-8 max-w-2xl mx-auto">Rejoignez notre communauté de passionnés d'histoire et découvrez plus d'histoires fascinantes du passé</p>
             <div class="space-x-4">
                 <a href="#" class="btn-primary px-8 py-3 hover-scale inline-block shadow-lg">Devenir Membre</a>
-                <a href="{{ route('articles.index') }}" class="btn-secondary px-8 py-3 hover-scale inline-block shadow-lg">Parcourir Plus d'Articles</a>
+                <a href="{{ route('articles.show',$article->id) }}" class="btn-secondary px-8 py-3 hover-scale inline-block shadow-lg">Parcourir Plus d'Articles</a>
             </div>
         </div>
     </section>
