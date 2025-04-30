@@ -174,7 +174,7 @@
                                 @endif
 
                                 <div class="mt-4 flex justify-between items-center">
-                                    <a href="{{ route('article.show', $article->id) }}" class="text-amber-700 hover:text-amber-900 font-medium">
+                                    <a href="{{ route('articles.show', $article->id) }}" class="text-amber-700 hover:text-amber-900 font-medium">
                                         Read more →
                                     </a>
                                     <div class="flex items-center">
