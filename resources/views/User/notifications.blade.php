@@ -144,30 +144,6 @@
         @endif
     </div>
 
-    <!-- Featured Time Periods -->
-    <section class="py-12 bg-amber-800/90 text-amber-50">
-        <div class="container mx-auto px-4">
-            <h3 class="text-xl font-semibold mb-6">Continue Exploring</h3>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-amber-800/30 p-4 rounded-lg hover:bg-amber-700/30 transition-all cursor-pointer">
-                    <h3 class="text-amber-200 font-medium">Ancient World</h3>
-                    <p class="text-amber-300 text-sm mt-1">3000 BCE - 500 CE</p>
-                </div>
-                <div class="bg-amber-800/30 p-4 rounded-lg hover:bg-amber-700/30 transition-all cursor-pointer">
-                    <h3 class="text-amber-200 font-medium">Medieval Era</h3>
-                    <p class="text-amber-300 text-sm mt-1">500 - 1500 CE</p>
-                </div>
-                <div class="bg-amber-800/30 p-4 rounded-lg hover:bg-amber-700/30 transition-all cursor-pointer">
-                    <h3 class="text-amber-200 font-medium">Modern Age</h3>
-                    <p class="text-amber-300 text-sm mt-1">1500 - 1900 CE</p>
-                </div>
-                <div class="bg-amber-800/30 p-4 rounded-lg hover:bg-amber-700/30 transition-all cursor-pointer">
-                    <h3 class="text-amber-200 font-medium">Contemporary</h3>
-                    <p class="text-amber-300 text-sm mt-1">1900 - Present</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  
 @endsection
 </body>
