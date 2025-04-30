@@ -117,13 +117,14 @@
             <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
                 <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
                     <div class="flex flex-col items-center">
-                        <img src="	https://intranet.youcode.ma/storage/users/profile/thumbnail/1465-1728555112.jpg" alt="Team member" class="w-32 h-32 rounded-full mb-4">
-                        <dt class="font-semibold text-amber-900">Dr. Zakariae El Hassad</dt>
+                        <img src="	https://avatars.githubusercontent.com/u/110723408?v=4" alt="Team member" class="w-32 h-32 rounded-full mb-4">
+                        <dt class="font-semibold text-amber-900">Dr. Ilyass Anida
+                        </dt>
                         <dd class="text-amber-800">Ancient Civilizations Expert</dd>
                     </div>
                     <div class="flex flex-col items-center">
-                        <img src="	https://intranet.youcode.ma/storage/users/profile/thumbnail/34-1669653739.jpg" alt="Team member" class="w-32 h-32 rounded-full mb-4">
-                        <dt class="font-semibold text-amber-900">Prof. Achraf Chaoub</dt>
+                        <img src="https://intranet.youcode.ma/storage/users/profile/1082-1728486744.JPG" alt="Team member" class="w-32 h-32 rounded-full mb-4">
+                        <dt class="font-semibold text-amber-900">Prof. Mohammed Ben Cheikh</dt>
                         <dd class="text-amber-800">Medieval History Specialist</dd>
                     </div>
                     <div class="flex flex-col items-center">
@@ -133,7 +134,7 @@
                     </div>
                 </dl>
             </div>
-        </div> 
+        </div>
     </div>
 @endsection
 </body>
