@@ -84,11 +84,16 @@ class ArticleController extends Controller
                 $user->notify(new ArticleCreated($article));
 
                 DB::commit();
-
+                if($user->role_id===1){
+                    return redirect('/Dashbord_admin');
+                }
                 return redirect('/')->with('success', 'Article créé avec succès');
             } catch (\Exception $e) {
                 dd($e->getMessage());
                 DB::rollBack();
+                if($user->role_id===1){
+                    return redirect('/Dashbord_admin');
+                }
                 return redirect('/')->with('error', 'Erreur lors de la sauvegarde.');
             }
         }
