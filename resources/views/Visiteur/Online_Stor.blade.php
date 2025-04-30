@@ -63,23 +63,11 @@
                 </div>
             </section>
 
-            
+
         </div>
     </main>
 
-    <!-- Newsletter -->
-    <section class="bg-amber-800 text-amber-100 py-12">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-2xl font-bold mb-4">Stay Updated</h2>
-            <p class="mb-6">Subscribe to receive updates about new historical items and special offers</p>
-            <div class="max-w-md mx-auto flex gap-4">
-                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-2 rounded-lg bg-amber-700 text-amber-100 placeholder-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500"/>
-                <button class="bg-amber-100 text-amber-900 px-6 py-2 rounded-lg font-semibold hover:bg-amber-200 transition-colors">
-                    Subscribe
-                </button>
-            </div>
-        </div>
-    </section>
+
 
     <script src="/js/stor.js"></script>
 
