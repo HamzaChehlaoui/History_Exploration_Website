@@ -73,10 +73,13 @@ Route::controller(ArticleController::class)->group(function () {
     Route::get('/submit-article', 'create')->name('article.create');
     Route::post('/submit-article', 'store')->name('article.store');
 });
-Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit')->can('update', 'article');
+Route::get('/articles/{id}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
 Route::delete('/articles/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+Route::put('/articles/{id}', [ArticleController::class, 'update'])->name('articles.update');
+Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
 
-Route::resource('articles', ArticleController::class);
+
+// Route::resource('articles', ArticleController::class);
 
 // Comment routes
 Route::controller(CommentaireController::class)->prefix('commentaires')->name('commentaires.')->group(function () {
