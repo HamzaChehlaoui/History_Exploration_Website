@@ -96,7 +96,7 @@
                                 </div>
                                 Notifications
                             </a>
-                            <form method="POST" action="/logout">
+                            <form id="logout-form" method="POST" action="/logout">
                                 @csrf
                                 <button type="submit" class="text-amber-200 hover:text-white hover:bg-amber-700 hover:text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800 flex items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -206,24 +206,23 @@
 <!-- JavaScript for improved responsive functionality -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // User dropdown functionality
-        const userMenuButton = document.getElementById('user-menu-button');
-        const userDropdown = document.getElementById('user-dropdown');
+
+        let userMenuButton = document.getElementById('user-menu-button');
+        let userDropdown = document.getElementById('user-dropdown');
 
         if (userMenuButton && userDropdown) {
             userMenuButton.addEventListener('click', function(event) {
                 event.stopPropagation();
-                const expanded = this.getAttribute('aria-expanded') === 'true';
+                let expanded = this.getAttribute('aria-expanded') === 'true';
                 this.setAttribute('aria-expanded', !expanded);
                 userDropdown.classList.toggle('hidden');
             });
         }
 
-        // Mobile menu functionality
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
+        let mobileMenuButton = document.getElementById('mobile-menu-button');
+        let mobileMenu = document.getElementById('mobile-menu');
+        let menuIcon = document.getElementById('menu-icon');
+        let closeIcon = document.getElementById('close-icon');
 
         if (mobileMenuButton && mobileMenu) {
             mobileMenuButton.addEventListener('click', function() {
@@ -231,22 +230,19 @@
                 menuIcon.classList.toggle('hidden');
                 closeIcon.classList.toggle('hidden');
 
-                // Close search if menu is opened
                 if (!mobileMenu.classList.contains('hidden')) {
                     mobileSearchContainer.classList.add('hidden');
                 }
             });
         }
 
-        // Mobile search functionality
-        const mobileSearchButton = document.getElementById('mobile-search-button');
-        const mobileSearchContainer = document.getElementById('mobile-search-container');
+        let mobileSearchButton = document.getElementById('mobile-search-button');
+        let mobileSearchContainer = document.getElementById('mobile-search-container');
 
         if (mobileSearchButton && mobileSearchContainer) {
             mobileSearchButton.addEventListener('click', function() {
                 mobileSearchContainer.classList.toggle('hidden');
 
-                // Close menu if search is opened
                 if (!mobileSearchContainer.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
                     menuIcon.classList.remove('hidden');
@@ -255,7 +251,6 @@
             });
         }
 
-        // Close the dropdown when clicking outside
         document.addEventListener('click', function(event) {
             if (userDropdown && !userMenuButton.contains(event.target) && !userDropdown.contains(event.target)) {
                 userMenuButton.setAttribute('aria-expanded', 'false');
@@ -263,8 +258,7 @@
             }
         });
 
-        // Responsive adjustment for scroll
-        const nav = document.querySelector('nav');
+        let nav = document.querySelector('nav');
         window.addEventListener('scroll', function() {
             if (window.scrollY > 10) {
                 nav.classList.add('shadow-2xl');
@@ -274,5 +268,11 @@
                 nav.classList.remove('bg-opacity-95');
             }
         });
+    });
+
+    let logoutForm = document.getElementById('logout-form');
+    logoutForm.addEventListener('submit', function (e) {
+        localStorage.clear();
+        console.log('localStorage It was cleaned upon checkout.');
     });
 </script>
