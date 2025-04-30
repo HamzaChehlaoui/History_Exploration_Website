@@ -110,7 +110,7 @@ class ArticleController extends Controller
         {
             $article = Article::findOrFail($id);
             $article->update($request->validated());
-            return redirect()->route('articles.index')->with('success', 'Article mis à jour');
+            return redirect('/')->with('success', 'Article mis à jour');
         }
 
         public function destroy($id)
