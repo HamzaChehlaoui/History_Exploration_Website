@@ -111,9 +111,9 @@ Route::get('/admin/articles', [ArticleController::class, 'adminIndex'])->name('a
 Route::post('/admin/articles/{article}/approve', [ArticleController::class, 'approve'])->name('article.approve');
 Route::post('/admin/articles/{article}/reject', [ArticleController::class, 'reject'])->name('article.reject');
 Route::delete('/admin/articles/{article}', [DashboardController::class, 'destroy_Article'])->name('article.destroy');
+Route::get('/search', [SearchController::class, 'search'])->name('article.search');
 
 Route::resource('products', ProduitController::class);
-Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::post('/process-payment', [CommandeController::class, 'store'])->name('process.payment');
 
