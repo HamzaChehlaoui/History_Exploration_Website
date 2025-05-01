@@ -110,6 +110,10 @@ class ArticleController extends Controller
         {
             $article = Article::findOrFail($id);
             $article->update($request->validated());
+            $user = auth()->user();
+            if($user->role_id===1){
+                return redirect('/Dashbord_admin');
+            }
             return redirect('/')->with('success', 'Article mis à jour');
         }
 
