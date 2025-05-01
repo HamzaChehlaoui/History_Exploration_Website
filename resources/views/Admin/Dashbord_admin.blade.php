@@ -377,7 +377,7 @@
                             <tr class="hover:bg-amber-50">
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
-                                        <img src="{{ $product->images->first()->path ?? 'default.jpg' }}" alt="{{ $product->name }}" class="w-12 h-12 object-cover rounded"/>
+                                        <img src="{{ $product->imagePath ?? 'default.jpg' }}" alt="{{ $product->name }}" class="w-12 h-12 object-cover rounded"/>
                                         <div>
                                             <div class="font-semibold text-amber-900">{{ $product->name }}</div>
                                             <div class="text-sm text-amber-700">SKU: {{ $product->id }}</div>
