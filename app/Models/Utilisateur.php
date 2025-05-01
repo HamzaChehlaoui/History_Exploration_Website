@@ -19,7 +19,7 @@ class Utilisateur extends Authenticatable
         'email',
         'password',
         'role_id',
-
+        'imagePath',
     ];
 
     protected $hidden = [
@@ -38,10 +38,7 @@ class Utilisateur extends Authenticatable
 {
     return $this->hasMany(Favorite::class, 'utilisateur_id');
 }
-public function profileImage()
-    {
-        return $this->hasOne(UserImage::class, 'utilisateur_id');
-    }
+
 
 }
 
