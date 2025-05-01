@@ -22,6 +22,7 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password), // Hash the password for security
                 'role_id' => 2,
+                
             ]);
 
 
@@ -32,7 +33,7 @@ class AuthController extends Controller
             $credentials = $request->only('email', 'password');
 
             if (Auth::attempt($credentials, $request->remember)) {
-                $role = auth()->user()->role_id; 
+                $role = auth()->user()->role_id;
 
                 if ($role === 1) {
                     return redirect('/Dashbord_admin')->with('success', 'Welcome! Login successful.');
