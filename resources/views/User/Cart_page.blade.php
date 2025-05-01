@@ -24,7 +24,10 @@
                 <div class="flex-1 flex justify-center sm:justify-between items-center">
                     <div class="flex-shrink-0">
                         <h1 class="text-2xl font-bold text-amber-100 cursor-pointer" onclick="window.location.href='/store'">
-                            <span class="text-amber-400">⌛</span> TimeTrekker Store
+                           <a href="/Stor"><span class="text-amber-400"><div class="flex items-center space-x-2">
+                            <img src="https://cdn-icons-png.flaticon.com/512/4645/4645379.png" alt="TimeTrekker Logo" class="h-8 w-8 md:h-10 md:w-10">
+                            <span class="text-xl md:text-2xl font-bold text-amber-100">TimeTrekker</span>
+                        </div></a>
                         </h1>
                     </div>
                 </div>
@@ -212,8 +215,13 @@
                             class="px-6 py-2 bg-amber-100 text-amber-900 rounded-lg hover:bg-amber-200 transition-colors">
                             Back to Cart
                         </button>
-
-                        <button type="submit">Pay with Stripe</button>
+                        <button type="submit" class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 shadow-md">
+                            <!-- Stripe icon (simple representation) -->
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m-8-6h16"></path>
+                            </svg>
+                            Pay with Stripe
+                          </button>
                     </div>
                 </form>
 
