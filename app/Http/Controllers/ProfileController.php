@@ -27,7 +27,7 @@ class ProfileController extends Controller
             return redirect('login');
         }
 
-        $user = Utilisateur::with('profileImage')->findOrFail($userId);
+        $user = Utilisateur::findOrFail($userId);
 
         $favoriteArticles = $user->favorites()
             ->with(['article.images', 'article.utilisateur'])
