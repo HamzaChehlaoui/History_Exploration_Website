@@ -28,34 +28,23 @@ class ProduitController extends Controller
     }
 
     public function store(StoreProduitRequest $request)
-    {
-        $validated = $request->validated();
+{
+    $validated = $request->validated();
 
-        // Créer le produit
-        $produit = Produit::create([
-            'name' => $validated['name'],
-            'description' => $validated['description'] ?? null,
-            'prix' => $validated['prix'],
-            'quantite' => $validated['quantite'],
-        ]);
+    $produit = Produit::create([
+        'name' => $validated['name'],
+        'description' => $validated['description'] ?? null,
+        'prix' => $validated['prix'],
+        'quantite' => $validated['quantite'],
+        'imagePath' => $validated['imagePath'], 
+    ]);
 
-        // Traiter les URLs d'images
-        if ($request->has('image_urls') && is_array($request->image_urls)) {
-            foreach ($request->image_urls as $imageUrl) {
+    /** @var \App\Models\Utilisateur $user */
+    $user = auth()->user();
+    $user->notify(new ProduitCreated($produit));
 
-                if (!empty($imageUrl)) {
-                    ProduitImage::create([
-                        'produit_id' => $produit->id,
-                        'path' => $imageUrl
-                    ]);
-                }
-            }
-        }
-        /** @var \App\Models\Utilisateur $user */
-        $user =auth()->user();
-        $user -> notify(new ProduitCreated($produit));
-        return redirect()->back()->with('success', 'Produit ajouté avec succès.');
-    }
+    return redirect()->back()->with('success', 'Produit ajouté avec succès.');
+}
 
     public function show(Produit $produit)
     {
