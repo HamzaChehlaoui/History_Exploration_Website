@@ -14,21 +14,8 @@ class Produit extends Model
         'description',
         'prix',
         'quantite',
+        'imagePath',
     ];
 
-    /**
-     * Get the images for the produit.
-     */
-    public function images()
-    {
-        return $this->hasMany(ProduitImage::class);
-    }
 
-    /**
-     * Get the primary image for the produit.
-     */
-    public function primaryImage()
-    {
-        return $this->hasOne(ProduitImage::class)->oldest();
-    }
 }
