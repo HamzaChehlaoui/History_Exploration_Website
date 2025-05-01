@@ -40,27 +40,27 @@
             <!-- Added CTA button -->
             <div class="mt-8 sm:mt-10 animate-fade-in-up" style="animation-delay: 0.6s; opacity: 0;">
                 <a href="#" class="inline-block px-6 py-3 sm:px-8 sm:py-4 rounded-lg bg-amber-500 hover:bg-amber-600 text-amber-900 font-medium text-sm sm:text-base transition-all duration-300 animate-pulse shadow-lg hover:shadow-xl">
-                    Begin Your Journey
+                    Wisdom Through Time
                 </a>
             </div>
 
-            <!-- Added time period options -->
+            <!-- Improved time period options -->
             <div class="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-fade-in-up" style="animation-delay: 0.9s; opacity: 0;">
                 <div class="bg-amber-900 bg-opacity-70 p-4 rounded-lg hover:bg-opacity-90 transition-all cursor-pointer">
-                    <h3 class="text-amber-200 font-medium">Ancient World</h3>
-                    <p class="text-amber-300 text-sm mt-1">3000 BCE - 500 CE</p>
+                    <h3 class="text-amber-200 font-medium">Read to Discover</h3>
+                    <p class="text-amber-300 text-sm mt-1">Ancient texts, modern insights</p>
                 </div>
                 <div class="bg-amber-900 bg-opacity-70 p-4 rounded-lg hover:bg-opacity-90 transition-all cursor-pointer">
-                    <h3 class="text-amber-200 font-medium">Medieval Era</h3>
-                    <p class="text-amber-300 text-sm mt-1">500 - 1500 CE</p>
+                    <h3 class="text-amber-200 font-medium">Know to Navigate</h3>
+                    <p class="text-amber-300 text-sm mt-1">Chart your intellectual journey</p>
                 </div>
                 <div class="bg-amber-900 bg-opacity-70 p-4 rounded-lg hover:bg-opacity-90 transition-all cursor-pointer">
-                    <h3 class="text-amber-200 font-medium">Modern Age</h3>
-                    <p class="text-amber-300 text-sm mt-1">1500 - 1900 CE</p>
+                    <h3 class="text-amber-200 font-medium">Understand to Transform</h3>
+                    <p class="text-amber-300 text-sm mt-1">Reshape your worldview</p>
                 </div>
                 <div class="bg-amber-900 bg-opacity-70 p-4 rounded-lg hover:bg-opacity-90 transition-all cursor-pointer">
-                    <h3 class="text-amber-200 font-medium">Contemporary</h3>
-                    <p class="text-amber-300 text-sm mt-1">1900 - Present</p>
+                    <h3 class="text-amber-200 font-medium">Grow to Enlighten</h3>
+                    <p class="text-amber-300 text-sm mt-1">Elevate mind and spirit</p>
                 </div>
             </div>
         </div>
