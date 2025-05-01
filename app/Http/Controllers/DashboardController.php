@@ -21,7 +21,7 @@ class DashboardController extends Controller
 
         $users = Utilisateur::when($searchUser, function ($query, $searchUser) {
             return $query->where('name', 'like', "%{$searchUser}%")
-                         ->orWhere('email', 'like', "%{$searchUser}%");
+                        ->orWhere('email', 'like', "%{$searchUser}%");
         })->paginate(5);
 
 
