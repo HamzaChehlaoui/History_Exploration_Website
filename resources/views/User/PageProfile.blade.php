@@ -54,7 +54,7 @@
         <div class="max-w-6xl mx-auto flex items-end gap-6">
             <div class="relative">
                 <div class="h-36 w-36 rounded-full border-4 border-amber-100 overflow-hidden shadow-lg">
-                    <img src="{{ $user->profileImage ? $user->profileImage : 'https://www.pcworld.com/wp-content/uploads/2023/09/AssassinsCreedMirage_01_Aufmacher.jpg?quality=50&strip=all' }}" alt="Profile Picture" class="h-full w-full object-cover">
+                    <img src="{{ $user->imagePath ? $user->imagePath : 'https://www.pcworld.com/wp-content/uploads/2023/09/AssassinsCreedMirage_01_Aufmacher.jpg?quality=50&strip=all' }}" alt="Profile Picture" class="h-full w-full object-cover">
     </div>
             </div>
             <div class="flex flex-col justify-end">
