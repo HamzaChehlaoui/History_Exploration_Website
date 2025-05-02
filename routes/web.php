@@ -75,6 +75,7 @@ Route::controller(ProduitController::class)->group(function () {
     Route::put('/produits/{produit}',  'update')->name('produits.update');
 
 });
+Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
 
 // Order routes
 Route::get('/Dashbord_admin', [DashboardController::class, 'index'])->name('dashboard.index');// Authentication routes
@@ -92,6 +93,7 @@ Route::delete('/admin/articles/{article}', [DashboardController::class, 'destroy
 Route::get('/search', [SearchController::class, 'search'])->name('article.search');
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
     Route::resource('products', ProduitController::class);
     Route::post('/process-payment', [CommandeController::class, 'store'])->name('process.payment');
     Route::post('/restore-stock', [ProduitController::class, 'restoreStock']);
