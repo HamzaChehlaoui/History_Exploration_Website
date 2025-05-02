@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
         View::composer(
-            ['Visiteur.index', 'Admin.Dashbord_admin'],
+            ['Visiteur.index', 'Admin.Dashbord_admin','Visiteur.Explorer_Page'],
             function ($view) {
                 $articles = Article::paginate(6);
                 $view->with('articles', $articles);
