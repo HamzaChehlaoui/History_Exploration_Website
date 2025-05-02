@@ -29,7 +29,7 @@ class ArticleImageSeeder extends Seeder
             ],
             [
                 'article_id' => 1,
-                'path' => 'https://e1.pxfuel.com/desktop-wallpaper/573/702/desktop-wallpaper-rome-the-beauty-of-3-000-roman-empire.jpg',
+                'path' => 'https://res.cloudinary.com/aenetworks/image/upload/c_fill,ar_2,w_3840,h_1920,g_auto/dpr_auto/f_auto/q_auto:eco/v1/gettyimages-802428712?_a=BAVAZGDX0',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -47,7 +47,7 @@ class ArticleImageSeeder extends Seeder
             ],
             [
                 'article_id' => 1,
-                'path' => 'https://e0.pxfuel.com/wallpapers/47/878/desktop-wallpaper-roman-empire-rome-empire.jpg',
+                'path' => 'https://res.cloudinary.com/jerrick/image/upload/v1735334804/676f1b940599a2001d5b782b.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
