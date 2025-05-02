@@ -151,7 +151,6 @@
               <select name="media_types[]" class="w-full px-4 py-2 border border-amber-200 rounded-lg">
                 <option value="video">Video</option>
                 <option value="audio">Audio</option>
-                <option value="pdf">PDF</option>
               </select>
               <input type="url" name="media_links[]" class="w-full px-4 py-2 border border-amber-200 rounded-lg" placeholder="https://example.com/media-link">
             </div>
