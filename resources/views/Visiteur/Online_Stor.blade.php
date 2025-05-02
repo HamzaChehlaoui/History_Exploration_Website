@@ -41,18 +41,26 @@
             <div class="flex justify-between items-center">
                 <span class="text-xl font-bold text-amber-900 product-price" data-price="{{$produit->prix}}">{{$produit->prix}} $</span>
                 @if($produit->quantite > 0)
-                <button class="add-to-cart-btn bg-amber-800 text-amber-100 px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors"
-                        data-product-id="{{$produit->id}}"
-                        data-product-price="{{$produit->prix}}"
-                        data-product-name="{{$produit->name}}"
-                        data-product-img="{{$produit->imagePath}}">
-                    Add to Cart
-                </button>
+                @auth
+                    <button class="add-to-cart-btn bg-amber-800 text-amber-100 px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors"
+                            data-product-id="{{ $produit->id }}"
+                            data-product-price="{{ $produit->prix }}"
+                            data-product-name="{{ $produit->name }}"
+                            data-product-img="{{ $produit->imagePath }}">
+                        Add to Cart
+                    </button>
                 @else
+                    <a href="{{ route('login') }}">
+                        <button class="bg-amber-800 text-amber-100 px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors w-full">
+                            Login to Add to Cart
+                        </button>
+                    </a>
+                @endauth
+            @else
                 <button class="bg-gray-400 text-amber-100 px-4 py-2 rounded-lg cursor-not-allowed" disabled>
                     Product not available
                 </button>
-                @endif
+            @endif
             </div>
         </div>
     </div>
