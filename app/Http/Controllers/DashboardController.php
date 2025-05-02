@@ -16,9 +16,7 @@ class DashboardController extends Controller
         $totalArticles = Article::count();
         $totalProducts = Produit::count();
         $totalCommands = Commande::count();
-
         $searchUser = $request->input('search_user');
-
         $users = Utilisateur::when($searchUser, function ($query, $searchUser) {
             return $query->where('name', 'like', "%{$searchUser}%")
                         ->orWhere('email', 'like', "%{$searchUser}%");
