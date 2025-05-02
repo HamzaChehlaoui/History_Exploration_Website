@@ -47,18 +47,17 @@
 </head>
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
     <!-- Navigation -->
-    <nav class="fixed w-full bg-gradient-to-r from-amber-900/95 to-amber-800/95 backdrop-blur-sm shadow-lg z-50">
+    <nav class="fixed w-full bg-gradient-to-r from-amber-900 to-amber-800 backdrop-blur-sm shadow-lg z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-bold text-amber-100 font-serif">
-                        <span class="text-amber-400">⌛</span> TimeTrekker Admin
-                    </h1>
+                <div class="flex items-center space-x-2">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4645/4645379.png" alt="TimeTrekker Logo" class="h-8 w-8 md:h-10 md:w-10">
+                    <span class="text-xl md:text-2xl font-bold text-amber-100">TimeTrekker</span>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <span class="text-amber-100">Admin: hamza chehlaoui</span>
-                    <div class="relative">
-                        <img src="https://media.licdn.com/dms/image/v2/D4E03AQFWCBmuwtAlgg/profile-displayphoto-shrink_400_400/B4EZSXbCmpGwAg-/0/1737707237271?e=1743638400&v=beta&t=x9JJjjcO7Ce3Sy1Ek5m4blpq7ZsLZ9dmdia-rPOWrps" alt="Admin Profile" class="h-8 w-8 rounded-full border-2 border-amber-400 cursor-pointer"/>
+                    <span class="text-amber-100">Admin: {{auth()->user()->name}}</span>
+                    <div class="relative" id="profileContainer">
+                        <img src="/api/placeholder/40/40" alt="Admin Profile" class="h-8 w-8 rounded-full border-2 border-amber-400 cursor-pointer" id="profileButton">
                         <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden" id="profileDropdown">
                             <div class="py-1">
                                 <a href="#" class="block px-4 py-2 text-sm text-amber-900 hover:bg-amber-100">My Profile</a>
@@ -67,16 +66,15 @@
                             </div>
                         </div>
                     </div>
+                    <form method="POST" action="/logout" class="hidden md:block">
+                        <button type="submit" class="text-amber-200 hover:text-white px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                            Logout
+                        </button>
+                    </form>
                 </div>
-                <form method="POST" action="/logout">
-                    @csrf
-                    <button type="submit" class="text-amber-200 hover:text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800 flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
-                        Logout
-                    </button>
-                </form>
             </div>
         </div>
     </nav>
