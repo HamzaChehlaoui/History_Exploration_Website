@@ -30,16 +30,9 @@
   <nav class="fixed w-full bg-gradient-to-r from-amber-900/95 to-amber-800/95 backdrop-blur-sm shadow-lg z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16 items-center">
-        <div class="flex-1 flex justify-between items-center">
-          <h1 class="text-2xl font-bold text-amber-100">
-            <span class="text-amber-400">⌛</span> TimeTrekker
-          </h1>
-          <div class="hidden sm:flex sm:space-x-8">
-            <a href="#" class="text-amber-100 hover:text-amber-200 px-3 py-2 rounded-md">Home</a>
-            <a href="#" class="text-amber-100 hover:text-amber-200 px-3 py-2 rounded-md">Explore</a>
-            <a href="#" class="text-amber-100 hover:text-amber-200 px-3 py-2 rounded-md">Login</a>
-            <a href="#" class="text-amber-100 hover:text-amber-200 px-3 py-2 rounded-md">About</a>
-          </div>
+        <div class="flex items-center space-x-2">
+            <img src="https://cdn-icons-png.flaticon.com/512/4645/4645379.png" alt="TimeTrekker Logo" class="h-8 w-8 md:h-10 md:w-10">
+            <span class="text-xl md:text-2xl font-bold text-amber-100">TimeTrekker</span>
         </div>
       </div>
     </div>
@@ -174,11 +167,10 @@
         <!-- Preview Section -->
         <div class="bg-white rounded-xl shadow-md p-6">
           <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-bold text-amber-900">Preview</h3>
-            <button type="button" class="text-amber-600 hover:text-amber-700">Refresh Preview</button>
+            <h3 class="text-lg font-bold text-amber-900">note</h3>
           </div>
           <div class="border border-amber-200 rounded-lg p-6">
-            <p class="text-amber-700 text-center">Click "Refresh Preview" to see how your article will appear</p>
+            <p class="text-amber-700 text-center">Your article will not be published until it has been reviewed by the administrator</p>
           </div>
         </div>
 
