@@ -9,17 +9,19 @@ use App\Http\Requests\UpdateProduitRequest;
 use App\Models\ProduitImage;
 use App\Notifications\ProduitCreated;
 use Illuminate\Support\Facades\Log;
+use App\Models\Category;
 class ProduitController extends Controller
 {
     public function index(Request $request)
     {
         $produits = Produit::paginate(8);
+        $catigorys = Category::all();
 
         if ($request->ajax()) {
             return view('Visiteur.Partials.produits', compact('produits'))->render();
         }
 
-        return view('Visiteur.Online_Stor', compact('produits'));
+        return view('Visiteur.Online_Stor', compact('produits','catigorys'));
     }
 
     public function create()
@@ -36,7 +38,7 @@ class ProduitController extends Controller
         'description' => $validated['description'] ?? null,
         'prix' => $validated['prix'],
         'quantite' => $validated['quantite'],
-        'imagePath' => $validated['imagePath'], 
+        'imagePath' => $validated['imagePath'],
     ]);
 
     /** @var \App\Models\Utilisateur $user */
