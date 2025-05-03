@@ -290,8 +290,8 @@
     });
 
     let logoutForm = document.getElementById('logout-form');
-    logoutForm.addEventListener('submit', function (e) {
-        localStorage.clear();
-        console.log('localStorage It was cleaned upon checkout.');
-    });
+    // logoutForm.addEventListener('submit', function (e) {
+    //     localStorage.clear();
+    //     console.log('localStorage It was cleaned upon checkout.');
+    // });
 </script>
