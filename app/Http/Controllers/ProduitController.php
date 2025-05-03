@@ -26,19 +26,23 @@ class ProduitController extends Controller
 
     public function create()
     {
-        return view('Admin.Add_prodact');
+        $categories =Category::all();
+
+        return view('Admin.Add_prodact', compact('categories'));
     }
 
     public function store(StoreProduitRequest $request)
 {
     $validated = $request->validated();
-
+    // dd($request->category_id);
     $produit = Produit::create([
         'name' => $validated['name'],
         'description' => $validated['description'] ?? null,
         'prix' => $validated['prix'],
         'quantite' => $validated['quantite'],
         'imagePath' => $validated['imagePath'],
+        'category_id' => $validated['category_id'],
+
     ]);
 
     /** @var \App\Models\Utilisateur $user */
@@ -109,4 +113,6 @@ public function restoreStock(Request $request)
         'new_quantity' => $product->quantite
     ]);
 }
+
+
 }

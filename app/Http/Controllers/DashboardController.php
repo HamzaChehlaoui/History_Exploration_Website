@@ -7,6 +7,7 @@ use App\Models\Utilisateur;
 use App\Models\Article;
 use App\Models\Produit;
 use App\Models\Commande;
+use App\Models\Category;
 
 class DashboardController extends Controller
 {
@@ -16,6 +17,7 @@ class DashboardController extends Controller
         $totalArticles = Article::count();
         $totalProducts = Produit::count();
         $totalCommands = Commande::count();
+        $categories = Category::all();
         $searchUser = $request->input('search_user');
         $users = Utilisateur::when($searchUser, function ($query, $searchUser) {
             return $query->where('name', 'like', "%{$searchUser}%")
@@ -50,7 +52,8 @@ class DashboardController extends Controller
             'totalCommands',
             'users',
             'products',
-            'articles'
+            'articles',
+            'categories'
         ));
     }
 

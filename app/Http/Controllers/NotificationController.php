@@ -15,13 +15,10 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        // Get the current user
         $user = Auth::user();
 
-        // Get the user's notifications with pagination
         $notifications = $user->notifications()->paginate(10);
 
-        // Count of unread notifications for the navbar
         $unreadNotificationsCount = $user->unreadNotifications->count();
 
         return view('User.notifications', compact('notifications', 'unreadNotificationsCount'));

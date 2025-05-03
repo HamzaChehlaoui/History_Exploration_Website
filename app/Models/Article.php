@@ -17,7 +17,6 @@ class Article extends Model
         'description',
         'content',
         'references',
-        'category_id',
         'utilisateur_id',
     ];
 

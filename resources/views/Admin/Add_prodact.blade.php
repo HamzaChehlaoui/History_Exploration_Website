@@ -20,11 +20,12 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-1 flex justify-center sm:justify-between items-center">
-                    <div class="flex-shrink-0">
-                        <h1 class="text-2xl font-bold text-amber-100">
-                            <span class="text-amber-400">⌛</span> TimeTrekker Store
-                        </h1>
+                    <a href="/Dashbord_admin">
+                    <div class="flex items-center space-x-2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4645/4645379.png" alt="TimeTrekker Logo" class="h-8 w-8 md:h-10 md:w-10">
+                        <span class="text-xl md:text-2xl font-bold text-amber-100">TimeTrekker</span>
                     </div>
+                </a>
                 </div>
             </div>
         </div>
@@ -45,10 +46,52 @@
                         </div>
                     @endif
 
+                    <!-- Nom du Produit -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold text-amber-900">Nom du Produit</h3>
+                        <div>
+                            <label class="block text-amber-900 mb-2" for="name">Nom du Produit</label>
+                            <input type="text" id="name" name="name" value="{{ old('name') }}" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            @error('name')
+                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Description du Produit -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold text-amber-900">Description du Produit</h3>
+                        <div>
+                            <label class="block text-amber-900 mb-2" for="description">Description</label>
+                            <textarea id="description" name="description" rows="4" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">{{ old('description') }}</textarea>
+                            @error('description')
+                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <!-- Catégorie du Produit -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-semibold text-amber-900">Catégorie du Produit</h3>
+                        <div>
+                            <label class="block text-amber-900 mb-2" for="category_id">Choisir une catégorie</label>
+                            <select id="category_id" name="category_id" class="w-full px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                <option value="">-- Sélectionner --</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
                     <!-- Image du Produit -->
                     <div class="space-y-4">
                         <h3 class="text-xl font-semibold text-amber-900">Image du Produit</h3>
-
                         <div>
                             <label class="block text-amber-900 mb-2" for="imagePath">URL de l'image</label>
                             <input type="url" id="imagePath" name="imagePath" placeholder="https://exemple.com/image.jpg" value="{{ old('imagePath') }}"
@@ -63,7 +106,6 @@
                     <!-- Prix & Inventaire -->
                     <div class="space-y-4">
                         <h3 class="text-xl font-semibold text-amber-900">Prix & Inventaire</h3>
-
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-amber-900 mb-2" for="prix">Prix (€)</label>
@@ -83,30 +125,6 @@
                         </div>
                     </div>
 
-                    <!-- Images du Produit (URL uniquement) -->
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-semibold text-amber-900">Images du Produit</h3>
-
-                        <div>
-                            <label class="block text-amber-900 mb-2">URLs d'images</label>
-                            <div class="space-y-3" id="image-url-container">
-                                <div class="flex items-center gap-2">
-                                    <input type="url" name="image_url" placeholder="https://exemple.com/image.jpg" class="flex-1 px-4 py-2 rounded-lg bg-amber-50 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                    <button type="button" class="add-url-btn px-3 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                            @error('image_urls.*')
-                                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                            <p class="text-xs text-amber-600 mt-2">Entrez les URLs complètes des images (format: https://exemple.com/image.jpg)</p>
-                        </div>
-                    </div>
-
                     <!-- Submit Buttons -->
                     <div class="flex justify-end space-x-4 pt-6">
                         <button type="button" class="px-6 py-2 bg-amber-100 text-amber-900 rounded-lg hover:bg-amber-200 transition-colors">
@@ -117,6 +135,7 @@
                         </button>
                     </div>
                 </form>
+
 
 
 

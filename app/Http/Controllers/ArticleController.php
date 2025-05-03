@@ -52,7 +52,6 @@ class ArticleController extends Controller
                     'description' => $request->description,
                     'content' => $request->content,
                     'references' => $request->references,
-                    'category_id' => 1,
                     'utilisateur_id' => auth()->id(),
                 ]);
 

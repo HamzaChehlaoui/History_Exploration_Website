@@ -74,7 +74,7 @@ Conclusion
 The Roman Empire s rise was fueled by military strength, innovation, and governance, while its fall resulted from economic instability, political corruption, and external invasions. Despite its decline, Romes legacy continues to shape the world today in profound ways.',
                 'references' => 'Gibbon, E. (1776). The History of the Decline and Fall of the Roman Empire.
                                 Ward-Perkins, B. (2005). The Fall of Rome and the End of Civilization.',
-                'category_id' => 1,
+                
                 'utilisateur_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -94,7 +94,7 @@ Egyptian society was highly stratified, with priests, scribes, and officials for
 Perhaps most distinctive was Egypt\'s elaborate preparation for the afterlife, involving mummification, tomb decoration, and burial goods. These practices reflected a sophisticated worldview where existence continued after death, requiring proper preservation of the body and provision of necessities for the journey beyond.',
                 'references' => 'Wilkinson, T. (2010). The Rise and Fall of Ancient Egypt.
                                 Shaw, I. (2000). The Oxford History of Ancient Egypt.',
-                'category_id' => 2,
+
                 'utilisateur_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -107,7 +107,7 @@ Perhaps most distinctive was Egypt\'s elaborate preparation for the afterlife, i
                 'description' => 'A brief description of the first article.',
                 'content' => 'This is the content of the first sample article in the database.',
                 'references' => 'Smith, J. (2020). Sample Historical References. Academic Press.',
-                'category_id' => 1,
+
                 'utilisateur_id' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),

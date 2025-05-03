@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 
 class ArticleCreated extends Notification
 {
-    
+
     use Queueable;
 
     protected $article;
@@ -19,6 +19,9 @@ class ArticleCreated extends Notification
 
     public function via($notifiable)
     {
+        // if ($this->article->status !== 'approved') {
+        //     return [];
+        // }
         return ['database'];
     }
 

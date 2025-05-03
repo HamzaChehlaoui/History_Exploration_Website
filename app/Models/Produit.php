@@ -15,6 +15,7 @@ class Produit extends Model
         'prix',
         'quantite',
         'imagePath',
+        'category_id',
     ];
 
 

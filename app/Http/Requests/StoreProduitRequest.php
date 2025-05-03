@@ -27,6 +27,7 @@ class StoreProduitRequest extends FormRequest
         'prix' => 'required|numeric|min:0',
         'quantite' => 'required|integer|min:0',
         'imagePath' => 'required|url|max:2048',
+        'category_id' => 'required|exists:categories,id',
     ];
 }
 

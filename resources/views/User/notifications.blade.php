@@ -1,6 +1,6 @@
 @extends('Visiteur.master')
 @section('content')
-<!-- Tailwind Custom Animations -->
+{{-- <!-- Tailwind Custom Animations -->
 <style>
     @keyframes fade-in-down {
         from { opacity: 0; transform: translateY(-20px); }
@@ -31,7 +31,7 @@
     .unread {
         border-left: 4px solid #f59e0b;
     }
-</style>
+</style> --}}
 
 <body class="font-serif bg-gradient-to-b from-amber-50 to-amber-100 min-h-screen">
     <!-- Notification Header -->
@@ -144,6 +144,6 @@
         @endif
     </div>
 
-  
+
 @endsection
 </body>
