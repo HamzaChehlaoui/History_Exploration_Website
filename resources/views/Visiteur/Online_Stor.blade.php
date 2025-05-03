@@ -16,10 +16,9 @@
             <!-- Categories -->
             <div class="mb-8 flex overflow-x-auto pb-4 space-x-4">
                 <button class="px-6 py-2 bg-amber-800 text-amber-100 rounded-full whitespace-nowrap">All Products</button>
-                <button class="px-6 py-2 bg-amber-100 text-amber-900 rounded-full whitespace-nowrap hover:bg-amber-200">Books</button>
-                <button class="px-6 py-2 bg-amber-100 text-amber-900 rounded-full whitespace-nowrap hover:bg-amber-200">Historical Maps</button>
-                <button class="px-6 py-2 bg-amber-100 text-amber-900 rounded-full whitespace-nowrap hover:bg-amber-200">Souvenirs</button>
-                <button class="px-6 py-2 bg-amber-100 text-amber-900 rounded-full whitespace-nowrap hover:bg-amber-200">Educational Tools</button>
+                @forEach($catigorys as $catigory)
+                <button class="px-6 py-2 bg-amber-100 text-amber-900 rounded-full whitespace-nowrap hover:bg-amber-200">{{$catigory->name}}</button>
+                @endforeach
             </div>
 
             <!-- Featured Products -->
