@@ -17,6 +17,7 @@ class CategoriesSeeder extends Seeder
             ['name' => 'History'],
             ['name' => 'Archeology'],
             ['name' => 'Ancient Civilizations'],
+            ['name' => 'Islamic History'],
         ]);
     }
 }
