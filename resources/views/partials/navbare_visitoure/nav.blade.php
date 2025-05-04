@@ -1,4 +1,4 @@
-@if($role===null || $role !== 1)
+
 <nav class="fixed w-full bg-gradient-to-r from-amber-950 to-amber-800 backdrop-blur-md shadow-xl z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 md:h-20 items-center">
@@ -55,7 +55,15 @@
                     </svg>
                     About
                 </a>
-
+            <!-- Admin Dashboard Link (Only visible to admins) -->
+            @if(auth()->check() && auth()->user()->role_id===1)
+            <a href="/Dashbord_admin" class="text-amber-200 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300  hover:bg-amber-700 hover:text-white flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+                Dashboard
+            </a>
+            @endif
                 <!-- Auth section (placeholder) -->
                 @auth
                 <div class="relative ml-3">
@@ -220,7 +228,7 @@
         </div>
     </div>
 </nav>
-@endif
+
 
 <!-- JavaScript for improved responsive functionality -->
 <script>

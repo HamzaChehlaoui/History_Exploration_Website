@@ -33,10 +33,7 @@ class Commande extends Model
         'utilisateur_id'
     ];
 
-    public function items()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
+    
 
     public function utilisateur()
     {

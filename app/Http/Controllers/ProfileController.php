@@ -81,18 +81,12 @@ class ProfileController extends Controller
         if ($request->hasFile('profile_image')) {
             $imagePath = $request->file('profile_image')->store('profile-images', 'public');
 
-            if ($user->profileImage && Storage::disk('public')->exists($user->profileImage->path)) {
-                Storage::disk('public')->delete($user->profileImage->path);
+            if ($user->imagePath && Storage::disk('public')->exists($user->imagePath)) {
+                Storage::disk('public')->delete($user->imagePath);
             }
 
-            if ($user->profileImage) {
-                $user->profileImage->path = $imagePath;
-                $user->profileImage->save();
-            } else {
-                $user->profileImage()->create([
-                    'path' => $imagePath
-                ]);
-            }
+            $user->imagePath = $imagePath;
+            $user->save();
         }
 
         return redirect('/profile')->with('success', 'Profile updated successfully');

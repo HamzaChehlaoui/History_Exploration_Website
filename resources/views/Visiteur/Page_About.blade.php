@@ -123,14 +123,14 @@
                         <dd class="text-amber-800">Ancient Civilizations Expert</dd>
                     </div>
                     <div class="flex flex-col items-center">
-                        <img src="https://intranet.youcode.ma/storage/users/profile/1082-1728486744.JPG" alt="Team member" class="w-32 h-32 rounded-full mb-4">
-                        <dt class="font-semibold text-amber-900">Prof. Mohammed Ben Cheikh</dt>
-                        <dd class="text-amber-800">Medieval History Specialist</dd>
-                    </div>
-                    <div class="flex flex-col items-center">
                         <img src="https://avatars.githubusercontent.com/u/176974502?v=4" alt="Team member" class="w-32 h-32 rounded-full mb-4">
                         <dt class="font-semibold text-amber-900">Prof. Hamza Chehlaoui</dt>
                         <dd class="text-amber-800">Modern History Researcher</dd>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="https://intranet.youcode.ma/storage/users/profile/1082-1728486744.JPG" alt="Team member" class="w-32 h-32 rounded-full mb-4">
+                        <dt class="font-semibold text-amber-900">Prof. Mohammed Ben Cheikh</dt>
+                        <dd class="text-amber-800">Medieval History Specialist</dd>
                     </div>
                 </dl>
             </div>

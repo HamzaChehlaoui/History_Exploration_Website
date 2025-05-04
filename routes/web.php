@@ -92,16 +92,22 @@ Route::delete('/admin/articles/{article}', [DashboardController::class, 'destroy
 
 Route::get('/search', [SearchController::class, 'search'])->name('article.search');
 
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/commandes/{id}', [CommandeController::class, 'show'])->name('commandes.show');
+});
+
+
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
     Route::resource('products', ProduitController::class);
-    Route::post('/process-payment', [CommandeController::class, 'store'])->name('process.payment');
+    // Route::post('/process-payment', [CommandeController::class, 'store'])->name('process.payment');
     Route::post('/restore-stock', [ProduitController::class, 'restoreStock']);
 
     Route::post('/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');
     Route::get('/success', [StripeController::class, 'success'])->name('stripe.success');
     Route::get('/cancel', [StripeController::class, 'cancel'])->name('stripe.cancel');
-    Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
+    // Route::post('/commandes', [CommandeController::class, 'store'])->name('commandes.store');
 
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
