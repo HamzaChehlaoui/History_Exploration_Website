@@ -87,11 +87,11 @@ class ProduitsSeeder extends Seeder
                 'category_id' => 3
             ],
             [
-                'name' => 'Byzantine Cross Pendant',
-                'description' => 'Elegant reproduction of a Byzantine cross in brass.',
+                'name' => 'Boek : Islamic Arms and Armor ',
+                'description' => 'Boek : Islamic Arms and Armor ',
                 'prix' => 22.99,
                 'quantite' => 18,
-                'imagePath' => 'https://sirioti.com/cdn/shop/files/byzantine-silver-cross_c5f744c9-be90-44f9-bbee-5746a4ae5cfc.jpg?v=1737402817&width=1445',
+                'imagePath' => 'https://www.books-on-collectables.eu/BOOKS/11159A.JPG',
                 'category_id' => 4
             ],
             [

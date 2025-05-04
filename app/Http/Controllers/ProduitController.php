@@ -14,15 +14,23 @@ class ProduitController extends Controller
 {
     public function index(Request $request)
     {
-        $produits = Produit::paginate(8);
         $catigorys = Category::all();
 
+        $query = Produit::query();
+
+        if ($request->has('category') && $request->category !== 'all') {
+            $query->where('category_id', $request->category);
+        }
+
+        $produits = $query->paginate(8);
+
         if ($request->ajax()) {
-            return view('Visiteur.Partials.produits', compact('produits'))->render();
+            return view('Visiteur.Partials.produits_filter', compact('produits'))->render();
         }
 
         return view('Visiteur.Online_Stor', compact('produits','catigorys'));
     }
+
 
     public function create()
     {
