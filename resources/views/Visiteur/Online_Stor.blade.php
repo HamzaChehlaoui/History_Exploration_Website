@@ -80,7 +80,7 @@
 
 
 
-    <script src="/js/stor.js"></script>
+    {{-- <script src="/js/stor.js"></script> --}}
 
 
 @endsection
