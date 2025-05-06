@@ -33,10 +33,17 @@ class Commande extends Model
         'utilisateur_id'
     ];
 
-    
+
 
     public function utilisateur()
     {
         return $this->belongsTo(Utilisateur::class);
     }
+    public function produits()
+{
+    return $this->belongsToMany(Produit::class, 'commande_produit')
+                ->withPivot('quantite', 'prix_unitaire')
+                ->withTimestamps();
+}
+
 }

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CommandeController extends Controller
 {
-   
+
     public function show($id)
     {
         $commande = Commande::findOrFail($id);

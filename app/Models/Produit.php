@@ -17,6 +17,12 @@ class Produit extends Model
         'imagePath',
         'category_id',
     ];
+    public function commandes()
+    {
+        return $this->belongsToMany(Commande::class, 'commande_produit')
+                    ->withPivot('quantite', 'prix_unitaire')
+                    ->withTimestamps();
+    }
 
 
 }
