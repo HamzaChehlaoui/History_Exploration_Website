@@ -80,7 +80,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/restore-stock', [ProduitController::class, 'restoreStock']);
 
     // Commandes
-    Route::get('/commandes/{id}', [CommandeController::class, 'show'])->name('commandes.show');
+
+    Route::get('/mes-commandes', [CommandeController::class, 'afficherCommandes'])->name('commandes.index');
+    Route::get('/mes-commandes/{commande}', [CommandeController::class, 'show'])->name('commandes.show'); // Route for order details
+
 
     // Stripe
     Route::post('/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');

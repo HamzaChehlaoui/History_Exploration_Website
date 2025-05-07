@@ -18,11 +18,9 @@ class Produit extends Model
         'category_id',
     ];
     public function commandes()
-    {
-        return $this->belongsToMany(Commande::class, 'commande_produit')
-                    ->withPivot('quantite', 'prix_unitaire')
-                    ->withTimestamps();
-    }
+{
+    return $this->belongsToMany(Commande::class)->withPivot('quantite', 'prix_unitaire')->withTimestamps();
+}
 
 
 }

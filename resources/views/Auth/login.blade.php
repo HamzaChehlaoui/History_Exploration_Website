@@ -102,7 +102,7 @@
                     </div>
 
                     <div class="text-sm">
-                        <a href="#" class="font-medium text-amber-600 hover:text-amber-500">Forgot your password?</a>
+                        <a href="#" class="font-medium text-amber-600 hover:text-amber-500"></a>
                     </div>
                 </div>
 
