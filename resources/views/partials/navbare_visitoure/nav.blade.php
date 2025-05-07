@@ -104,6 +104,27 @@
                                 </div>
                                 Notifications
                             </a>
+                            <a href="{{ route('commandes.index') }}" class="text-amber-200 px-3 py-2 rounded-md text-sm font-medium transition-all hover:bg-amber-700 hover:text-white duration-300 hover:bg-amber-700/80 hover:text-white flex items-center gap-1 relative" aria-label="Notifications">
+                                <div class="relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <!-- Number 1 -->
+                                        <text x="3" y="6" font-family="sans-serif" font-size="4.5" font-weight="bold" fill="currentColor">1</text>
+                                        <!-- First list line -->
+                                        <line x1="8" y1="6" x2="21" y2="6" />
+
+                                        <!-- Number 2 -->
+                                        <text x="3" y="12" font-family="sans-serif" font-size="4.5" font-weight="bold" fill="currentColor">2</text>
+                                        <!-- Second list line -->
+                                        <line x1="8" y1="12" x2="21" y2="12" />
+
+                                        <!-- Number 3 -->
+                                        <text x="3" y="18" font-family="sans-serif" font-size="4.5" font-weight="bold" fill="currentColor">3</text>
+                                        <!-- Third list line -->
+                                        <line x1="8" y1="18" x2="21" y2="18" />
+                                      </svg>
+                                </div>
+                                Commandes
+                            </a>
                             <form id="logout-form" method="POST" action="/logout">
                                 @csrf
                                 <button type="submit" class="text-amber-200 hover:text-white hover:bg-amber-700 hover:text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-amber-800 flex items-center gap-2">
